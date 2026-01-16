@@ -6,10 +6,10 @@ TEAM INFORMATION
     Team Members
     \\\\\\\\\\\\\\\\\\
 
-        Donovan Thach
-        Zheng Chen
-        Cash Limberg
-        Daniel Martin
+        Donovan Thach - Project Manager
+        Zheng Chen    - Social Manager
+        Cash Limberg  - Lead Developer
+        Daniel Martin - Software Architecture
 
     //////////////////
     Team Artifacts
