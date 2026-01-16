@@ -73,9 +73,15 @@ Project Description
     Technical Approach
     \\\\\\\\\\\\\\\\\\
 
+        #TODO
+
     //////////////////
     Risks
     \\\\\\\\\\\\\\\\\\
+
+        The largest risk that our team forsees is not fully being able to distinguish 
+        conditional statements for a user to distinguish it from other conditional 
+        statements. To solve this risk we will focus on understandable UX design.
 
 ===================================================================
 Implementations
@@ -85,6 +91,14 @@ Implementations
     Major Features
     \\\\\\\\\\\\\\\\\\
 
+        1.  Implement 3D movement from player
+        2.  Implement the ability to place/remove blocks
+        3.  Implement blocks abilities, such as conditional statements
+        4.  Implement the ability to connect blocks for linearly programming
+
     //////////////////
     Stretch Goals
     \\\\\\\\\\\\\\\\\\
+
+        1.  Implement the ability to make functions
+        2.  Implement the recursion
