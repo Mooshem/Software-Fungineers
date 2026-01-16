@@ -73,7 +73,9 @@ Project Description
     Technical Approach
     \\\\\\\\\\\\\\\\\\
 
-        #TODO
+        Our team intends on using a technical 3D graphics software available in c++
+        to complete this project. We will also be using Visual Studio code for 
+        writing the program. 
 
     //////////////////
     Risks
