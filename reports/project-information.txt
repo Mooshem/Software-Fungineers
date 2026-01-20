@@ -92,7 +92,7 @@ Project Description
     Technical Approach
     \\\\\\\\\\\\\\\\\\
 
-        Our team intends on using a technical 3D graphics software available in c++
+        Our team intends on using a technical 3D graphics software, Godot,
         to complete this project. We will also be using Visual Studio code for 
         writing the program. 
 
