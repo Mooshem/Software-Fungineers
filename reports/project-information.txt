@@ -70,6 +70,12 @@ Project Description
         bridge.
 
     //////////////////
+    Use Case
+    \\\\\\\\\\\\\\\\\\
+
+        TODO
+
+    //////////////////
     Technical Approach
     \\\\\\\\\\\\\\\\\\
 
@@ -84,6 +90,12 @@ Project Description
         The largest risk that our team forsees is not fully being able to distinguish 
         conditional statements for a user to distinguish it from other conditional 
         statements. To solve this risk we will focus on understandable UX design.
+
+    //////////////////
+    Timeline
+    \\\\\\\\\\\\\\\\\\
+
+        TODO
 
 ===================================================================
 Implementations
