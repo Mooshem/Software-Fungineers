@@ -7,7 +7,7 @@ TEAM INFORMATION
     \\\\\\\\\\\\\\\\\\
 
         Donovan Thach - Project Manager
-        Zheng Chen    - Social Manager
+        Zheng Chen    - UX / Design Lead and Quality Assurance
         Cash Limberg  - Lead Developer
         Daniel Martin - Software Architecture
 
