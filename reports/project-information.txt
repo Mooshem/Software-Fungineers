@@ -89,6 +89,28 @@ Project Description
              free time.
 
     //////////////////
+    Non-Functional Requirements
+    \\\\\\\\\\\\\\\\\\
+
+        The program will run without lagging, creating a seamless user experience.
+
+        The program will start withen 3 seconds of running the program.
+
+        The program will be able to support 1 user.
+
+    //////////////////
+    Non-Functional Requirements
+    \\\\\\\\\\\\\\\\\\
+
+        The application must run on Windows 10/11
+
+        All third-party libraries and 3D graphics frameworks used must have permissive open-source 
+        licenses (MIT, Apache 2.0, or similar) to allow free distribution to educational institutions
+        
+        The programming concepts taught (variables, conditionals, loops, functions) must align with standard 
+        CS curriculum frameworks
+
+    //////////////////
     Technical Approach
     \\\\\\\\\\\\\\\\\\
 
