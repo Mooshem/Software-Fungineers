@@ -73,7 +73,20 @@ Project Description
     Use Case
     \\\\\\\\\\\\\\\\\\
 
-        TODO
+        CL - A user wants to get into programming, but they are unsure where to start. They will
+             use our game to learn how programming 
+
+        ZC - A user has tried programming before, but they can't understand how their code works. 
+             They will use the game to learn how their code works and implement this 
+             knowledge into real-world programming.
+
+        DT - A user doesn't learn well by sitting through tutorials and lectures, and wants to 
+             begin writing programs. The user will use our game to teach themselves how to 
+             program in a way that works for their brain. 
+
+        DM - A user wants to switch careers, but doesn't have time to enroll in classes to learn
+             how to program. The user will use our game to teach themselves how to program in their
+             free time.
 
     //////////////////
     Technical Approach
@@ -95,7 +108,17 @@ Project Description
     Timeline
     \\\\\\\\\\\\\\\\\\
 
-        TODO
+        Week 4 
+            Begin the design phase
+
+        Week 5
+            Begin the implementation phase
+
+        Week 6
+            Begin the testing phase
+
+        Week 7
+            Begin the evolution phase
 
 ===================================================================
 Implementations
