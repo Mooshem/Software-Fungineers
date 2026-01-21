@@ -76,17 +76,61 @@ Project Description
         CL - A user wants to get into programming, but they are unsure where to start. They will
              use our game to learn how programming 
 
+            Actor: Cranjis McBasketball
+            Triggers: 
+            Preconditions: 
+                - Mr McBasketball has a need for learning programming
+            Postconditions (success scenario): 
+                - Mr McBasketball successfully learns the fundamentals of programming so he can
+                  apply it to a language of his choice
+                - Mr McBasketball successfully completes the puzzles offered in the game
+            List of steps (success scenario): 
+                1. Mr McBasketball opens the game
+                2. Mr McBasketball completes puzzle 1
+                3. Mr McBasketball completes puzzle 2
+                4. Mr McBasketball completes puzzle 3
+            Extensions/variations of the success scenario:
+                - Mr McBasketball already understands functions, so he stops at puzzle 2
+                - Mr McBasketball replays a puzzle that he thinks he could solve better
+            Exceptions: failure conditions and scenarios: 
+                - Mr McBasketball does not complete puzzle 1, which doesn't allow him to 
+                  continue to puzzle 2
+
         ZC - A user has tried programming before, but they can't understand how their code works. 
              They will use the game to learn how their code works and implement this 
              knowledge into real-world programming.
+
+            Actor: 
+            Triggers: 
+            Preconditions: 
+            Postconditions (success scenario): 
+            List of steps (success scenario): 
+            Extensions/variations of the success scenario: 
+            Exceptions: failure conditions and scenarios: 
 
         DT - A user doesn't learn well by sitting through tutorials and lectures, and wants to 
              begin writing programs. The user will use our game to teach themselves how to 
              program in a way that works for their brain. 
 
+            Actor: 
+            Triggers: 
+            Preconditions: 
+            Postconditions (success scenario): 
+            List of steps (success scenario): 
+            Extensions/variations of the success scenario: 
+            Exceptions: failure conditions and scenarios: 
+
         DM - A user wants to switch careers, but doesn't have time to enroll in classes to learn
              how to program. The user will use our game to teach themselves how to program in their
              free time.
+
+            Actor: 
+            Triggers: 
+            Preconditions: 
+            Postconditions (success scenario): 
+            List of steps (success scenario): 
+            Extensions/variations of the success scenario: 
+            Exceptions: failure conditions and scenarios: 
 
     //////////////////
     Non-Functional Requirements
