@@ -131,30 +131,30 @@ Project Description
              begin writing programs. The user will use our game to teach themselves how to 
              program in a way that works for their brain. 
 
-            Actor: Daniel Martin
+            Actor: Yin Chen
             Triggers: 
-                - Daniel keeps watching coding materials, wanting to learn programming at a 
+                - Yin keeps watching coding materials, wanting to learn programming at a 
                   young age, but all tutorial videos are unamusing and disinteresting.
             Preconditions: 
-                - Daniel wants an interactive way, preferably a game, where he can learn how
+                - Yin wants an interactive way, preferably a game, where he can learn how
                   to program.
             Postconditions (success scenario): 
-                - Daniel finds it fun and challenging to complete each puzzle, learning the 
+                - Yin finds it fun and challenging to complete each puzzle, learning the 
                   basics along the way
             List of steps (success scenario): 
-                1. Daniel downloads the game and plays it
-                2. Daniel works through trial and error, seeing how he directly changes the
+                1. Yin downloads the game and plays it
+                2. Yin works through trial and error, seeing how he directly changes the
                    result and seeing how each change he makes affects the program
-                3. Daniel continues playing the game, wanting to learn more about programming
+                3. Yin continues playing the game, wanting to learn more about programming
             Extensions/variations of the success scenario: 
-                - Daniel uses the game to help him get through online tutorials much easier
+                - Yin uses the game to help him get through online tutorials much easier
                   due to a larger amount of background knowledge on programming
-                - Daniel begins to widen his programming knowledge at a much earlier age than
+                - Yin begins to widen his programming knowledge at a much earlier age than
                   others might
             Exceptions: failure conditions and scenarios: 
-                - Daniel can't solve any puzzles that the game prevents, which might shut him
+                - Yin can't solve any puzzles that the game prevents, which might shut him
                   out from programming altogether
-                - Daniel might not find the game interesting enough to continue playing/learning
+                - Yin might not find the game interesting enough to continue playing/learning
 
         DM - A user wants to switch careers, but doesn't have time to enroll in classes to learn
              how to program. The user will use our game to teach themselves how to program in their
