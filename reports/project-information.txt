@@ -100,13 +100,32 @@ Project Description
              They will use the game to learn how their code works and implement this 
              knowledge into real-world programming.
 
-            Actor: 
-            Triggers: 
+            Actor: Alvin Chipmunk, a high school student who has tried to learn programming through
+            YouTube tutorials
+            Triggers: Alvin writes code that compiles but doesn't produce expected results, leading to frustration
             Preconditions: 
+                - Alvin has basic knowledge of programming syntax like variables
+                - Alvin has the game installed and accessible
             Postconditions (success scenario): 
+                - Alvin successfully visualizes how loops and conditionals execute step by step
+                - Alvin understands why his previous code didn't work as expected
+                - Alvin can apply this visualization knowledge to debug real code
             List of steps (success scenario): 
+                - Alvin opens the game and selects a "Loop Visualization" puzzle
+                - Alvin places blocks to build a for-loop structure
+                - Alvin connects conditional blocks within the loop
+                - Alvin runs the game and watches the 3D visualization execute each step at a time
+                - Alvin observes how the loop counter changes and how conditionals affect execution flow
+                - Alvin pauses execution at key points to examine block states
+                - Alvin completes the puzzle and gains understanding of loop mechanics
             Extensions/variations of the success scenario: 
+                - Alvin replays the visualization at different speeds to better understand quick executions
+                - Alvin modifies the puzzle parameters to test edge cases
+                - Alvin uses the knowledge to fix a bug in his actual code
             Exceptions: failure conditions and scenarios: 
+                - Alvin cant understand the block metaphor and needs to complete a tutorial first
+                - The visualization is too fast or slow and Alvin can't adjust the speed
+                - Alvin's computer doesn't meet the minimum requirements and the game lags, preventing smooth visualization
 
         DT - A user doesn't learn well by sitting through tutorials and lectures, and wants to 
              begin writing programs. The user will use our game to teach themselves how to 
