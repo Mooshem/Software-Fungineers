@@ -9,7 +9,7 @@ TEAM INFORMATION
         Donovan Thach - Project Manager
         Zheng Chen    - UX / Design Lead and Quality Assurance
         Cash Limberg  - Lead Developer
-        Daniel Martin - Software Architecture
+        Daniel Martin - Educational Game Design Lead
 
     //////////////////
     Team Artifacts
@@ -161,13 +161,22 @@ Project Description
              how to program. The user will use our game to teach themselves how to program in their
              free time.
 
-            Actor: 
-            Triggers: 
-            Preconditions: 
-            Postconditions (success scenario): 
-            List of steps (success scenario): 
+            Actor: Hunter D. Killingson, A busy 30 year old martial arts instructor, who wants to become a software engineer
+            Triggers: Hunter is very busy managing his gym and can't afford to spend much time taking intro coding classes.
+            Preconditions: Hunter wants a quick and fun way to learn coding concepts that feels less like work, and more like a game.
+            Postconditions (success scenario): Hunter enjoys the game-like structure and sees it as an engaging and educational way to kickstart his career change.
+            List of steps (success scenario):
+             - Hunter opens the game and plays the first level of the story mode.
+             - The first level teaches him what variables are in an engaging way.
+             - Hunter completes the level relatively quickly and enjoys the format of the game.
+             - Hunter continues playing through levels in his free time, eventually learning about other concepts like loops, recursion, functions.
+             - Hunter's interest in coding grows, and he now feels more comfortable switching to a textual language, and furthering his education.
             Extensions/variations of the success scenario: 
+             - Hunter plays the game alongside a course for a textual languages to better grasp the textual language
+             - Hunter plays in the "sandbox" mode to explore what programming has to offer, and if it might be a good choice for his career
             Exceptions: failure conditions and scenarios: 
+             - The game is too hard, and Hunter is pushed away from programming.
+             - The levels are too time-consuming, and Hunter is too busy to dive deep into the game.
 
     //////////////////
     Non-Functional Requirements
@@ -267,8 +276,8 @@ Project Description
                 struggles with programming concepts.
 
         Cash Limberg - Lead Developer
-            Why this role is needed: We need a lead developer due to the challange of developing this specific
-                game, and the challanges that it poses to work with a group of people. Giving the group a lead 
+            Why this role is needed: We need a lead developer due to the challenge of developing this specific
+                game, and the challenges that it poses to work with a group of people. Giving the group a lead 
                 developer allows for all the programmers in the group to be directed and understand their  
                 job in the team.
             Why Cash is suited: Cash has TAed before, leading a group of people through complex coding problems
@@ -276,9 +285,13 @@ Project Description
                 quickly diagnosing potential risks that those problems can cause if left untreated.
 
 
-        Daniel Martin - Software Architecture
-            Why this role is needed:
-            Why Daniel is suited:
+        Daniel Martin - Educational Game Design Lead
+            Why this role is needed: As an educational game, we need to ensure that the content is appropriate.
+                This means that the overall game loop must be engaging, but more importantly, it needs to
+                actually teach players coding fundamentals. This role ensure that both of those criteria is met.
+            Why Daniel is suited: Daniel is a ULA for intro CS classes, and has experience with common pitfalls
+                that trap beginner programers. Through this experience, Daniel has learned what students typically
+                struggle with and what needs to be emphasized for the game to be educational.
 
     Weekly Schedule and Milestones
 
@@ -288,7 +301,7 @@ Project Description
                         roadblocks that the team might face in the future.
             Zheng: Complete UI mockups for main menu and puzzle interface. User flow diagram for first puzzle completed.
             Cash: Begin development and design process with Daniel. Framework classes that will be required for this project.
-            Daniel:
+            Daniel: Design a "curriculum" that teaches the concepts we want to teach. Concepts will be discussed this week.
 
         Week 5:
             Donovan: Start weekly check-ups with team to ensure project will be deliverable, start weekly meetings to 
@@ -297,20 +310,20 @@ Project Description
             Zheng: Basic UI implemented in Godot. Main menu functional with working buttons.
             Cash: Have classes finalized, including member variables and functions. Draft file implementation of said 
                         classes.
-            Daniel:
+            Daniel: Finalize block designs. What blocks do we need? What will they do? How will they interact with each other? etc.
 
         Week 6:
             Donovan: Resolve any complications that resulted from the week prior and work with team members to continue
                         progress.
             Zheng: Block placement UI functional - visual feedback for valid/invalid placement working.
             Cash: Develop Block placement, and have user movement and block placing completed. Draft block implementations.
-            Daniel:
+            Daniel: Plan levels that follow curriculum plan and are an appropriate challenge level
 
         Week 7:
             Donovan: Overall QA meeting 1, collect and create a checklist for any bugs found.
             Zheng: QA testing complete for puzzle 1. Bug list documented with priorities assigned.
             Cash: Block implementation should be finalized. Begin the development of the puzzles. 
-            Daniel:
+            Daniel: Implement levels to the game and have other team members play test to make sure they are the right difficulty
 
          Week 8:
             Donovan: Ensure members with bugs aligning to their roles have been resolved and ensure project scope will
@@ -318,21 +331,21 @@ Project Description
             Zheng: UI polish and refinements based on Week 6 playtest feedback. All visual elements finalized.
             Cash: Ensure all code is working seamlessly. Fix potential bug problems and ensure that all test cases
                         and use cases are passed. Work on tutorial system.
-            Daniel:
+            Daniel: Implement a sandbox mode with infinite block placement, and handle any edge cases not found in predefined puzzles.
 
         Week 9:
             Donovan: Confirm that the scope is maintained again, finalize ideas and full scope, continue working with
                         lead developer.
             Zheng: Tutorial system implemented. Help tooltips functional for all block types.
             Cash: Tutorial should be finished. Continue fixing bugs and ensure all test cases and use cases are passed.
-            Daniel:
+            Daniel: Test the puzzles multiple times, have others test them, and continue making more if there's time.
 
         Week 10:
             Donovan: Overall QA meeting 2, finalize project, ensure all user stories' goals are met, deliver project. 
                         Rid of any other complications in the development process.
             Zheng:  Final QA pass complete and all critical bugs resolved. UX improvements from playtesting implemented.
             Cash: Tie up lose ends, and finalize last resolves. 
-            Daniel:
+            Daniel: Finalize puzzles/levels, look for any last minute exploits that pop up.
 
     Major Risks:
 
