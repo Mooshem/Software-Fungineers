@@ -254,8 +254,10 @@ Project Description
     Team Member Roles:
 
         Donovan Thach - Project Manager
-            Why this role is needed:
-            Why Donovan is suited:
+            Why this role is needed: Big projects with tight deadlines requires someone to ensure that the team
+                not only stays on track, but also that the project will be deliverable by the assumed date that
+                it is due.
+            Why Donovan is suited: Experience with many teams that required leadership or a constant drive.
 
         Zheng Chen - UX/Design Lead and Quality Assurance
             Why this role is needed: Educational games require intuitive interfaces so users focus on
@@ -274,43 +276,51 @@ Project Description
     Weekly Schedule and Milestones
 
         Week 4:
-            Donovan:
+            Donovan: Solidify the deliverables, give the team the requirements necessary to start the project, align the
+                        team on certain user stories each of them will be working towards, and identify potential 
+                        roadblocks that the team might face in the future.
             Zheng: Complete UI mockups for main menu and puzzle interface. User flow diagram for first puzzle completed.
             Cash:
             Daniel:
 
         Week 5:
-            Donovan:
+            Donovan: Start weekly check-ups with team to ensure project will be deliverable, start weekly meetings to 
+                        keep the whole team in check and ensure that the design phase is clear. Also, begin designing
+                        fundamental and entertaining puzzles to be used in conjunction with UI.
             Zheng: Basic UI implemented in Godot. Main menu functional with working buttons.
             Cash:
             Daniel:
 
         Week 6:
-            Donovan:
+            Donovan: Resolve any complications that resulted from the week prior and work with team members to continue
+                        progress.
             Zheng: Block placement UI functional - visual feedback for valid/invalid placement working.
             Cash:
             Daniel:
 
         Week 7:
-            Donovan:
+            Donovan: Overall QA meeting 1, collect and create a checklist for any bugs found.
             Zheng: QA testing complete for puzzle 1. Bug list documented with priorities assigned.
             Cash:
             Daniel:
 
          Week 8:
-            Donovan:
+            Donovan: Ensure members with bugs aligning to their roles have been resolved and ensure project scope will
+                        be within the deadline.
             Zheng: UI polish and refinements based on Week 6 playtest feedback. All visual elements finalized.
             Cash:
             Daniel:
 
         Week 9:
-            Donovan:
+            Donovan: Confirm that the scope is maintained again, finalize ideas and full scope, continue working with
+                        lead developer.
             Zheng: Tutorial system implemented. Help tooltips functional for all block types.
             Cash:
             Daniel:
 
         Week 10:
-            Donovan:
+            Donovan: Overall QA meeting 2, finalize project, ensure all user stories' goals are met, deliver project. 
+                        Rid of any other complications in the development process.
             Zheng:  Final QA pass complete and all critical bugs resolved. UX improvements from playtesting implemented.
             Cash:
             Daniel:
