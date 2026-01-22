@@ -266,8 +266,14 @@ Project Description
                 struggles with programming concepts.
 
         Cash Limberg - Lead Developer
-            Why this role is needed:
-            Why Cash is suited:
+            Why this role is needed: We need a lead developer due to the challange of developing this specific
+                game, and the challanges that it poses to work with a group of people. Giving the group a lead 
+                developer allows for all the programmers in the group to be directed and understand their  
+                job in the team.
+            Why Cash is suited: Cash has TAed before, leading a group of people through complex coding problems
+                and solutions. Cash has demonstrated that he is capable of understanding others' programs, and 
+                quickly diagnosing potential risks that those problems can cause if left untreated.
+
 
         Daniel Martin - Software Architecture
             Why this role is needed:
