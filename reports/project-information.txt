@@ -77,7 +77,8 @@ Project Description
              use our game to learn how programming 
 
             Actor: Cranjis McBasketball
-            Triggers: 
+            Triggers: Mr McBasketball doesn't know where to start learning programming, and wants 
+                      something not overwhelming.
             Preconditions: 
                 - Mr McBasketball has a need for learning programming
             Postconditions (success scenario): 
