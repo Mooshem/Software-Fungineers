@@ -178,8 +178,12 @@ Project Description
 
         The program will be able to support 1 user.
 
+        New users must be able to complete the first puzzle within 10 minutes.
+
+        Must run on integrated graphics cards.
+
     //////////////////
-    Non-Functional Requirements
+    External Requirements
     \\\\\\\\\\\\\\\\\\
 
         The application must run on Windows 10/11
@@ -210,17 +214,123 @@ Project Description
     Timeline
     \\\\\\\\\\\\\\\\\\
 
-        Week 4 
-            Begin the design phase
+         Week 4 
+            Design phase: figure out what UI/UX should look like and start planning out the code structure
 
         Week 5
-            Begin the implementation phase
+            Start actually coding and get basic movement and 3D environment working
 
         Week 6
-            Begin the testing phase
+            Keep implementing features and start testing what we have so far
 
         Week 7
-            Begin the evolution phase
+            Fix bugs from testing and add more puzzle mechanics
+
+        Week 8
+            Polish the UI and get feedback from playtesters
+
+        Week 9
+            Final testing round and fix any remaining bugs
+
+        Week 10
+            Finish up documentation and prepare final presentation
+
+    //////////////////
+    Team Process Description
+    \\\\\\\\\\\\\\\\\\
+    
+    Software Toolset:
+
+        Tool: Godot 
+        Justification: Open-source 3D game engine with MIT license meeting our external requirements. 
+            It also has built-in 3D tools and visual scripting.
+
+        Tool: Visual Studio Code
+        Justification: IDE we're familiar with, and has GDScript extensions and version control integration.
+
+        Tool: GitHub
+        Justification: Essential for team collaboration. Provides issue tracking and project management tools.
+
+    Team Member Roles:
+
+        Donovan Thach - Project Manager
+            Why this role is needed:
+            Why Donovan is suited:
+
+        Zheng Chen - UX/Design Lead and Quality Assurance
+            Why this role is needed: Educational games require intuitive interfaces so users focus on
+                learning programming concepts rather than struggling with controls.
+            Why Zheng is suited: Experience with TAing reveals and provides direct insight to common student
+                struggles with programming concepts.
+
+        Cash Limberg - Lead Developer
+            Why this role is needed:
+            Why Cash is suited:
+
+        Daniel Martin - Software Architecture
+            Why this role is needed:
+            Why Daniel is suited:
+
+    Weekly Schedule and Milestones
+
+        Week 4:
+            Donovan:
+            Zheng: Complete UI mockups for main menu and puzzle interface. User flow diagram for first puzzle completed.
+            Cash:
+            Daniel:
+
+        Week 5:
+            Donovan:
+            Zheng: Basic UI implemented in Godot. Main menu functional with working buttons.
+            Cash:
+            Daniel:
+
+        Week 6:
+            Donovan:
+            Zheng: Block placement UI functional - visual feedback for valid/invalid placement working.
+            Cash:
+            Daniel:
+
+        Week 7:
+            Donovan:
+            Zheng: QA testing complete for puzzle 1. Bug list documented with priorities assigned.
+            Cash:
+            Daniel:
+
+         Week 8:
+            Donovan:
+            Zheng: UI polish and refinements based on Week 6 playtest feedback. All visual elements finalized.
+            Cash:
+            Daniel:
+
+        Week 9:
+            Donovan:
+            Zheng: Tutorial system implemented. Help tooltips functional for all block types.
+            Cash:
+            Daniel:
+
+        Week 10:
+            Donovan:
+            Zheng:  Final QA pass complete and all critical bugs resolved. UX improvements from playtesting implemented.
+            Cash:
+            Daniel:
+
+    Major Risks:
+
+        Risk 1: Team members lack extensive Godot experience, which may cause implementation delays
+            and underestimated feature completion times.
+        Risk 2: Block connection logic for representing programming constructs may be too complex to 
+            implement intuitively.
+        Risk 3: Scope creep from adding non-essential features could result in incomplete core functionality.
+
+
+    External Feedback:
+        When external feedback will be most useful:
+            Week 6 after first playable prototype is complete, early enough to make significant changes
+            based on feedback, or Week 8 after all core features implemented
+        
+        How we will get that feedback:
+            Recruit 3-5 CS162 students for playtesting, and create feedback forms asking specific questions.
 
 ===================================================================
 Implementations
