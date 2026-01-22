@@ -133,26 +133,26 @@ Project Description
 
             Actor: Yin Chen
             Triggers: 
-                - Yin keeps watching coding tutorials, wanting to learn programming at a 
+                - Yin keeps watching coding materials, wanting to learn programming at a 
                   young age, but all tutorial videos are unamusing and disinteresting.
             Preconditions: 
-                - Yin wants an interactive way, preferably a game, where she can learn how
+                - Yin wants an interactive way, preferably a game, where he can learn how
                   to program.
             Postconditions (success scenario): 
                 - Yin finds it fun and challenging to complete each puzzle, learning the 
                   basics along the way
             List of steps (success scenario): 
                 1. Yin downloads the game and plays it
-                2. Yin works through trial and error, seeing how she directly changes the
+                2. Yin works through trial and error, seeing how he directly changes the
                    result and seeing how each change he makes affects the program
                 3. Yin continues playing the game, wanting to learn more about programming
             Extensions/variations of the success scenario: 
-                - Yin uses the game to help her get through online tutorials much easier
+                - Yin uses the game to help him get through online tutorials much easier
                   due to a larger amount of background knowledge on programming
-                - Yin begins to widen her programming knowledge at a much earlier age than
+                - Yin begins to widen his programming knowledge at a much earlier age than
                   others might
             Exceptions: failure conditions and scenarios: 
-                - Yin can't solve any puzzles that the game prevents, which might shut her
+                - Yin can't solve any puzzles that the game prevents, which might shut him
                   out from programming altogether
                 - Yin might not find the game interesting enough to continue playing/learning
 
@@ -286,7 +286,7 @@ Project Description
                         team on certain user stories each of them will be working towards, and identify potential 
                         roadblocks that the team might face in the future.
             Zheng: Complete UI mockups for main menu and puzzle interface. User flow diagram for first puzzle completed.
-            Cash:
+            Cash: Begin development and design process with Daniel. Framework classes that will be required for this project.
             Daniel:
 
         Week 5:
@@ -294,41 +294,43 @@ Project Description
                         keep the whole team in check and ensure that the design phase is clear. Also, begin designing
                         fundamental and entertaining puzzles to be used in conjunction with UI.
             Zheng: Basic UI implemented in Godot. Main menu functional with working buttons.
-            Cash:
+            Cash: Have classes finalized, including member variables and functions. Draft file implementation of said 
+                        classes.
             Daniel:
 
         Week 6:
             Donovan: Resolve any complications that resulted from the week prior and work with team members to continue
                         progress.
             Zheng: Block placement UI functional - visual feedback for valid/invalid placement working.
-            Cash:
+            Cash: Develop Block placement, and have user movement and block placing completed. Draft block implementations.
             Daniel:
 
         Week 7:
             Donovan: Overall QA meeting 1, collect and create a checklist for any bugs found.
             Zheng: QA testing complete for puzzle 1. Bug list documented with priorities assigned.
-            Cash:
+            Cash: Block implementation should be finalized. Begin the development of the puzzles. 
             Daniel:
 
          Week 8:
             Donovan: Ensure members with bugs aligning to their roles have been resolved and ensure project scope will
                         be within the deadline.
             Zheng: UI polish and refinements based on Week 6 playtest feedback. All visual elements finalized.
-            Cash:
+            Cash: Ensure all code is working seamlessly. Fix potential bug problems and ensure that all test cases
+                        and use cases are passed. Work on tutorial system.
             Daniel:
 
         Week 9:
             Donovan: Confirm that the scope is maintained again, finalize ideas and full scope, continue working with
                         lead developer.
             Zheng: Tutorial system implemented. Help tooltips functional for all block types.
-            Cash:
+            Cash: Tutorial should be finished. Continue fixing bugs and ensure all test cases and use cases are passed.
             Daniel:
 
         Week 10:
             Donovan: Overall QA meeting 2, finalize project, ensure all user stories' goals are met, deliver project. 
                         Rid of any other complications in the development process.
             Zheng:  Final QA pass complete and all critical bugs resolved. UX improvements from playtesting implemented.
-            Cash:
+            Cash: Tie up lose ends, and finalize last resolves. 
             Daniel:
 
     Major Risks:
