@@ -133,26 +133,26 @@ Project Description
 
             Actor: Yin Chen
             Triggers: 
-                - Yin keeps watching coding materials, wanting to learn programming at a 
+                - Yin keeps watching coding tutorials, wanting to learn programming at a 
                   young age, but all tutorial videos are unamusing and disinteresting.
             Preconditions: 
-                - Yin wants an interactive way, preferably a game, where he can learn how
+                - Yin wants an interactive way, preferably a game, where she can learn how
                   to program.
             Postconditions (success scenario): 
                 - Yin finds it fun and challenging to complete each puzzle, learning the 
                   basics along the way
             List of steps (success scenario): 
                 1. Yin downloads the game and plays it
-                2. Yin works through trial and error, seeing how he directly changes the
+                2. Yin works through trial and error, seeing how she directly changes the
                    result and seeing how each change he makes affects the program
                 3. Yin continues playing the game, wanting to learn more about programming
             Extensions/variations of the success scenario: 
-                - Yin uses the game to help him get through online tutorials much easier
+                - Yin uses the game to help her get through online tutorials much easier
                   due to a larger amount of background knowledge on programming
-                - Yin begins to widen his programming knowledge at a much earlier age than
+                - Yin begins to widen her programming knowledge at a much earlier age than
                   others might
             Exceptions: failure conditions and scenarios: 
-                - Yin can't solve any puzzles that the game prevents, which might shut him
+                - Yin can't solve any puzzles that the game prevents, which might shut her
                   out from programming altogether
                 - Yin might not find the game interesting enough to continue playing/learning
 
