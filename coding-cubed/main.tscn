@@ -1,9 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c34syetxeih5f"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+[gd_scene format=3 uid="uid://c34syetxeih5f"]
 
 [node name="Main" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
-mesh = SubResource("BoxMesh_7dm0k")
+use_collision = true
