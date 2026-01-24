@@ -1,1 +1,66 @@
+===================================================================
+PROJECT DESIGN  
+===================================================================
 
+
+    //////////////////
+    Ideas
+    \\\\\\\\\\\\\\\\\\
+
+      For Loop: A large square with 2 holes, one for a variable, another for a condition, and a 
+                place for an operator. 
+      Functions: Seperate areas that you will call and replace the function call with the output
+                 of the function. We had an idea to have a bird travel to it and bring you back
+                 the answer.
+      Main function: When you finish your function, it will output a scroll that has your output 
+                     on it. You can put this scroll in a thing that will tell you if your output  
+                     is correct or not. 
+
+      BY END OF WEEKEND MAKE THE SANDBOX AVAILABLE AND PRETTY (ZHENG)
+    
+    //////////////////
+    Ciriculum
+    \\\\\\\\\\\\\\\\\\
+
+        - For loop
+        - Functions
+        - Recursion
+        - Variable types
+
+    //////////////////
+    Implementation
+    \\\\\\\\\\\\\\\\\\
+
+      - Variables
+      - For loop
+      - While loop
+      - Functions
+      - Recursion
+
+    //////////////////
+    Classes
+    \\\\\\\\\\\\\\\\\\
+
+    class Block {
+    private
+
+    public
+    };
+
+    class Game {
+    private
+
+    public
+    };
+
+    class Player {
+    private
+
+    public
+    };
+
+    class ForLoop {
+    private
+
+    public
+    };
