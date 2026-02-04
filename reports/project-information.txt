@@ -383,3 +383,123 @@ Implementations
 
         1.  Implement the ability to make functions
         2.  Implement the recursion
+
+
+===================================================================
+Software Architecture
+===================================================================
+
+    //////////////////
+    Architecture Pattern
+    \\\\\\\\\\\\\\\\\\
+
+        Our project uses an event-based architecture in Godot. Systems communicate
+        using events rather than direct dependencies, improving modlar design
+        and parallel development.
+
+    //////////////////
+    Major Components
+    \\\\\\\\\\\\\\\\\\
+
+        Gameplay System:
+            Executes block logic and validates puzzle solutions.
+
+        UI System:
+            Displays menus, feedback, tutorials, and player input.
+
+        Player System:
+            Handles movement, camera control, and interactions.
+
+        Puzzle System:
+            Loads levels, sandbox mode, and puzzle rules.
+
+        Data System:
+            Saves player progress and settings locally.
+
+    //////////////////
+    Component Interfaces
+    \\\\\\\\\\\\\\\\\\
+
+        UI emits events then Gameplay reacts  
+        Gameplay emits events (such as movement or placing blocks) then UI updates  
+        Puzzle System emits load events then Game spawns levels  
+        Data System listens for save/load events  
+
+    //////////////////
+    Data Storage
+    \\\\\\\\\\\\\\\\\\
+
+        Player progress and settings stored locally using JSON.
+        Puzzle layouts stored as Godot scenes/resources.
+
+    //////////////////
+    Assumptions
+    \\\\\\\\\\\\\\\\\\
+
+        - Single-player only
+        - Windows 10/11 supported
+        - No internet required
+
+    //////////////////
+    Architecture Decisions
+    //////////////////
+
+        Decision 1: Event-Driven vs. Layered Architecture
+            Choice: Event-Driven.
+            Alternative: Layered Architecture.
+            Pros: Layered is highly organized and easy to document.
+            Cons: Creates rigid dependencies. Event-driven allows the UI 
+                to react asynchronously to gameplay signals, which is 
+                more efficient for real-time 3D simulations.
+
+        Decision 2: Event-Driven vs. Microkernel Architecture
+            Choice: Event-Driven.
+            Alternative: Microkernel Architecture.
+            Pros: Microkernel makes every "coding block" a modular plug-in.
+            Cons: High initial setup complexity. Event-driven is simpler 
+                to implement with Godot’s built-in signal system while 
+                maintaining sufficient modularity.
+
+===================================================================
+Software Design
+===================================================================
+    //////////////////
+    Component Definitions
+    //////////////////
+    
+        Gameplay System:
+            Classes: ExecutionEngine, BlockBase, ActionBlock
+            Responsibilities: Interprets block sequences and triggers 3D logic.
+
+        UI System:
+            Classes: HUD, MainMenu, BlockInventory
+            Responsibilities: Handles menus and the drag-and-drop coding interface.
+
+        Player System:
+            Classes: PlayerController, InteractionRaycast
+            Responsibilities: Manages 3D movement and block placement targeting.
+
+        Puzzle System:
+            Classes: LevelManager, VictoryCondition
+            Responsibilities: Loads JSON level data and checks for success states.
+
+===================================================================
+Coding Guidelines
+===================================================================
+
+    //////////////////
+    Standards and Enforcement
+    //////////////////
+
+        Language: C++
+        Link: https://google.github.io/styleguide/cppguide.html
+
+        Justification: 
+            Google's C++ style guide is robust and prevents common memory 
+            management errors. It ensures our GDExtension code is readable 
+            for all team members.
+
+        Enforcement: 
+            Mandatory peer review on all GitHub Pull Requests.
+
+
