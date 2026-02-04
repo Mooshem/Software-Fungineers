@@ -578,3 +578,76 @@ i) Risk Assessment
        mitigate it by redesigning levels, adding tutorials or guided prompts, and simplifying 
        mechanics to better emphasize learning outcomes.
 
+
+ii) Project Schedule
+
+    To begin, templates for a baseplate (map with free-roam), a character (including collision), and a template
+    block (also with collision) should be made. The baseplate should be big enough so that the player can move,
+    if possible, it should also have invisible boundaries.
+
+    After making templates, our team will move forward in developing the movement for the character, as well as 
+    desigining very smooth and efficient animations that won't hinder progress in development. The character's
+    model must be finished before this step is complete, otherwise the physics and movement will have to be
+    changed. Blocks will be implemented with their own placing mechanics within the game as well. Collision
+    must be done first in order to prevent unnecessary rendering bugs or issues. As for the baseplate, a simple
+    and light texture should be done on it, and the whole area of the baseplate should have invisible dividers
+    should be inplemented to prevent players from placing blocks in between lines for simpler gameplay.
+
+    Once those are implemented, other template blocks should be made with labels, without an explicit function. 
+    To add on, afull UI for the player should be made to allow the user to interact with a basic templatized 
+    world. At this point the player should be able to do the following:
+        1. Move around using WASD keys (standard for most 3D games)
+        2. Select certain blocks through a UI system (could be a hotbar or scroll wheel, TBD)
+        3. Place down the blocks and have them seen rendered properly
+        4. The player won't have to adjust where they want the block, the block will be locked with the grid
+        5. The player has other movement capabilities (jumping, crouching, TBD)
+        6. Leave the baseplate and enter a new one (for the testing process only)
+    During this stage in development, it would be an amazing idea to create some test cases and testing suites
+    to ensure that the progress made thus far isn't for nothing. Tests like these will be difficult to create
+    as our team plans on using godot, however our team will persevere through that and find some way to test
+    eveyrhting mentioned previously.
+
+    Now that a basic UI system has been implemented, our team will then move on towards creating functional
+    blocks that the player can interact with. An example follows: 
+        For loop block: Possibly have a UI that allows the player to change the index start, index end,
+                        and how much it increments by each time.
+    Other blocks have yet to be decided, but when set up, they all should have their own test suites and
+    fuzzes. This will ensure that the functionality of each block matches the idea we had, and that each
+    block will work alongside with other connected blocks.
+
+    One of the most difficult steps after is to start using all the templates our team created to make
+    interesting and intriguing puzzles that can be solved by someone new to programming. Tests will be
+    even harder to create on this step, which means we'll have to be more cautious when creating the map
+    and other functions. Each puzzle should have specified bounds, and creative ideas could be integrated
+    into the design if time isn't short. This stage should only be started once all tests have ran 
+    successfully and no more bugs have been found. If bugs during an earlier section of the schedule 
+    have been rediscovered or discovered in general, all work on current work and work after the
+    component that has the bug will be halted, and more tests will be done on the improper component.
+
+    Now that all those have been tested, the puzzles will enter a final testing phase, and after this,
+    the stretch goals will be implemented one by one to increase the quality of our product.
+
+    Overall Timeline:
+        2026-02-01 - 2026-02-07: Finish architecture and design process, and begin the implementation
+                                 phase of development.
+        2026-02-08 - 2026-02-14: Use the development cycle of a software to test and evolve the product
+                                 through the player animations, hitboxes, and collision aspects. Fully
+                                 complete tempaltes for the world and characters.
+        2026-02-15 - 2026-02-21: Complete player movement, physics, and block placing. Remake new tests
+                                 and using a full coverage to test for small defects in our software.
+        2026-02-22 - 2026-02-28: Fully implement in-scope blocks with programming basics (for loops, 
+                                 if and else statements, TBD). Continue with testing.
+        2026-03-01 - 2026-03-07: Realize scope and create puzzles, the last week will be saved for
+                                 the most amount of testing and evolving of the product, as well as
+                                 scope changes and solidifying the goal.
+        2026-03-08 - 2026-03-14: Once scope is realized, ensure all tests are passed before developing
+                                 extra stretch goals to improve the quality of the product.
+
+    Through this schedule, our team will be able to work smoothly and realize our deadlines more easily.
+
+iii) Team Structure
+
+    The knowledge on team structure and our team roles are going to stay consistent as they have been
+    above this section. See the 'Team Process Description' subtitle of the 'Project Description' for 
+    more clarification on what each member does, and their role in the project.
+    
