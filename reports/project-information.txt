@@ -503,3 +503,78 @@ Coding Guidelines
             Mandatory peer review on all GitHub Pull Requests.
 
 
+===================================================================
+Process Description
+===================================================================
+
+i) Risk Assessment
+
+    Top 5 risks to successful completion of your project
+
+    1) Late implementation, meaning too much planning and not enough actual implementation
+       until it's too late. The likelihood of this occuring is medium because as of now, we
+       haven't spent too much time on the implementation. If this occurs, this has a very
+       high impact because we won't have a completed project that fits our standards and 
+       expectations. My evidence is as follows: so far, we have yet to fully implement any
+       of our classes, and still need to plan some. Now, we are pushing to get our ideas
+       implemented, in order to prevent the likelihood of this occurring. We will implement
+       the basic game flow (placing blocks, movement, etc.) within the next week to build 
+       the foundation that we planned. If we don't have these, we will know that the problem
+       has taken effect, and that we need to work to solve it. Those steps are as follows: 
+       First, designate each person to fully implement one feature by the end of the week.
+       This will give us at least 4 features built, and we will need to continue this trajectory
+       to stay on track.
+
+    2) Block placing logic harder than expected. Likelihood: medium, Impact: high. Right now,
+       we are expecting to be able to figure out this part of the code, but in reality, it's
+       likely to be quite hard to implement. This part of the code is also integral to the game
+       as a whole, so it would have a huge impact if left unchecked. In order to reduce the
+       likelihood of this risk, we have started watching multiple godot tutorials and have compiled
+       a list of a few videos that can help with this exact problem. We plan on watching these in
+       preparation for the implementation of this feature. Detecting the problem will be simple
+       because whoever is implementing this part of the code at the time will communicate. We have
+       all agreed to communicate issues as important as this, so there should be no trouble there.
+       Should this risk occur, we will all research the necessary implementation details and work 
+       on the implementation together. This risk will be identified soon, as we plan on implementing
+       this in the coming weeks.
+
+    3) Blocks don't work properly, or are very buggy. Likelihood: High, Impact: High. The blocks are
+       going to take a lot of work to properly implement. We need them to work flawlessly if we want
+       to teach beginners, because they have a possibility of learning the wrong thing if our blocks
+       don't work correctly. The chance of them not working properly at first is almost guaranteed, so
+       we will need to utilize the mitigation plan mentioned later. To reduce the likelihood, we will
+       have to make sure that each block follows the required guidelines that we've layed out prior.
+       Right now, we have a list of required blocks and how they should behave, so we will need to
+       follow this guide, and test them after implementation. To detect the problem, we will run tests
+       on each block. We will do this by placing them next to other ones and observing their behavior,
+       planning tests (writing them won't necessarily work, we'd have to build them) with different
+       input groups, etc. Should this occur, we plan on following standard debugging procedure for
+       broken blocks, and making sure they behave as required.
+
+    4) Godot 3D mechanics and engine limitations slow progress. Likelihood: medium, Impact: medium-high.
+       Godot is a powerful engine, but none of us have extensive experience building a full 3D game with
+       it. While we are confident we can learn what we need, unexpected engine limitations or confusing
+       workflows could slow development. This could impact our timeline and force us to spend time
+       debugging engine-related issues rather than building features. Our evidence for this risk is that
+       so far, some basic tasks (such as scene organization and 3D object interaction) have taken longer
+       than expected during experimentation. To reduce the likelihood of this occurring, we are keeping 
+       our game mechanics simple and relying on Godot’s built-in systems whenever possible rather than 
+       creating overly complex custom solutions. We are also sharing useful resources and tutorials within 
+       the team. We will detect this problem if tasks involving Godot repeatedly fall behind schedule or 
+       require excessive troubleshooting. If this risk occurs, we will mitigate it by cutting 
+       non-essential features, simplifying visuals or mechanics, and refocusing on core gameplay and 
+       learning objectives rather than technical polish.
+
+    5) Educational goals are not clearly achieved through gameplay. Likelihood: medium, Impact: medium-high.
+       While the game may be fun to play, there is a risk that it does not clearly teach introductory 
+       programming concepts as intended. Simply using blocks does not guarantee that players 
+       understand sequencing, conditionals, or loops. Our evidence for this risk comes from early
+       discussions and prototype ideas, where some mechanics felt engaging but did not clearly 
+       reinforce learning objectives. To reduce the likelihood of this occurring, we are explicitly
+       tying each block and level to a specific programming concept and designing levels around 
+       those goals. We also plan to add clear visual feedback so players can see the effect of their 
+       blocks in real time. We will detect this issue through playtesting, especially by observing whether 
+       new players can explain what their block logic is doing. If this risk occurs, we will 
+       mitigate it by redesigning levels, adding tutorials or guided prompts, and simplifying 
+       mechanics to better emphasize learning outcomes.
+
