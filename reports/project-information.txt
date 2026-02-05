@@ -512,7 +512,7 @@ Coding Guidelines
 Process Description
 ===================================================================
 
-i) Risk Assessment
+I) Risk Assessment
 
     Top 5 risks to successful completion of your project
 
@@ -569,7 +569,7 @@ i) Risk Assessment
        mechanics to better emphasize learning outcomes.
 
 
-ii) Project Schedule
+II) Project Schedule
 
     To begin, templates for a baseplate (map with free-roam), a character (including collision), and a template
     block (also with collision) should be made. The baseplate should be big enough so that the player can move,
@@ -635,18 +635,24 @@ ii) Project Schedule
 
     Through this schedule, our team will be able to work smoothly and realize our deadlines more easily.
 
-iii) Team Structure
+III) Team Structure
 
     The knowledge on team structure and our team roles are going to stay consistent as they have been
     above this section. See the 'Team Process Description' subtitle of the 'Project Description' for 
     more clarification on what each member does, and their role in the project.
 
+IV) Test Plan & Bugs
 
-iv) Test Plan & Bugs
+    We plan on significantly testing our block code works and our loops work. These serve as the baseline
+    of the entire game, and ensuring that they are working perfectly is necessary for the software to 
+    function. To test this, our team is going to devise multiple solutions to each puzzle, and ensure that
+    said solutions achieve the correct result. We also plan on testing edge cases that users could conjure
+    up, such as running permanently iterative or recursive code, and designing a solution to this.
 
-    
+V) Documentation Plan
 
-
-
-v) Documentation Plan
-
+    Our team plans on delivering documentation for keybinds, a user manual, and an information doc on what
+    each block does and what it represents in coding languages. We will also have help text available with
+    puzzles that users might find particularly challenging. We aim to use this to allow users to never find
+    themselves unsure of what to do, as we want to help our users on their journey of learning the 
+    fundamentals of programming languages. 
