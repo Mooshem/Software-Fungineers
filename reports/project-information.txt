@@ -643,16 +643,12 @@ III) Team Structure
 
 IV) Test Plan & Bugs
 
-    We plan on significantly testing our block code works and our loops work. These serve as the baseline
-    of the entire game, and ensuring that they are working perfectly is necessary for the software to 
-    function. To test this, our team is going to devise multiple solutions to each puzzle, and ensure that
-    said solutions achieve the correct result. We also plan on testing edge cases that users could conjure
-    up, such as running permanently iterative or recursive code, and designing a solution to this.
+    We plan on significantly testing our block code works and our loops work.  To test this, our team is 
+    going to devise multiple solutions to each puzzle, and ensure that said solutions achieve the correct 
+    result. We also plan on testing edge cases that users could conjure up, such as running permanently 
+    iterative or recursive code, and designing a solution to this.
 
 V) Documentation Plan
 
     Our team plans on delivering documentation for keybinds, a user manual, and an information doc on what
-    each block does and what it represents in coding languages. We will also have help text available with
-    puzzles that users might find particularly challenging. We aim to use this to allow users to never find
-    themselves unsure of what to do, as we want to help our users on their journey of learning the 
-    fundamentals of programming languages. 
+    each block does and what it represents in coding languages, and help text for each puzzle.
