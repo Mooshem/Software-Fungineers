@@ -482,6 +482,11 @@ Software Design
         Puzzle System:
             Classes: LevelManager, VictoryCondition
             Responsibilities: Loads JSON level data and checks for success states.
+       
+        Data System:
+            Classes: SaveManager, SettingsManager, ProgressTracker
+            Responsibilities: Handles saving/loading player progress, puzzle completion data,
+            and user settings locally using JSON files.
 
 ===================================================================
 Coding Guidelines
