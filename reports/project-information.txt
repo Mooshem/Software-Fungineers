@@ -383,3 +383,272 @@ Implementations
 
         1.  Implement the ability to make functions
         2.  Implement the recursion
+
+
+===================================================================
+Software Architecture
+===================================================================
+
+    //////////////////
+    Architecture Pattern
+    \\\\\\\\\\\\\\\\\\
+
+        Our project uses an event-based architecture in Godot. Systems communicate
+        using events rather than direct dependencies, improving modlar design
+        and parallel development.
+
+    //////////////////
+    Major Components
+    \\\\\\\\\\\\\\\\\\
+
+        Gameplay System:
+            Executes block logic and validates puzzle solutions.
+
+        UI System:
+            Displays menus, feedback, tutorials, and player input.
+
+        Player System:
+            Handles movement, camera control, and interactions.
+
+        Puzzle System:
+            Loads levels, sandbox mode, and puzzle rules.
+
+        Data System:
+            Saves player progress and settings locally.
+
+    //////////////////
+    Component Interfaces
+    \\\\\\\\\\\\\\\\\\
+
+        UI emits events then Gameplay reacts  
+        Gameplay emits events (such as movement or placing blocks) then UI updates  
+        Puzzle System emits load events then Game spawns levels  
+        Data System listens for save/load events  
+
+    //////////////////
+    Data Storage
+    \\\\\\\\\\\\\\\\\\
+
+        Player progress and settings stored locally using JSON.
+        Puzzle layouts stored as Godot scenes/resources.
+
+    //////////////////
+    Assumptions
+    \\\\\\\\\\\\\\\\\\
+
+        - Single-player only
+        - Windows 10/11 supported
+        - No internet required
+
+    //////////////////
+    Architecture Decisions
+    //////////////////
+
+        Decision 1: Event-Driven vs. Layered Architecture
+            Choice: Event-Driven.
+            Alternative: Layered Architecture.
+            Pros: Layered is highly organized and easy to document.
+            Cons: Creates rigid dependencies. Event-driven allows the UI 
+                to react asynchronously to gameplay signals, which is 
+                more efficient for real-time 3D simulations.
+
+        Decision 2: Event-Driven vs. Microkernel Architecture
+            Choice: Event-Driven.
+            Alternative: Microkernel Architecture.
+            Pros: Microkernel makes every "coding block" a modular plug-in.
+            Cons: High initial setup complexity. Event-driven is simpler 
+                to implement with Godot’s built-in signal system while 
+                maintaining sufficient modularity.
+
+===================================================================
+Software Design
+===================================================================
+    //////////////////
+    Component Definitions
+    //////////////////
+    
+        Gameplay System:
+            Classes: ExecutionEngine, BlockBase, ActionBlock
+            Responsibilities: Interprets block sequences and triggers 3D logic.
+
+        UI System:
+            Classes: HUD, MainMenu, BlockInventory
+            Responsibilities: Handles menus and the drag-and-drop coding interface.
+
+        Player System:
+            Classes: PlayerController, InteractionRaycast
+            Responsibilities: Manages 3D movement and block placement targeting.
+
+        Puzzle System:
+            Classes: LevelManager, VictoryCondition
+            Responsibilities: Loads JSON level data and checks for success states.
+       
+        Data System:
+            Classes: SaveManager, SettingsManager, ProgressTracker
+            Responsibilities: Handles saving/loading player progress, puzzle completion data,
+            and user settings locally using JSON files.
+
+===================================================================
+Coding Guidelines
+===================================================================
+
+    //////////////////
+    Standards and Enforcement
+    //////////////////
+
+        Language: C++
+        Link: https://google.github.io/styleguide/cppguide.html
+
+        Justification: 
+            Google's C++ style guide is robust and prevents common memory 
+            management errors. It ensures our GDExtension code is readable 
+            for all team members.
+
+        Enforcement: 
+            Mandatory peer review on all GitHub Pull Requests.
+
+
+===================================================================
+Process Description
+===================================================================
+
+I) Risk Assessment
+
+    Top 5 risks to successful completion of your project
+
+    1) Late implementation. LIkelihood: medium Risk: high. As of now, we haven't spent enough 
+       time implementing. This has a high impact because our game will be unfinished. My evidence
+       is as follows: so far, we have yet to fully implement any of our classes. Now, we are 
+       pushing to get our ideas implemented, in order to prevent the likelihood of this occurring.
+       We will implement the basic game flow within the next week to build a foundation. The
+       problem has taken effect if we don't have this done. We will take these steps in that case: 
+       Designate each person to fully implement a feature by the end of the week. This will give us
+       at least 4 features built, and we will need to continue this trajectory to stay on track.
+
+    2) Block placing logic harder than expected. Likelihood: medium, Impact: high. This part of
+       the code is likely to be hard to implement. As an integral part to the game, it would have
+       a huge impact if left unchecked. To reduce likelihood, we have started watching godot tutorials
+       and have compiled a list of a few videos that can help. Detecting the problem will be simple
+       because whoever is implementing this part of the code at the time will communicate. We've
+       all agreed to communicate issues as important as this. Should this risk occur, we will
+       research the necessary implementation details and work on the implementation together. This 
+       risk will be identified soon, as we plan on implementing this in the coming weeks.
+
+    3) Blocks don't work properly. Likelihood: High, Impact: High. The blocks are going to take a
+       lot of work to properly implement, and we need them to work flawlessly if we want to teach
+       beginners. The chance of them not working properly at first is almost guaranteed, so it is
+       imperative to plan ahead. To reduce the likelihood, we will have to make sure each block
+       follows the guidelines that we've layed out prior. Right now, we have a list of required
+       blocks and how they should behave, so we will follow this guide, and test them after
+       implementation. To detect the problem, we will run tests on each block. We will do this by
+       placing them next to other ones and observing their behavior, and by using our test plan
+       below. Should this occur, we plan on following standard debugging procedure for broken blocks,
+       and making sure they behave as required (outlined below).
+
+    4) Godot 3D mechanics and engine limitations slow progress. Likelihood: medium, Impact: medium-high.
+       None of us have extensive experience building a full 3D game with Godot. While we are confident
+       we can learn, unexpected engine limitations or confusing workflows could slow development. This
+       could impact our timeline and force us to spend time debugging engine-related issues rather than
+       implementing. Evidece: so far, some basic tasks (such as scene organization) have taken longer
+       than expected during experimentation. To reduce the likelihood of this occurring, we are keeping 
+       our game mechanics simple and relying on Godot’s built-in systems whenever possible rather than 
+       creating overly complex custom solutions. We are also sharing resources and tutorials within 
+       the team. We will detect this problem if tasks involving Godot repeatedly fall behind schedule or 
+       require excessive troubleshooting. If this risk occurs, we will mitigate it by cutting 
+       non-essential features and refocusing on core gameplay and learning objectives.
+
+    5) Educational goals are not clearly achieved through gameplay. Likelihood: medium, Impact: medium-high.
+       It's possible that the game does not clearly teach introductory programming concepts as intended.
+       Our evidence for this risk comes from early discussions where some mechanics felt engaging but did
+       not clearly reinforce learning objectives. To reduce the likelihood of this occurring, we are explicitly
+       tying each block and level to a specific programming concept and designing levels around 
+       those goals. We also plan to add clear visual feedback so players can see the effect of their 
+       blocks in real time. We will detect this issue through playtesting, especially by observing whether 
+       new players can explain what their block logic is doing. If this risk occurs, we will 
+       mitigate it by redesigning levels, adding tutorials or guided prompts, and simplifying 
+       mechanics to better emphasize learning outcomes.
+
+
+II) Project Schedule
+
+    To begin, templates for a baseplate (map with free-roam), a character (including collision), and a template
+    block (also with collision) should be made. The baseplate should be big enough so that the player can move,
+    if possible, it should also have invisible boundaries.
+
+    After making templates, our team will move forward in developing the movement for the character, as well as 
+    desigining very smooth and efficient animations that won't hinder progress in development. The character's
+    model must be finished before this step is complete, otherwise the physics and movement will have to be
+    changed. Blocks will be implemented with their own placing mechanics within the game as well. Collision
+    must be done first in order to prevent unnecessary rendering bugs or issues. As for the baseplate, a simple
+    and light texture should be done on it, and the whole area of the baseplate should have invisible dividers
+    should be inplemented to prevent players from placing blocks in between lines for simpler gameplay.
+
+    Once those are implemented, other template blocks should be made with labels, without an explicit function. 
+    To add on, afull UI for the player should be made to allow the user to interact with a basic templatized 
+    world. At this point the player should be able to do the following:
+        1. Move around using WASD keys (standard for most 3D games)
+        2. Select certain blocks through a UI system (could be a hotbar or scroll wheel, TBD)
+        3. Place down the blocks and have them seen rendered properly
+        4. The player won't have to adjust where they want the block, the block will be locked with the grid
+        5. The player has other movement capabilities (jumping, crouching, TBD)
+        6. Leave the baseplate and enter a new one (for the testing process only)
+    During this stage in development, it would be an amazing idea to create some test cases and testing suites
+    to ensure that the progress made thus far isn't for nothing. Tests like these will be difficult to create
+    as our team plans on using godot, however our team will persevere through that and find some way to test
+    eveyrhting mentioned previously.
+
+    Now that a basic UI system has been implemented, our team will then move on towards creating functional
+    blocks that the player can interact with. An example follows: 
+        For loop block: Possibly have a UI that allows the player to change the index start, index end,
+                        and how much it increments by each time.
+    Other blocks have yet to be decided, but when set up, they all should have their own test suites and
+    fuzzes. This will ensure that the functionality of each block matches the idea we had, and that each
+    block will work alongside with other connected blocks.
+
+    One of the most difficult steps after is to start using all the templates our team created to make
+    interesting and intriguing puzzles that can be solved by someone new to programming. Tests will be
+    even harder to create on this step, which means we'll have to be more cautious when creating the map
+    and other functions. Each puzzle should have specified bounds, and creative ideas could be integrated
+    into the design if time isn't short. This stage should only be started once all tests have ran 
+    successfully and no more bugs have been found. If bugs during an earlier section of the schedule 
+    have been rediscovered or discovered in general, all work on current work and work after the
+    component that has the bug will be halted, and more tests will be done on the improper component.
+
+    Now that all those have been tested, the puzzles will enter a final testing phase, and after this,
+    the stretch goals will be implemented one by one to increase the quality of our product.
+
+    Overall Timeline:
+        2026-02-01 - 2026-02-07: Finish architecture and design process, and begin the implementation
+                                 phase of development.
+        2026-02-08 - 2026-02-14: Use the development cycle of a software to test and evolve the product
+                                 through the player animations, hitboxes, and collision aspects. Fully
+                                 complete tempaltes for the world and characters.
+        2026-02-15 - 2026-02-21: Complete player movement, physics, and block placing. Remake new tests
+                                 and using a full coverage to test for small defects in our software.
+        2026-02-22 - 2026-02-28: Fully implement in-scope blocks with programming basics (for loops, 
+                                 if and else statements, TBD). Continue with testing.
+        2026-03-01 - 2026-03-07: Realize scope and create puzzles, the last week will be saved for
+                                 the most amount of testing and evolving of the product, as well as
+                                 scope changes and solidifying the goal.
+        2026-03-08 - 2026-03-14: Once scope is realized, ensure all tests are passed before developing
+                                 extra stretch goals to improve the quality of the product.
+
+    Through this schedule, our team will be able to work smoothly and realize our deadlines more easily.
+
+III) Team Structure
+
+    The knowledge on team structure and our team roles are going to stay consistent as they have been
+    above this section. See the 'Team Process Description' subtitle of the 'Project Description' for 
+    more clarification on what each member does, and their role in the project.
+
+IV) Test Plan & Bugs
+
+    We plan on significantly testing our block code works and our loops work.  To test this, our team is 
+    going to devise multiple solutions to each puzzle, and ensure that said solutions achieve the correct 
+    result. We also plan on testing edge cases that users could conjure up, such as running permanently 
+    iterative or recursive code, and designing a solution to this.
+
+V) Documentation Plan
+
+    Our team plans on delivering documentation for keybinds, a user manual, and an information doc on what
+    each block does and what it represents in coding languages, and help text for each puzzle.
