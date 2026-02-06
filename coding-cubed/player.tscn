@@ -5,4 +5,27 @@
 [node name="Pivot" type="Node3D" parent="." unique_id=1539403129]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=444327053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 current = true
+
+[node name="Head" type="CSGBox3D" parent="." unique_id=830967656]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)
+
+[node name="Body" type="CSGBox3D" parent="." unique_id=1555639851]
+transform = Transform3D(0.4, 0, 0, 0, 0.7, 0, 0, 0, 0.2, 0, 1.05, 0)
+
+[node name="Bounding Box" type="CSGBox3D" parent="." unique_id=1039999443]
+transform = Transform3D(0.7, 0, 0, 0, 1.8, 0, 0, 0, 0.7, 0, 0.9, 0)
+visible = false
+
+[node name="Right Arm" type="CSGBox3D" parent="." unique_id=1649670735]
+transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, 0.3, 1.05, 0)
+
+[node name="Left Arm" type="CSGBox3D" parent="." unique_id=447237558]
+transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, -0.3, 1.05, 0)
+
+[node name="Right Leg" type="CSGBox3D" parent="." unique_id=922066151]
+transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, 0.1, 0.35, 0)
+
+[node name="Left Leg" type="CSGBox3D" parent="." unique_id=967145064]
+transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, -0.1, 0.35, 0)

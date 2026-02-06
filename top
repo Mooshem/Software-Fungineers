@@ -1,0 +1,303 @@
+[33mcommit b108e18585ac80b7e636b959f1858a86bb1006a7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Donovan Thach <thachd@oregonstate.edu>
+Date:   Mon Jan 26 17:46:18 2026 -0800
+
+    Created player model with temporary bounding box for player
+
+[33mcommit d08ebc3b32804114e24adcd2de1c8109f7234ebe[m
+Author: zhenghchen <zhenghchen2024@gmail.com>
+Date:   Mon Jan 26 15:08:28 2026 -0800
+
+    Added grass texture
+
+[33mcommit cb32434341a9e4520a5f107662b4907292cd6fc9[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Fri Jan 23 17:39:35 2026 -0800
+
+    Added player file
+
+[33mcommit 2f8bf58a655409bce608d5285f7730a40063c0f9[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Fri Jan 23 17:01:48 2026 -0800
+
+    Redid box mesh
+
+[33mcommit 857c0fdca4fe4915ec3c579392fb97553c684404[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Fri Jan 23 16:43:24 2026 -0800
+
+    sandbox uploaded, waiting on graphics.
+
+[33mcommit b855c71c321b61959a7ec239ce77991f0d5143aa[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Fri Jan 23 16:32:08 2026 -0800
+
+    Sandbox created, waiting on graphics.
+
+[33mcommit bc80a02384337c52f2e30766e37708173bbb8ffa[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Fri Jan 23 16:18:54 2026 -0800
+
+    populated project-design.txt
+
+[33mcommit d8cf389faf6ce10c70f16b40b888167ea1261a4b[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Fri Jan 23 15:09:55 2026 -0800
+
+    Added project-design.txt
+
+[33mcommit de422c4d1d3c6eded30ade8119e47f4b0a61b5b3[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Fri Jan 23 14:58:35 2026 -0800
+
+    Tested if git push works.
+
+[33mcommit c84e26e87a861cf00f6d423cc8bf701f91d365e3[m
+Author: Daniel Martin <danielamartin314@gmail.com>
+Date:   Wed Jan 21 22:14:00 2026 -0800
+
+    Finished adding Daniel's information
+
+[33mcommit 6cb55ddd97a5366dc5c97d70e5b72daf3a6c7e3f[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Wed Jan 21 20:15:58 2026 -0800
+
+    added information regarding mr mcbasketball for use case CL
+
+[33mcommit d6fa8cd489b35a15249d3901d5939970f8342978[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Wed Jan 21 20:14:18 2026 -0800
+
+    added information for Cash in timeline
+
+[33mcommit e8957673323c5692e905cbf1f05cc98b0deffd91[m
+Author: Donovan Thach <tehlamo0528@gmail.com>
+Date:   Wed Jan 21 20:06:57 2026 -0800
+
+    Change pronouns from 'he' to 'she' in project info for actor Yin Chen
+
+[33mcommit 10fd9be0aaa53bbe33c03795c6c94f8d881f85b5[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Wed Jan 21 20:03:30 2026 -0800
+
+    Added Cash's information to team information
+
+[33mcommit c397fae71e15e55086dc8d90c9da6c0a32812aa6[m
+Author: Donovan Thach <tehlamo0528@gmail.com>
+Date:   Wed Jan 21 20:00:21 2026 -0800
+
+    Added weekly tasks for Donovan
+    
+    Expanded the roles and responsibilities of team members, particularly detailing Donovan's tasks and the reasoning behind his role. Updated weekly milestones to provide clearer objectives for each week.
+
+[33mcommit 27e3f5dce006967fc3d4431da48bcb480a6ae649[m
+Author: Zheng H. Chen <zhenghchen2024@gmail.com>
+Date:   Wed Jan 21 17:57:00 2026 -0800
+
+    Update project requirements and timeline. Added team proces description and template for teammates to fill out.
+    
+    Added new requirements and updated timeline for project phases.
+
+[33mcommit ab14a8cae2527d646f78167cc3bb58acd09173a6[m
+Author: Donovan Thach <tehlamo0528@gmail.com>
+Date:   Wed Jan 21 15:43:36 2026 -0800
+
+    Change name of Actor for DT
+
+[33mcommit 1948100690dc7e702aca99b855785331324f2c89[m
+Merge: d76618c c95b98f
+Author: Donovan Thach <tehlamo0528@gmail.com>
+Date:   Wed Jan 21 15:18:54 2026 -0800
+
+    Merge pull request #1 from Mooshem/tehlamo-patch-1
+    
+    Updated Use Case for DT
+
+[33mcommit c95b98f1040d4e5a3e875ece04aef3c5012107ef[m[33m ([m[1;31morigin/tehlamo-patch-1[m[33m)[m
+Author: Donovan Thach <tehlamo0528@gmail.com>
+Date:   Wed Jan 21 15:18:40 2026 -0800
+
+    Updated Use Case for DT
+
+[33mcommit d76618c12b80704664eea08eb80d545ece5b8688[m
+Author: Zheng H. Chen <zhenghchen2024@gmail.com>
+Date:   Wed Jan 21 15:13:50 2026 -0800
+
+    Added Alvin Chipmunk use case for ZC
+
+[33mcommit 62a87c16275524c1e08592261592cd4846764694[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Wed Jan 21 14:11:04 2026 -0800
+
+    godot framework added to github
+
+[33mcommit ce2a5f08f488dca93955d67f8e56c96030965c45[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Wed Jan 21 13:42:11 2026 -0800
+
+    Completed Use Case 1 for CL
+
+[33mcommit fbcda4ca586710118a08b7d116376204d495b9e8[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 15:39:46 2026 -0800
+
+    Finished temp living document
+
+[33mcommit 41789a9227aad9b35caaa42911bcb643b5e9ce52[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 15:28:53 2026 -0800
+
+    Added information to technical approach
+
+[33mcommit ded068bdc84f6cce81a49f2fcf0db879b29601c8[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 15:27:08 2026 -0800
+
+    Updated timeline and use cases
+
+[33mcommit 4c155c9257a0851511ea1775dea29c3a8f00ba61[m
+Author: Daniel Martin <danielamartin314@gmail.com>
+Date:   Tue Jan 20 14:21:09 2026 -0800
+
+    Add Use Case and Timeline sections to project info
+    
+    Added sections for Use Case and Timeline with TODO notes.
+
+[33mcommit 659d668ff3273b8d76b991dd2019430ce017eb01[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:42:44 2026 -0800
+
+    Rename status_report_2.md to 2025-01-27.md
+
+[33mcommit c6c9b09aa9d28511c02863895b598bfebc556c4c[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:34:16 2026 -0800
+
+    Updated base layout to be filled in.
+
+[33mcommit 61dbb74ae546db772e80781777a2bcfc5e7aefcd[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:31:13 2026 -0800
+
+    Renamed status_report_1.md to follow naming  convention of 2025-01-20.md
+
+[33mcommit de0fdd5b6d8da3e17f77569f3250181f908b251e[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:28:25 2026 -0800
+
+    Design Change
+
+[33mcommit 08764ca21040416b6fadcad9762d282e6cf1a7b3[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:26:16 2026 -0800
+
+    design changes
+
+[33mcommit 0cdc911d3460ab9aa5c9383d016a09f6d9404099[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:24:28 2026 -0800
+
+    One more fix of whitespace issues
+
+[33mcommit edca7bd8e9f46035bfc63908fd6cd134b86edf21[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:22:27 2026 -0800
+
+    Fixed whitespace issues and graphical design problems
+
+[33mcommit c6f81b226ef5637b75fdfdbfaf01c7f4b9cd8a01[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:21:41 2026 -0800
+
+    Fixed whitespace issues and graphical design problems
+
+[33mcommit d5e135c9bc9c5b0288d5eb5e5e662138fcc7158b[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 10:19:45 2026 -0800
+
+    Filled out our first status report.
+
+[33mcommit 7ed3cde6a74dcdbb0ae529f481706eb9857a6928[m
+Merge: 44180e3 9f5fad6
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Tue Jan 20 09:33:16 2026 -0800
+
+    Merge branch 'main' of github.com:Mooshem/Software-Fungineers
+
+[33mcommit 9f5fad637294b0d0192160050392492d1e26e540[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Tue Jan 20 09:30:03 2026 -0800
+
+    Updated README.md to include information about the project, our goal of the project, and directory layout information.
+
+[33mcommit 44180e358b5507515e9f33f586b95afad7f0eae6[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Tue Jan 20 09:28:24 2026 -0800
+
+    Renamed the reports directory from docs to reports
+
+[33mcommit 3f10eb1b28b29f92279655a7bcb223586b3bbc46[m
+Author: Zheng Chen <chenz22@flip3.engr.oregonstate.edu>
+Date:   Tue Jan 20 00:48:14 2026 -0800
+
+    Added reports and template status reports 1 and 2
+
+[33mcommit f641fa1759684f6c3d6c6c5b30ded8509df1b101[m
+Author: Zheng H. Chen <zhenghchen2024@gmail.com>
+Date:   Tue Jan 20 00:36:34 2026 -0800
+
+    Delete reports
+
+[33mcommit ace4b965fb98778b29717f4f043bee5068af1c55[m
+Author: Zheng H. Chen <zhenghchen2024@gmail.com>
+Date:   Tue Jan 20 00:35:09 2026 -0800
+
+    Create reports
+
+[33mcommit 36a5e4d0342cbe9c43453b2a86237abe7110d8ec[m
+Author: Zheng H. Chen <zhenghchen2024@gmail.com>
+Date:   Tue Jan 20 00:25:57 2026 -0800
+
+    change role
+
+[33mcommit dc678cae31fc23f9db211fab98f63aafdda2ad97[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Thu Jan 15 22:42:24 2026 -0800
+
+    Added team roles
+
+[33mcommit 27a9d1876d87517fe5b64aa0cf30230ffbd4fab2[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Thu Jan 15 22:37:50 2026 -0800
+
+    Added technical approach to project-information.txt
+
+[33mcommit ddeb92f9213ccdc536639ec951a8a1d72618d717[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Thu Jan 15 18:31:51 2026 -0800
+
+    Added information regarding the following information: The goal of the project, the current practice of the project, the novelty of the practice, the effects of the practice and who cares or is our intended audience, our technical approach to the project, and what our most major risk in development of the project is. I also added the projected implementations that we aim to achieve, including: 4 major implementations that we will achieve, and 2 stretch goals that we hope to implement.
+
+[33mcommit c11959775a18f93cb0328e34ecc600e359cffebb[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Thu Jan 15 17:54:48 2026 -0800
+
+    updated project-information.txt with relevant information.
+
+[33mcommit 50af2a57366f1d47963586ee64333b7f15d536ab[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Thu Jan 15 16:51:21 2026 -0800
+
+    added base layer to project-information.txt with the expectation of filling it out
+
+[33mcommit 31dd4e676a83d040687980e7ef8f285d9c0cbd38[m
+Author: Cash Limberg <limberca@oregonstate.edu>
+Date:   Thu Jan 15 16:34:41 2026 -0800
+
+    Added src and docs repositories, and added project-information.txt to docs
+
+[33mcommit b62fb96f5c42ae6e71af5d642b931f0dddc9f16d[m
+Author: Cash Limberg <climberg05@gmail.com>
+Date:   Thu Jan 15 13:03:02 2026 -0800
+
+    Initial commit
