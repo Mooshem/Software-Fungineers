@@ -1,22 +1,26 @@
 [gd_scene format=3 uid="uid://bn86nsjl8plpi"]
 
+[ext_resource type="Script" uid="uid://cxsycsojl48e5" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
+size = Vector3(0.7, 1.8, 0.7)
+
 [node name="Player" type="CharacterBody3D" unique_id=195517540]
+script = ExtResource("1_4flbx")
 
-[node name="Pivot" type="Node3D" parent="." unique_id=1539403129]
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=444327053]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-current = true
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1016585691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("BoxShape3D_onrkg")
 
 [node name="Head" type="CSGBox3D" parent="." unique_id=830967656]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)
 
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=444327053]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, -0.55)
+current = true
+
 [node name="Body" type="CSGBox3D" parent="." unique_id=1555639851]
 transform = Transform3D(0.4, 0, 0, 0, 0.7, 0, 0, 0, 0.2, 0, 1.05, 0)
-
-[node name="Bounding Box" type="CSGBox3D" parent="." unique_id=1039999443]
-transform = Transform3D(0.7, 0, 0, 0, 1.8, 0, 0, 0, 0.7, 0, 0.9, 0)
-visible = false
 
 [node name="Right Arm" type="CSGBox3D" parent="." unique_id=1649670735]
 transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, 0.3, 1.05, 0)
