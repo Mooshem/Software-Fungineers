@@ -201,7 +201,7 @@ Project Description
     \\\\\\\\\\\\\\\\\\
 
         The application will be downloaded through an external website, and the application will be ran on
-        a Windows OS, on Windows 10/11, or alternatively a Linus or MacOS system. 1GB Ram required, and a
+        a Windows OS, on Windows 10/11, or alternatively a Linus or MacOS system. 4GB Ram required, and a
         minimum of at least an integrated graphics card.
 
         All third-party libraries and 3D graphics frameworks used must have permissive open-source 
@@ -227,6 +227,10 @@ Project Description
         The largest risk that our team forsees is not fully being able to distinguish 
         conditional statements for a user to distinguish it from other conditional 
         statements. To solve this risk we will focus on understandable UX design.
+
+        Additional risks include implementing stretch goals too early, changing game
+        design too late, software is unable to run on 4GB Ram and an integrated 
+        graphics card.
 
     //////////////////
     Timeline
