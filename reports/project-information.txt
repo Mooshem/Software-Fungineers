@@ -33,10 +33,10 @@ Project Description
     \\\\\\\\\\\\\\\\\\
 
         Our team is developing a 3D game simulation for visualizing and practicing
-        coding. We will create a 3D space for users to learn how to code, using blocks
-        and lines as functions and commands. This will allow a generation that grew up 
-        playing videogames to learn how to program in an environment that they are
-        familiar with.
+        coding. We will create a 3D space for users to learn the fundamentals to 
+        programming, using blocks and lines as functions and commands. This will 
+        allow a generation that grew up playing videogames to learn how to 
+        program in an environment that they are familiar with.
 
     //////////////////
     Goal
@@ -58,7 +58,7 @@ Project Description
     \\\\\\\\\\\\\\\\\\
 
         We bridge the gap between abstract coding and immersive play by leveraging the innate 
-        3D literacy of the current generation. Because students are already accustomed to 
+        gaming literacy of the current generation. Because students are already accustomed to 
         navigating complex 3D environments in video games, our tool allows them to inherently 
         grasp abstract concepts like code volume and redundancy. This familiar spatial context 
         offers a distinct advantage over 2D tools, making code optimization an intuitive, 
@@ -200,7 +200,9 @@ Project Description
     External Requirements
     \\\\\\\\\\\\\\\\\\
 
-        The application must run on Windows 10/11
+        The application will be downloaded through an external website, and the application will be ran on
+        a Windows OS, on Windows 10/11, or alternatively a Linus or MacOS system. 1GB Ram required, and a
+        minimum of at least an integrated graphics card.
 
         All third-party libraries and 3D graphics frameworks used must have permissive open-source 
         licenses (MIT, Apache 2.0, or similar) to allow free distribution to educational institutions
@@ -214,7 +216,9 @@ Project Description
 
         Our team intends on using a technical 3D graphics software, Godot,
         to complete this project. We will also be using Visual Studio code for 
-        writing the program. 
+        writing the scripts necessary for object files in Godot. As for syntax,
+        the software will not teach a specified syntax, but rather the 
+        fundamentals behind software programming (variables, if/else, loops).
 
     //////////////////
     Risks
