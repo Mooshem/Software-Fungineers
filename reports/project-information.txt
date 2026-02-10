@@ -78,11 +78,11 @@ Project Description
     \\\\\\\\\\\\\\\\\\
 
         CL - A user wants to get into programming, but they are unsure where to start. They will
-             use our game to learn how programming 
+             use our game to learn how programming language fundamentals function.
 
             Actor: Cranjis McBasketball
             Triggers: Mr McBasketball doesn't know where to start learning programming, and wants 
-                      something not overwhelming.
+                      to start somewhere that isn't overwhelming.
             Preconditions: 
                 - Mr McBasketball has a need for learning programming
             Postconditions (success scenario): 
@@ -133,7 +133,7 @@ Project Description
                 - Alvin's computer doesn't meet the minimum requirements and the game lags, preventing smooth visualization
 
         DT - A user doesn't learn well by sitting through tutorials and lectures, and wants to 
-             begin writing programs. The user will use our game to help themselves leanr the 
+             begin writing programs. The user will use our game to help themselves learn the 
              programming fundamentals.
 
             Actor: Yin Chen
