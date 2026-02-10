@@ -57,8 +57,12 @@ Project Description
     Novelty
     \\\\\\\\\\\\\\\\\\
 
-        Our approach is novel because it’s similar to a video game. This generation of students 
-        has grown up playing video games, and would likely find it more helpful than current options.
+        We bridge the gap between abstract coding and immersive play by leveraging the innate 
+        3D literacy of the current generation. Because students are already accustomed to 
+        navigating complex 3D environments in video games, our tool allows them to inherently 
+        grasp abstract concepts like code volume and redundancy. This familiar spatial context 
+        offers a distinct advantage over 2D tools, making code optimization an intuitive, 
+        visual process rather than a theoretical one.
 
     //////////////////
     Effects
