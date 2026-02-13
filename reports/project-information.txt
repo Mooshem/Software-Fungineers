@@ -167,40 +167,37 @@ Project Description
                 - The visualization is too fast or slow and Alvin can't adjust the speed
                 - Alvin's computer doesn't meet the minimum requirements and the game lags, preventing smooth visualization
 
-        DT - A user doesn't learn well by sitting through tutorials and lectures, and wants to 
-             begin writing programs. The user will use our game to help themselves learn the 
-             programming fundamentals.
+######################################
 
-            Actor: Yin Chen
-            Triggers: 
-                - Yin keeps watching coding materials, wanting to learn programming at a 
-                  young age, but all tutorial videos are unamusing and disinteresting.
+        Donovan Thach - Use Case: Preferred Learning
+
+        As a user, I want a simpler more engaging way to learn
+        how to program, like playing a game, so I can more easily
+        understand the fundamentals.
+
+            Actors: User, System
+            Triggers: User doesn't engage well with content that includes sitting and learning, they prefer interactions and games
             Preconditions: 
-                - Yin wants an interactive way, preferably a game, where she can learn the 
-                  fundamentals of programming with the abstract coding concepts 
-                - Yin doesn't know anything about programming
+                - User wants to interact and engage with programming
+                - User is familar with a 3D environment in games
+                - User wants to learn the fundamentals of coding
             Postconditions (success scenario): 
-                - Yin spends less than 3 minutes on the tutorial to learn basic programming
-                  fundamentals (setting variables)
+                - User spends less than 3 minutes to learn a fundamental of programming
             List of steps (success scenario): 
-                1. Yin downloads the game and plays it
-                2. Yin is taught through a tutorial and spends less than 3 minutes learning
-                   basic fundamentals and completing the tutorial
+                1. User downloads the game off of a website
+                2. User opens our software and enters the tutorial level
+                3. User completes the tutorial level in under 3 minutes
             Extensions/variations of the success scenario: 
-                - Yin goes past the tutorial and continues through the game and playing 
+                - User goes past the tutorial and continues through the game and playing 
                   different puzzles
-                - Yin spends more time than expected, but continues through the puzzles
-                  learning more programming fundamentals
-                - If Yin forgets about the tutorial, she can always reply it again
+                - If the User forgets about the tutorial, they can always replay it again
             Exceptions: failure conditions and scenarios: 
-                - Yin can't complete the tutorial due to the difficulty and decides to 
+                - User can't complete the tutorial due to the difficulty and decides to 
                   give up on the game
+                - User spends more than 3 minutes on tutorial, meaning it's still too
+                  difficult to be learned by a novice programmer
 
-
-
-
-
-
+######################################
 
     //////////////////
     Non-Functional Requirements
