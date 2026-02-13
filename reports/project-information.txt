@@ -50,19 +50,22 @@ Project Description
     Current Practice
     \\\\\\\\\\\\\\\\\\
 
-        Currently, learning how to code stems from lectures and hands-off teaching. Our aim 
-        is to revolutionize this process, allowing people to learn in an effecient manner.
+        There are two main ways that this problem is solved currently. Firstly, coding games like
+        Coddy where the aim is to teach specific syntax of languages in a game format. Secondly,
+        other 2d block coding platforms like Scratch that have less emphasis on the 'game' aspect,
+        and more on a creative sandbox or tool for developers.
 
     //////////////////
     Novelty
     \\\\\\\\\\\\\\\\\\
 
-        We bridge the gap between abstract coding and immersive play by leveraging the innate 
-        gaming literacy of the current generation. Because students are already accustomed to 
-        navigating complex 3D environments in video games, our tool allows them to inherently 
-        grasp abstract concepts like code volume and redundancy. This familiar spatial context 
-        offers a distinct advantage over 2D tools, making code optimization an intuitive, 
-        visual process rather than a theoretical one.
+        The novelty of our project comes from the 3d space that users will interact with and the
+        puzzles that will be specifically designed for beginners who have never coded before.
+        Coding games like Coddy usually specify a syntax (i.e. Java or C), but our project uses block
+        coding to avoid the problem of beginners simply memorizing syntax. Taking inspiration from
+        Scratch as a block coding tool, we will implement our project in 3d which adds another level
+        of interactivity and visualization. This is ideal because we want our users to see their
+        code working in real time step by step rather than staring at lines of code.
 
     //////////////////
     Effects
@@ -74,8 +77,40 @@ Project Description
         bridge.
 
     //////////////////
-    Use Case
+    Use Cases
     \\\\\\\\\\\\\\\\\\
+
+######################################
+    Daniel Martin - Use Case: Sandbox Mode
+
+        As a user, I want to be able to experiment with combinations 
+        of blocks not taught by the tutorial/puzzles so that I can 
+        further understand the way different pieces of code interact.
+        
+        Actors: User, System
+        Triggers: User has completed all puzzles and is left with unanswered questions or curious about other interactions
+        Preconditions: 
+            - User has completed all puzzles
+            - User has navigated to and opened the sandbox mode
+                    
+        Postconditions (success scenario): 
+            - System stores sandbox data for user to come back to
+            - System handles wide variety of block interactions
+            - User can develop and visualize a wide variety of 
+              potential programs, beyond what the tutorial and 
+              puzzles offer.
+        
+        List of steps (success scenario):
+            - User completes all puzzles
+            - User navigates to Sandbox mode
+            - User places up to 25 blocks, and views working interactions
+            - User leaves sandbox mode
+                    
+        Exceptions: failure conditions and scenarios: 
+            - Block interactions are not robust: Placing in unplanned ways leads to bugs.
+            - Placing too many blocks stresses resources too highly, program crashes.
+
+######################################
 
         CL - A user wants to get into programming, but they are unsure where to start. They will
              use our game to learn how programming language fundamentals function.
@@ -161,26 +196,11 @@ Project Description
                 - Yin can't complete the tutorial due to the difficulty and decides to 
                   give up on the game
 
-        DM - A user wants to switch careers, but doesn't have time to enroll in classes to learn
-             how to program. The user will use our game to teach themselves how to program in their
-             free time.
 
-            Actor: Hunter D. Killingson, A busy 30 year old martial arts instructor, who wants to become a software engineer
-            Triggers: Hunter is very busy managing his gym and can't afford to spend much time taking intro coding classes.
-            Preconditions: Hunter wants a quick and fun way to learn coding concepts that feels less like work, and more like a game.
-            Postconditions (success scenario): Hunter enjoys the game-like structure and sees it as an engaging and educational way to kickstart his career change.
-            List of steps (success scenario):
-             - Hunter opens the game and plays the first level of the story mode.
-             - The first level teaches him what variables are in an engaging way.
-             - Hunter completes the level relatively quickly and enjoys the format of the game.
-             - Hunter continues playing through levels in his free time, eventually learning about other concepts like loops, recursion, functions.
-             - Hunter's interest in coding grows, and he now feels more comfortable switching to a textual language, and furthering his education.
-            Extensions/variations of the success scenario: 
-             - Hunter plays the game alongside a course for a textual languages to better grasp the textual language
-             - Hunter plays in the "sandbox" mode to explore what programming has to offer, and if it might be a good choice for his career
-            Exceptions: failure conditions and scenarios: 
-             - The game is too hard, and Hunter is pushed away from programming.
-             - The levels are too time-consuming, and Hunter is too busy to dive deep into the game.
+
+
+
+
 
     //////////////////
     Non-Functional Requirements
@@ -188,7 +208,7 @@ Project Description
 
         The program will run without lagging, creating a seamless user experience.
 
-        The program will start withen 3 seconds of running the program.
+        The program will start within 3 seconds of running the program.
 
         The program will be able to support 1 user.
 
@@ -214,48 +234,96 @@ Project Description
     Technical Approach
     \\\\\\\\\\\\\\\\\\
 
-        Our team intends on using a technical 3D graphics software, Godot,
-        to complete this project. We will also be using Visual Studio code for 
-        writing the scripts necessary for object files in Godot. As for syntax,
-        the software will not teach a specified syntax, but rather the 
-        fundamentals behind software programming (variables, if/else, loops).
+        We have decided to go with an event-driven architecture as it lends itself well to Godot's built-in
+        signal system. We will have player actions (such as walking, placing a block, etc.) act as events
+        that drive the rest of the program. To solve the initial problem of teaching absolute beginners the
+        fundamentals of programming, we wwill not be teaching any language in particular. Instead, we plan on
+        implementing a 'block code' language where conditions, variables, and other pieces of a program will be
+        implemented as physical blocks that the user can place and manipulate. The reason why this approach
+        is ideal is that users will be able to interact with their code more freely. We plan on implementing a
+        signal system where signals will travel through wires, and users can physically see the control flow
+        of their program. The block code style has worked successfully in the past with projects like Scratch,
+        but we believe a 3d environment will make it even easier to understand for complete beginners. Our team
+        is mostly composed of ULAs for intro programming courses, so to make sure the content is educational, we
+        will work together and agree upon which content to add or remove from in-game puzzles to challenge the
+        user at an appropriate level. We will use the Godot game engine to implement our game.
 
     //////////////////
     Risks
     \\\\\\\\\\\\\\\\\\
 
-        The largest risk that our team forsees is not fully being able to distinguish 
-        conditional statements for a user to distinguish it from other conditional 
-        statements. To solve this risk we will focus on understandable UX design.
+    1) Late implementation. LIkelihood: medium Risk: high. As of now, we haven't spent enough 
+       time implementing. This has a high impact because our game will be unfinished. My evidence
+       is as follows: so far, we have yet to fully implement any of our classes. Now, we are 
+       pushing to get our ideas implemented, in order to prevent the likelihood of this occurring.
+       We will implement the basic game flow within the next week to build a foundation. The
+       problem has taken effect if we don't have this done. We will take these steps in that case: 
+       Designate each person to fully implement a feature by the end of the week. This will give us
+       at least 4 features built, and we will need to continue this trajectory to stay on track.
 
-        Additional risks include implementing stretch goals too early, changing game
-        design too late, software is unable to run on 4GB Ram and an integrated 
-        graphics card.
+    2) Block placing logic harder than expected. Likelihood: medium, Impact: high. This part of
+       the code is likely to be hard to implement. As an integral part to the game, it would have
+       a huge impact if left unchecked. To reduce likelihood, we have started watching godot tutorials
+       and have compiled a list of a few videos that can help. Detecting the problem will be simple
+       because whoever is implementing this part of the code at the time will communicate. We've
+       all agreed to communicate issues as important as this. Should this risk occur, we will
+       research the necessary implementation details and work on the implementation together. This 
+       risk will be identified soon, as we plan on implementing this in the coming weeks.
+
+    3) Blocks don't work properly. Likelihood: High, Impact: High. The blocks are going to take a
+       lot of work to properly implement, and we need them to work flawlessly if we want to teach
+       beginners. The chance of them not working properly at first is almost guaranteed, so it is
+       imperative to plan ahead. To reduce the likelihood, we will have to make sure each block
+       follows the guidelines that we've layed out prior. Right now, we have a list of required
+       blocks and how they should behave, so we will follow this guide, and test them after
+       implementation. To detect the problem, we will run tests on each block. We will do this by
+       placing them next to other ones and observing their behavior, and by using our test plan
+       below. Should this occur, we plan on following standard debugging procedure for broken blocks,
+       and making sure they behave as required (outlined below).
+
+    4) Godot 3D mechanics and engine limitations slow progress. Likelihood: medium, Impact: medium-high.
+       None of us have extensive experience building a full 3D game with Godot. While we are confident
+       we can learn, unexpected engine limitations or confusing workflows could slow development. This
+       could impact our timeline and force us to spend time debugging engine-related issues rather than
+       implementing. Evidece: so far, some basic tasks (such as scene organization) have taken longer
+       than expected during experimentation. To reduce the likelihood of this occurring, we are keeping 
+       our game mechanics simple and relying on Godot’s built-in systems whenever possible rather than 
+       creating overly complex custom solutions. We are also sharing resources and tutorials within 
+       the team. We will detect this problem if tasks involving Godot repeatedly fall behind schedule or 
+       require excessive troubleshooting. If this risk occurs, we will mitigate it by cutting 
+       non-essential features and refocusing on core gameplay and learning objectives.
+
+    5) Educational goals are not clearly achieved through gameplay. Likelihood: medium, Impact: medium-high.
+       It's possible that the game does not clearly teach introductory programming concepts as intended.
+       Our evidence for this risk comes from early discussions where some mechanics felt engaging but did
+       not clearly reinforce learning objectives. To reduce the likelihood of this occurring, we are explicitly
+       tying each block and level to a specific programming concept and designing levels around 
+       those goals. We also plan to add clear visual feedback so players can see the effect of their 
+       blocks in real time. We will detect this issue through playtesting, especially by observing whether 
+       new players can explain what their block logic is doing. If this risk occurs, we will 
+       mitigate it by redesigning levels, adding tutorials or guided prompts, and simplifying 
+       mechanics to better emphasize learning outcomes.
 
     //////////////////
     Timeline
     \\\\\\\\\\\\\\\\\\
 
-         Week 4 
-            Design phase: figure out what UI/UX should look like and start planning out the code structure
-
-        Week 5
-            Start actually coding and get basic movement and 3D environment working
-
         Week 6
-            Keep implementing features and start testing what we have so far
+            Implement blocks -- placing and interactions with player -- as well as a functional 'Home Screen' UI
 
         Week 7
-            Fix bugs from testing and add more puzzle mechanics
+            Add level assets and textures as well as sound effects; Fully implement blocks
 
         Week 8
-            Polish the UI and get feedback from playtesters
+            Polish the UI, debug block interactions, run through levels to ensure nothing is too hard. Perform unit
+            tests on individual classes (blocks) and fuzz the UI interactions
 
         Week 9
-            Final testing round and fix any remaining bugs
+            Continue testing. Non-programmer friends/family playtest our game and give comments. Polish level design,
+            sound design, and any other bugs that have popped up.
 
         Week 10
-            Finish up documentation and prepare final presentation
+            Finish tests, documentation, and prepare for final presentation. Prepare a demo video for the first level.
 
     //////////////////
     Team Process Description
@@ -296,8 +364,7 @@ Project Description
                 and solutions. Cash has demonstrated that he is capable of understanding others' programs, and 
                 quickly diagnosing potential risks that those problems can cause if left untreated.
 
-
-        Daniel Martin - Educational Game Design Lead
+        Daniel Martin - Game Design Lead
             Why this role is needed: As an educational game, we need to ensure that the content is appropriate.
                 This means that the overall game loop must be engaging, but more importantly, it needs to
                 actually teach players coding fundamentals. This role ensure that both of those criteria is met.
@@ -306,23 +373,6 @@ Project Description
                 struggle with and what needs to be emphasized for the game to be educational.
 
     Weekly Schedule and Milestones
-
-        Week 4:
-            Donovan: Solidify the deliverables, give the team the requirements necessary to start the project, align the
-                        team on certain user stories each of them will be working towards, and identify potential 
-                        roadblocks that the team might face in the future.
-            Zheng: Complete UI mockups for main menu and puzzle interface. User flow diagram for first puzzle completed.
-            Cash: Begin development and design process with Daniel. Framework classes that will be required for this project.
-            Daniel: Design a "curriculum" that teaches the concepts we want to teach. Concepts will be discussed this week.
-
-        Week 5:
-            Donovan: Start weekly check-ups with team to ensure project will be deliverable, start weekly meetings to 
-                        keep the whole team in check and ensure that the design phase is clear. Also, begin designing
-                        fundamental and entertaining puzzles to be used in conjunction with UI.
-            Zheng: Basic UI implemented in Godot. Main menu functional with working buttons.
-            Cash: Have classes finalized, including member variables and functions. Draft file implementation of said 
-                        classes.
-            Daniel: Finalize block designs. What blocks do we need? What will they do? How will they interact with each other? etc.
 
         Week 6:
             Donovan: Resolve any complications that resulted from the week prior and work with team members to continue
@@ -361,20 +411,66 @@ Project Description
 
     Major Risks:
 
-        Risk 1: Team members lack extensive Godot experience, which may cause implementation delays
-            and underestimated feature completion times.
-        Risk 2: Block connection logic for representing programming constructs may be too complex to 
-            implement intuitively.
-        Risk 3: Scope creep from adding non-essential features could result in incomplete core functionality.
+    1) Late implementation. LIkelihood: medium Risk: high. As of now, we haven't spent enough 
+       time implementing. This has a high impact because our game will be unfinished. My evidence
+       is as follows: so far, we have yet to fully implement any of our classes. Now, we are 
+       pushing to get our ideas implemented, in order to prevent the likelihood of this occurring.
+       We will implement the basic game flow within the next week to build a foundation. The
+       problem has taken effect if we don't have this done. We will take these steps in that case: 
+       Designate each person to fully implement a feature by the end of the week. This will give us
+       at least 4 features built, and we will need to continue this trajectory to stay on track.
+
+    2) Block placing logic harder than expected. Likelihood: medium, Impact: high. This part of
+       the code is likely to be hard to implement. As an integral part to the game, it would have
+       a huge impact if left unchecked. To reduce likelihood, we have started watching godot tutorials
+       and have compiled a list of a few videos that can help. Detecting the problem will be simple
+       because whoever is implementing this part of the code at the time will communicate. We've
+       all agreed to communicate issues as important as this. Should this risk occur, we will
+       research the necessary implementation details and work on the implementation together. This 
+       risk will be identified soon, as we plan on implementing this in the coming weeks.
+
+    3) Blocks don't work properly. Likelihood: High, Impact: High. The blocks are going to take a
+       lot of work to properly implement, and we need them to work flawlessly if we want to teach
+       beginners. The chance of them not working properly at first is almost guaranteed, so it is
+       imperative to plan ahead. To reduce the likelihood, we will have to make sure each block
+       follows the guidelines that we've layed out prior. Right now, we have a list of required
+       blocks and how they should behave, so we will follow this guide, and test them after
+       implementation. To detect the problem, we will run tests on each block. We will do this by
+       placing them next to other ones and observing their behavior, and by using our test plan
+       below. Should this occur, we plan on following standard debugging procedure for broken blocks,
+       and making sure they behave as required (outlined below).
+
+    4) Godot 3D mechanics and engine limitations slow progress. Likelihood: medium, Impact: medium-high.
+       None of us have extensive experience building a full 3D game with Godot. While we are confident
+       we can learn, unexpected engine limitations or confusing workflows could slow development. This
+       could impact our timeline and force us to spend time debugging engine-related issues rather than
+       implementing. Evidece: so far, some basic tasks (such as scene organization) have taken longer
+       than expected during experimentation. To reduce the likelihood of this occurring, we are keeping 
+       our game mechanics simple and relying on Godot’s built-in systems whenever possible rather than 
+       creating overly complex custom solutions. We are also sharing resources and tutorials within 
+       the team. We will detect this problem if tasks involving Godot repeatedly fall behind schedule or 
+       require excessive troubleshooting. If this risk occurs, we will mitigate it by cutting 
+       non-essential features and refocusing on core gameplay and learning objectives.
+
+    5) Educational goals are not clearly achieved through gameplay. Likelihood: medium, Impact: medium-high.
+       It's possible that the game does not clearly teach introductory programming concepts as intended.
+       Our evidence for this risk comes from early discussions where some mechanics felt engaging but did
+       not clearly reinforce learning objectives. To reduce the likelihood of this occurring, we are explicitly
+       tying each block and level to a specific programming concept and designing levels around 
+       those goals. We also plan to add clear visual feedback so players can see the effect of their 
+       blocks in real time. We will detect this issue through playtesting, especially by observing whether 
+       new players can explain what their block logic is doing. If this risk occurs, we will 
+       mitigate it by redesigning levels, adding tutorials or guided prompts, and simplifying 
+       mechanics to better emphasize learning outcomes.
 
 
     External Feedback:
         When external feedback will be most useful:
-            Week 6 after first playable prototype is complete, early enough to make significant changes
+            After first playable prototype is complete (likely in weeks 7-8), early enough to make significant changes
             based on feedback, or Week 8 after all core features implemented
         
         How we will get that feedback:
-            Recruit 3-5 CS162 students for playtesting, and create feedback forms asking specific questions.
+            Recruit non-programmer friends and family for playtesting, and create feedback forms asking specific questions.
 
 ===================================================================
 Implementations
@@ -388,6 +484,7 @@ Implementations
         2.  Implement the ability to place/remove blocks
         3.  Implement blocks abilities, such as conditional statements
         4.  Implement the ability to connect blocks for linearly programming
+        5.  Implement puzzle levels
 
     //////////////////
     Stretch Goals
