@@ -1,3 +1,13 @@
+"""
+Developer: Donovan Thach
+Documentation on gdScripts: https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
+							https://docs.godotengine.org/en/4.4/classes/class_characterbody3d.html#description
+							https://docs.godotengine.org/en/4.4/classes/class_canvaslayer.html
+							https://docs.godotengine.org/en/4.4/classes/class_collisionshape3d.html
+							https://docs.godotengine.org/en/4.4/tutorials/physics/collision_shapes_3d.html#primitive-collision-shapes
+							https://docs.godotengine.org/en/4.4/tutorials/animation/animation_track_types.html#position-3d-rotation-3d-scale-3d-track
+"""
+
 extends CharacterBody3D
 
 # References the Head node created in the scene.
