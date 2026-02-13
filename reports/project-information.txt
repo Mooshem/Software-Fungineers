@@ -136,36 +136,45 @@ Project Description
                 - Mr McBasketball does not complete puzzle 1, which doesn't allow him to 
                   continue to puzzle 2
 
-        ZC - A user has tried programming before, but they can't understand how their code works. 
-             They will use the game to learn how their code works and implement this 
-             knowledge into real-world programming.
-
-            Actor: Alvin Chipmunk, a high school student who has tried to learn programming through
-            YouTube tutorials
-            Triggers: Alvin writes code that compiles but doesn't produce expected results, leading to frustration
+######################################
+        Zheng Chen - Use Case: Code Visualization for Debugging
+    
+            As a user, I want to visualize how my code executes step-by-step 
+            so that I can understand why my programs don't produce expected 
+            results and learn to debug effectively.
+            
+            Actors: User, System
+            Triggers: User writes code that compiles but doesn't work as expected, leading to frustration with traditional debugging methods
             Preconditions: 
-                - Alvin has basic knowledge of programming syntax like variables
-                - Alvin has the game installed and accessible
+                - User has basic knowledge of programming syntax like variables
+                - User has the game installed and accessible
+                - User has completed introductory tutorial
+                        
             Postconditions (success scenario): 
-                - Alvin successfully visualizes how loops and conditionals execute step by step
-                - Alvin understands why his previous code didn't work as expected
-                - Alvin can apply this visualization knowledge to debug real code
-            List of steps (success scenario): 
-                - Alvin opens the game and selects a "Loop Visualization" puzzle
-                - Alvin places blocks to build a for-loop structure
-                - Alvin connects conditional blocks within the loop
-                - Alvin runs the game and watches the 3D visualization execute each step at a time
-                - Alvin observes how the loop counter changes and how conditionals affect execution flow
-                - Alvin pauses execution at key points to examine block states
-                - Alvin completes the puzzle and gains understanding of loop mechanics
-            Extensions/variations of the success scenario: 
-                - Alvin replays the visualization at different speeds to better understand quick executions
-                - Alvin modifies the puzzle parameters to test edge cases
-                - Alvin uses the knowledge to fix a bug in his actual code
+                - User successfully visualizes how loops and conditionals execute step by step
+                - User understands why their previous code didn't work as expected
+                - User can apply visualization knowledge to debug real code
+                - System saves user's puzzle progress
+            
+            List of steps (success scenario):
+                - User opens the game and selects a "Loop Visualization" puzzle
+                - User places blocks to build a for-loop structure
+                - User connects conditional blocks within the loop
+                - User runs the visualization and watches 3D execution
+                - User observes how the loop counter changes and how conditionals affect flow
+                - User pauses execution at key points to examine block states
+                - User completes the puzzle
+            
+            Extensions/variations of the success scenario:
+                - User replays visualization at different speeds
+                - User modifies puzzle parameters to test edge cases
+                - User applies knowledge to fix bugs in actual code
+                        
             Exceptions: failure conditions and scenarios: 
-                - Alvin cant understand the block metaphor and needs to complete a tutorial first
-                - The visualization is too fast or slow and Alvin can't adjust the speed
-                - Alvin's computer doesn't meet the minimum requirements and the game lags, preventing smooth visualization
+                - User can't understand the block metaphor and needs additional tutorial
+                - Visualization speed cannot be adjusted properly, hindering comprehension
+                - User's computer doesn't meet minimum requirements, causing lag
+######################################
 
 ######################################
 
