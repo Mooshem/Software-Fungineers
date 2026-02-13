@@ -1,11 +1,11 @@
 """
 Developer: Donovan Thach
-Documentation on gdScripts: https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
-							https://docs.godotengine.org/en/4.4/classes/class_characterbody3d.html#description
-							https://docs.godotengine.org/en/4.4/classes/class_canvaslayer.html
-							https://docs.godotengine.org/en/4.4/classes/class_collisionshape3d.html
-							https://docs.godotengine.org/en/4.4/tutorials/physics/collision_shapes_3d.html#primitive-collision-shapes
-							https://docs.godotengine.org/en/4.4/tutorials/animation/animation_track_types.html#position-3d-rotation-3d-scale-3d-track
+Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
+				https://docs.godotengine.org/en/4.4/classes/class_characterbody3d.html#description
+				https://docs.godotengine.org/en/4.4/classes/class_canvaslayer.html
+				https://docs.godotengine.org/en/4.4/classes/class_collisionshape3d.html
+				https://docs.godotengine.org/en/4.4/tutorials/physics/collision_shapes_3d.html#primitive-collision-shapes
+				https://docs.godotengine.org/en/4.4/tutorials/animation/animation_track_types.html#position-3d-rotation-3d-scale-3d-track
 """
 
 extends CharacterBody3D
@@ -37,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	# Maintain jumping while player is holding spacebar.
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Exit mouse capture when UI Cancel (usually Escape) is pressed.
@@ -50,8 +51,14 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		# Running just doubles speed, done by holding down shift.
+		if Input.is_action_pressed("running"):
+			velocity.x = direction.x * SPEED * 2
+			velocity.z = direction.z * SPEED * 2
+		else:
+			# Prevents player from sliding (temporary).
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
