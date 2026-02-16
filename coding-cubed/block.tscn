@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://hghm4yft87x"]
+[gd_scene format=3 uid="uid://hghm4yft87x"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qncar"]
 
@@ -6,12 +6,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfwl5"]
 
-[node name="Block" type="StaticBody3D"]
+[node name="Block" type="StaticBody3D" unique_id=596545565]
 physics_material_override = SubResource("PhysicsMaterial_qncar")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=890034568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
 mesh = SubResource("BoxMesh_qncar")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1993874970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
 shape = SubResource("BoxShape3D_xfwl5")
 debug_color = Color(1, 0.46666667, 1, 1)
