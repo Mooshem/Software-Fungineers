@@ -13,6 +13,5 @@ physics_material_override = SubResource("PhysicsMaterial_qncar")
 mesh = SubResource("BoxMesh_qncar")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-visible = false
 shape = SubResource("BoxShape3D_xfwl5")
 debug_color = Color(1, 0.46666667, 1, 1)

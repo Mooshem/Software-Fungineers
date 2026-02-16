@@ -45,11 +45,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		if ray.is_colliding():
 			var hit_position = ray.get_collision_point()
 			var hit_normal = ray.get_collision_normal()
-			var place_position = (hit_position + hit_normal).round()
 
+			var place_position = Vector3(
+				floor(hit_position.x + hit_normal.x),
+				floor(hit_position.y + hit_normal.y),
+				floor(hit_position.z + hit_normal.z)
+			)
+			
 			var block = BlockScene.instantiate()
 			get_parent().add_child(block)
 			block.global_position = place_position
+
+"""
+CODE GRAVEYARD
+
+"""
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
