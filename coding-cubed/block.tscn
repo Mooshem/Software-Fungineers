@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://hghm4yft87x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qncar"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_im0tn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfwl5"]
+
+[node name="Block" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_qncar")
+custom_aabb = AABB(1, 1, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_im0tn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xfwl5")
+debug_color = Color(1, 1, 1, 0.41960785)

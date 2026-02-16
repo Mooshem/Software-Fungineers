@@ -12,6 +12,11 @@ extends CharacterBody3D
 
 # References the Head node created in the scene.
 @onready var head: Node3D = $Head
+# Added by: Cash Limberg. 
+@onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
+var BlockScene = preload("res://block.tscn")
+
+
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -32,6 +37,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		# Clamp the vertical rotation to prevent the camera from flipping over.
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+
+		# Code added by: Cash Limberg
+		#This below if is for placing blocks
+		if Input.is_action_just_pressed("place_block"):
+			if ray.is_colliding():
+				var hit_position = ray.get_collision_point()
+				var hit_normal = ray.get_collision_normal()
+
+				# Offset outward from surface
+				var place_position = hit_position + hit_normal
+				
+				# Snap to whole numbers for grid alignment
+				place_position = place_position.round()
+
+				var block = BlockScene.instantiate()
+				block.global_position = place_position
+
+				get_tree().current_scene.add_child(block)
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

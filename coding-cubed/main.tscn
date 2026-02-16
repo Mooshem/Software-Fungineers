@@ -1,7 +1,13 @@
-[gd_scene format=3 uid="uid://c34syetxeih5f"]
+[gd_scene load_steps=3 format=3 uid="uid://c34syetxeih5f"]
+
+[ext_resource type="Texture2D" uid="uid://d1ifs2sq4segl" path="res://grass.png" id="1_ig7tw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_texture = ExtResource("1_ig7tw")
 
 [node name="Main" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
 use_collision = true
+material = SubResource("StandardMaterial3D_0xm2m")
