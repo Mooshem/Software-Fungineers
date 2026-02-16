@@ -38,23 +38,33 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Clamp the vertical rotation to prevent the camera from flipping over.
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
-		# Code added by: Cash Limberg
-		#This below if is for placing blocks
-		if Input.is_action_just_pressed("place_block"):
-			if ray.is_colliding():
-				var hit_position = ray.get_collision_point()
-				var hit_normal = ray.get_collision_normal()
+	# Code added by: Cash Limberg
+	#This below if is for placing blocks
+	if Input.is_action_just_pressed("place_block"):
+		
+		if ray.is_colliding():
+			var hit_position = ray.get_collision_point()
+			var hit_normal = ray.get_collision_normal()
+			var place_position = (hit_position + hit_normal).round()
 
-				# Offset outward from surface
-				var place_position = hit_position + hit_normal
-				
-				# Snap to whole numbers for grid alignment
-				place_position = place_position.round()
+			var block = BlockScene.instantiate()
+			get_parent().add_child(block)
+			block.global_position = place_position
+"""
+var hit_position = ray.get_collision_point()
+var hit_normal = ray.get_collision_normal()
 
-				var block = BlockScene.instantiate()
-				block.global_position = place_position
+# Offset outward from surface
+var place_position = hit_position + hit_normal
 
-				get_tree().current_scene.add_child(block)
+# Snap to whole numbers for grid alignment
+place_position = place_position.round()
+
+var block = BlockScene.instantiate()
+block.global_position = place_position
+
+get_tree().current_scene.add_child(block)
+"""
 
 
 func _physics_process(delta: float) -> void:
