@@ -50,22 +50,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			var block = BlockScene.instantiate()
 			get_parent().add_child(block)
 			block.global_position = place_position
-"""
-var hit_position = ray.get_collision_point()
-var hit_normal = ray.get_collision_normal()
-
-# Offset outward from surface
-var place_position = hit_position + hit_normal
-
-# Snap to whole numbers for grid alignment
-place_position = place_position.round()
-
-var block = BlockScene.instantiate()
-block.global_position = place_position
-
-get_tree().current_scene.add_child(block)
-"""
-
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
