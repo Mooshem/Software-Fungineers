@@ -1,15 +1,15 @@
-[gd_scene format=3 uid="uid://c34syetxeih5f"]
+[gd_scene load_steps=3 format=3 uid="uid://c34syetxeih5f"]
 
-[ext_resource type="Texture2D" uid="uid://b8nu103rwp7qv" path="res://icon.svg" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://b8nu103rwp7qv" path="res://PNGs/icon.svg" id="1_ig7tw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
 albedo_texture = ExtResource("1_ig7tw")
 uv1_scale = Vector3(50, 50, 1)
 uv2_scale = Vector3(50, 1, 50)
 
-[node name="Main" type="Node3D" unique_id=1192415718]
+[node name="Main" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1836710804]
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0)
 use_collision = true
 material = SubResource("StandardMaterial3D_0xm2m")
