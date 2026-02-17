@@ -14,7 +14,7 @@ extends CharacterBody3D
 @onready var head: Node3D = $Head
 # Added by: Cash Limberg. 
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
-var BlockScene = preload("res://block.tscn")
+var BlockScene = preload("res://Blocks/block.tscn")
 
 # Game modifiers for movement, jumping, and direction.
 const SPEED = 5.0
