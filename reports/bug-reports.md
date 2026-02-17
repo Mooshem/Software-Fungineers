@@ -2,4 +2,5 @@
 
 ## 02/16/2025:
 - Block not rendering: FIXED
-- Block not placing correctly (round() method): OPEN
+- Block not placing correctly: FIXED
+- Block is being placed on character: OPEN
