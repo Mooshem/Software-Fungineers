@@ -19,7 +19,7 @@ var BlockScene = preload("res://block.tscn")
 
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 4.75
 const MOUSE_SENSITIVITY = 0.003
 
 func _ready() -> void:
@@ -47,9 +47,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			var hit_normal = ray.get_collision_normal()
 
 			var place_position = Vector3(
-				floor(hit_position.x + hit_normal.x),
-				floor(hit_position.y + hit_normal.y),
-				floor(hit_position.z + hit_normal.z)
+				floor(hit_position.x + hit_normal.x * 0.5),
+				floor(hit_position.y + hit_normal.y * 0.5),
+				floor(hit_position.z + hit_normal.z * 0.5)
 			)
 			
 			var block = BlockScene.instantiate()
