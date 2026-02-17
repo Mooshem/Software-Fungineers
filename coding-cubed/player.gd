@@ -1,5 +1,5 @@
 """
-Developer: Donovan Thach
+Developers: Donovan Thach, Cash Limberg
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 				https://docs.godotengine.org/en/4.4/classes/class_characterbody3d.html#description
 				https://docs.godotengine.org/en/4.4/classes/class_canvaslayer.html
@@ -16,17 +16,21 @@ extends CharacterBody3D
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 var BlockScene = preload("res://block.tscn")
 
-
-
+# Game modifiers for movement, jumping, and direction.
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.75
+const JUMP_VELOCITY = 5.5
 const MOUSE_SENSITIVITY = 0.003
 
 func _ready() -> void:
-	# Capture the mouse cursor to prevent it from leaving the game window.
+	"""
+	Capture the mouse cursor to prevent it from leaving the game window.
+	"""
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event: InputEvent) -> void:
+	"""
+	Handle inputs from mouse rotation to change directional camera view.
+	"""
 	# Handle mouse motion for camera rotation.
 	if event is InputEventMouseMotion:
 		# Rotate the CharacterBody3D around the Y-axis (left/right).
@@ -39,22 +43,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 	# Code added by: Cash Limberg
-	#This below if is for placing blocks
 	if Input.is_action_just_pressed("place_block"):
-		
+		"""
+		Determines block placement through raycasting and player position.
+		"""
 		if ray.is_colliding():
+			# Variables that contain information on where the player was looking at the time.
 			var hit_position = ray.get_collision_point()
 			var hit_normal = ray.get_collision_normal()
 
+			# Takes the values of where the raycast saw the click occur to determine block placement.
 			var place_position = Vector3(
 				floor(hit_position.x + hit_normal.x * 0.5),
 				floor(hit_position.y + hit_normal.y * 0.5),
 				floor(hit_position.z + hit_normal.z * 0.5)
 			)
 			
-			var block = BlockScene.instantiate()
-			get_parent().add_child(block)
-			block.global_position = place_position
+			# Variables that contain information on player's position at the feet and head.
+			var player_position = self.global_position.floor()
+			var player_head_position = (self.global_position + Vector3(0, 1, 0)).floor()
+			
+			# If block is in player, don't place.
+			if player_position != place_position && player_head_position != place_position:
+				var block = BlockScene.instantiate()
+				get_parent().add_child(block)
+				block.global_position = place_position
 
 """
 CODE GRAVEYARD
