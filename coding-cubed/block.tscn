@@ -1,19 +1,26 @@
-[gd_scene format=3 uid="uid://hghm4yft87x"]
+[gd_scene load_steps=6 format=3 uid="uid://hghm4yft87x"]
+
+[ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://PNGs/block-2.png" id="1_im0tn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qncar"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfwl5"]
+albedo_texture = ExtResource("1_im0tn")
+texture_filter = 0
+
 [sub_resource type="BoxMesh" id="BoxMesh_qncar"]
+material = SubResource("StandardMaterial3D_xfwl5")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfwl5"]
 
-[node name="Block" type="StaticBody3D" unique_id=596545565]
+[node name="Block" type="StaticBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_qncar")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=890034568]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
 mesh = SubResource("BoxMesh_qncar")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1993874970]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
 shape = SubResource("BoxShape3D_xfwl5")
 debug_color = Color(1, 0.46666667, 1, 1)
