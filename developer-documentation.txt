@@ -1,0 +1,68 @@
+/////////////////////////
+How to Obtain Source Code
+/////////////////////////
+
+
+To obtain source code, pull the repository from github. Navigate to the 'coding-cubed' directory. This is the godot project directory.
+
+
+
+////////////////////////
+Directory Structure
+////////////////////////
+
+
+Root directory contains the following:
+
+coding-cubed: Godot repository 
+developer-documentation.txt: This document. Information about how to contribute to this project
+living-document.txt: Document with current updates, changes, and individual team progress.
+reports: directory containing weekly progress reports for team progress.
+top: Record of commits on the project.
+user-manual.txt: Documentation focused on people who want to use our project.
+
+
+
+////////////////////////
+How to Build Software
+////////////////////////
+
+...
+
+
+
+
+
+////////////////////////
+How to Test Software
+////////////////////////
+
+...
+
+
+
+
+
+
+////////////////////////
+How to Add new Tests
+////////////////////////
+
+...
+
+
+
+
+
+
+
+////////////////////////
+How to build a release
+////////////////////////
+
+...
+
+
+
+
+
