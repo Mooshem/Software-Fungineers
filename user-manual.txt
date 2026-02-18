@@ -1,0 +1,64 @@
+//////////////////////
+High Level Description
+\\\\\\\\\\\\\\\\\\\\\\
+
+Coding Cubed is a game for absolute beginners to coding. Levels (WIP) are designed to teach users core coding principles such as variables, condition statements, and loops through the placing of blocks. Coding Cubed makes use of this block-based coding language in order to avoid memorization of syntax, and emphasize fundamentals.
+
+
+
+/////////////////////
+Installation Steps
+\\\\\\\\\\\\\\\\\\\\\
+
+To install Coding Cubed, navigate to our itch.io page (WIP) and follow the installation instructions
+
+
+
+/////////////////////
+Running the Program
+\\\\\\\\\\\\\\\\\\\\\
+
+
+Windows: Run CodingCubed.exe that was installed from itch.io (link above) (WIP)
+Mac: Run CodingCubed.app that was installed from itch.io (link above) (WIP)
+
+
+
+////////////////////
+How to Use
+\\\\\\\\\\\\\\\\\\\\
+
+
+
+To start, navigate to the tutorial level (WIP) . While playing it, you should become familiar with the environment and how to interact with it. After completing the tutorial, navigate to the levels (WIP), and select the first one. After completing the first level (WIP), you will unlock the second one, and so on. Play through all levels to beat the game. When all levels are complete, sandbox mode will be made available. Navigate to the sandbox mode to try out unique programs with the block coding language.
+
+
+
+
+
+////////////////////
+How to Report a Bug
+\\\\\\\\\\\\\\\\\\\\
+
+
+
+In our game's UI, there is a 'Report a Bug' button (WIP). Click this, and fill out the form.
+
+
+
+
+
+////////////////////
+Known Bugs
+\\\\\\\\\\\\\\\\\\\\
+
+
+Player gets trapped by placing blocks on top of themself.
+
+
+
+
+
+
+
+
