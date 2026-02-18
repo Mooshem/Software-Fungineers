@@ -21,6 +21,11 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 5.5
 const MOUSE_SENSITIVITY = 0.003
 
+# Timer used to sense how long left click is held.
+var BREAK_TIMER: float = 0.0
+# How long is required to break a block.
+var BREAK_TIME: float = 0.75
+
 func _ready() -> void:
 	"""
 	Capture the mouse cursor to prevent it from leaving the game window.
@@ -44,9 +49,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# Code added by: Cash Limberg
 	if Input.is_action_just_pressed("place_block"):
-		"""
-		Determines block placement through raycasting and player position.
-		"""
 		if ray.is_colliding():
 			# Variables that contain information on where the player was looking at the time.
 			var hit_position = ray.get_collision_point()
@@ -64,7 +66,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			var player_head_position = (self.global_position + Vector3(0, 1, 0)).floor()
 			
 			# If block is in player, don't place.
-			if player_position != place_position && player_head_position != place_position:
+			if player_position != place_position and player_head_position != place_position:
 				var block = BlockScene.instantiate()
 				get_parent().add_child(block)
 				block.global_position = place_position
@@ -75,6 +77,22 @@ CODE GRAVEYARD
 """
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("break_block"):
+		# Incrememt the timer using frames.
+		BREAK_TIMER += delta
+		
+		if BREAK_TIMER >= BREAK_TIME and ray.is_colliding():
+			# Get the target block.
+			var target_block = ray.get_collider()
+			if target_block and target_block.scene_file_path == "res://Blocks/block.tscn":
+				# Remove the block from the current scene.
+				target_block.queue_free()
+				BREAK_TIMER = 0.0
+	else:
+		# Resets break timer.
+		BREAK_TIMER = 0.0
+			
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 

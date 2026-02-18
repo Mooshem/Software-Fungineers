@@ -137,6 +137,7 @@ Project Description
                   continue to puzzle 2
 
 ######################################
+
         Zheng Chen - Use Case: Code Visualization for Debugging
     
             As a user, I want to visualize how my code executes step-by-step 
@@ -174,7 +175,6 @@ Project Description
                 - User can't understand the block metaphor and needs additional tutorial
                 - Visualization speed cannot be adjusted properly, hindering comprehension
                 - User's computer doesn't meet minimum requirements, causing lag
-######################################
 
 ######################################
 
@@ -192,6 +192,8 @@ Project Description
                 - User wants to learn the fundamentals of coding
             Postconditions (success scenario): 
                 - User spends less than 3 minutes to learn a fundamental of programming
+                - System contains tutorial level showing user how to play the game and
+                  assists in early learning of assigning values to variables
             List of steps (success scenario): 
                 1. User downloads the game off of a website
                 2. User opens our software and enters the tutorial level
@@ -200,11 +202,14 @@ Project Description
                 - User goes past the tutorial and continues through the game and playing 
                   different puzzles
                 - If the User forgets about the tutorial, they can always replay it again
+                - User can decide to skip the tutorial if they deem it unnecessary
             Exceptions: failure conditions and scenarios: 
                 - User can't complete the tutorial due to the difficulty and decides to 
                   give up on the game
                 - User spends more than 3 minutes on tutorial, meaning it's still too
                   difficult to be learned by a novice programmer
+                - Tutorial level is stuck on the success screen; never allows user to 
+                  pass the tutorial, locking access to the game
 
 ######################################
 
