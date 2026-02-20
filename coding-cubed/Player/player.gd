@@ -1,26 +1,24 @@
 """
-Developers: Donovan Thach, Cash Limberg
+Developers: Donovan Thach, Cash Limberg, Zheng Chen
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
-				https://docs.godotengine.org/en/4.4/classes/class_characterbody3d.html#description
-				https://docs.godotengine.org/en/4.4/classes/class_canvaslayer.html
-				https://docs.godotengine.org/en/4.4/classes/class_collisionshape3d.html
-				https://docs.godotengine.org/en/4.4/tutorials/physics/collision_shapes_3d.html#primitive-collision-shapes
-				https://docs.godotengine.org/en/4.4/tutorials/animation/animation_track_types.html#position-3d-rotation-3d-scale-3d-track
 """
 
 extends CharacterBody3D
 
-# References the Head node created in the scene.
+# Environment variables that will be initialized.
 @onready var head: Node3D = $Head
-# Added by: Cash Limberg. 
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var hotbar: HBoxContainer = $CanvasLayer/Hotbar
+
+# Captures the block scene to add to the scene when necessary.
 var BlockScene = preload("res://Blocks/block.tscn")
 
 # Game modifiers for movement, jumping, and direction.
 const SPEED = 5.0
 const JUMP_VELOCITY = 5.5
 const MOUSE_SENSITIVITY = 0.003
+
+# Hotbar settings.
 const HOTBAR_COLORS: Array[Color] = [
 	Color(1.0, 1.0, 1.0, 1.0),
 	Color(0.75, 0.95, 1.0, 1.0),
@@ -31,7 +29,7 @@ const HOTBAR_SLOT_COUNT: int = 3
 # Timer used to sense how long left click is held.
 var BREAK_TIMER: float = 0.0
 # How long is required to break a block.
-var BREAK_TIME: float = 0.75
+var BREAK_TIME: float = 1
 var selected_slot: int = 0
 
 func _ready() -> void:
@@ -69,7 +67,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.keycode == KEY_3:
 			_set_hotbar_slot(2)
 
-	# Code added by: Cash Limberg
 	if Input.is_action_just_pressed("place_block"):
 		if ray.is_colliding():
 			# Variables that contain information on where the player was looking at the time.
@@ -95,12 +92,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_parent().add_child(block)
 				block.global_position = place_position
 
-"""
-CODE GRAVEYARD
-
-"""
-
 func _physics_process(delta: float) -> void:
+	"""
+	Handles user input (keyboard, mouse/trackpad).
+	"""
 	if Input.is_action_pressed("break_block"):
 		# Incrememt the timer using frames.
 		BREAK_TIMER += delta
