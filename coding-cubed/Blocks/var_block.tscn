@@ -1,22 +1,7 @@
 [gd_scene format=3 uid="uid://bshtabc12lj4s"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iexwl"]
+[ext_resource type="PackedScene" uid="uid://hghm4yft87x" path="res://Blocks/block.tscn" id="1_kajha"]
+[ext_resource type="Script" uid="uid://dglu7item483p" path="res://Blocks/var_block.gd" id="2_ax10m"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iexwl"]
-albedo_color = Color(1, 0, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_kajha"]
-material = SubResource("StandardMaterial3D_iexwl")
-
-[sub_resource type="Skin" id="Skin_ax10m"]
-
-[node name="VarBlock" type="StaticBody3D" unique_id=536668172]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=433302717]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
-shape = SubResource("BoxShape3D_iexwl")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1334710101]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
-mesh = SubResource("BoxMesh_kajha")
-skin = SubResource("Skin_ax10m")
+[node name="Block" unique_id=1262073338 instance=ExtResource("1_kajha")]
+script = ExtResource("2_ax10m")
