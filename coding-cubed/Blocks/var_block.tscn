@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bshtabc12lj4s"]
+
+[ext_resource type="PackedScene" uid="uid://hghm4yft87x" path="res://Blocks/block.tscn" id="1_kajha"]
+[ext_resource type="Script" uid="uid://dglu7item483p" path="res://Blocks/var_block.gd" id="2_ax10m"]
+
+[node name="Block" unique_id=1262073338 instance=ExtResource("1_kajha")]
+script = ExtResource("2_ax10m")
