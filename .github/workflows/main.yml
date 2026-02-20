@@ -43,26 +43,22 @@ jobs:
 
   export-mac:
     name: Mac Export
-    runs-on: ubuntu-20.04
-    container:
-      image: barichello/godot-ci:4.6
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          lfs: True
+          lfs: true
       - name: Setup
         run: |
-          mkdir -v -p ~/.local/share/godot/export_templates/
-          mkdir -n -p ~/.config/
-          mv /root/.config/godot ~/.config/godot
-          mv /root/.locla/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          brew install --cask godot
+          godot --headless --editor --quit || true
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
           EXPORT_DIR="$(pwd)/build"
           cd $PROJECT_PATH
-          godot --headleass --verbose --export-release "Mac" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
+          godot --headless --verbose --export-release "Mac" "$EXPORT_DIR/mac/$EXPORT_NAME.zip"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
