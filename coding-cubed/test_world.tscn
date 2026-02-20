@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3bhnn7n85gkl"]
 
-[ext_resource type="PackedScene" uid="uid://bn86nsjl8plpi" path="res://player.tscn" id="1_gy3sr"]
-[ext_resource type="PackedScene" uid="uid://c34syetxeih5f" path="res://main.tscn" id="2_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://bn86nsjl8plpi" path="res://Player/player.tscn" id="1_gy3sr"]
+[ext_resource type="PackedScene" uid="uid://c34syetxeih5f" path="res://baseplate.tscn" id="2_1lwx6"]
 
 [node name="TestWorld" type="Node3D" unique_id=1111881194]
 
