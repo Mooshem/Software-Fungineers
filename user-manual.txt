@@ -1,64 +1,95 @@
-//////////////////////
-High Level Description
-\\\\\\\\\\\\\\\\\\\\\\
+Coding Cubed - User Manual
 
-Coding Cubed is a game for absolute beginners to coding. Levels (WIP) are designed to teach users core coding principles such as variables, condition statements, and loops through the placing of blocks. Coding Cubed makes use of this block-based coding language in order to avoid memorization of syntax, and emphasize fundamentals.
+========================================
+1) High-Level Description
+========================================
+Coding Cubed is a 3D educational game project designed for beginners who want to learn
+programming fundamentals in an interactive environment.
 
+Players move in a 3D world and place code-like blocks to represent program behavior.
+The intended full experience includes tutorial-guided learning, puzzle levels, and
+a sandbox mode for experimentation.
 
+Current implemented focus:
+- 3D movement and camera controls
+- Block placement and block breaking in a test world
 
-/////////////////////
-Installation Steps
-\\\\\\\\\\\\\\\\\\\\\
+Work in progress (WIP):
+- Full puzzle progression
+- Tutorial flow
+- Expanded block logic (variables, conditionals, loops)
 
-To install Coding Cubed, navigate to our itch.io page (WIP) and follow the installation instructions
+========================================
+2) Installation
+========================================
+Distribution status:
+- Public itch.io release is WIP.
+- For now, run from source using Godot 4.6.
 
+Prerequisites:
+- Godot Engine 4.6 (stable)
+- Operating system: Windows 10/11 or macOS
 
+Install steps (source build):
+1. Clone this repository.
+2. Open Godot 4.6.
+3. Import the `coding-cubed` folder as a project.
+4. Wait for project import to complete.
 
-/////////////////////
-Running the Program
-\\\\\\\\\\\\\\\\\\\\\
+========================================
+3) Running the Software
+========================================
+From source:
+1. Open the imported project in Godot.
+2. Press Play in the Godot editor.
+3. The default scene loads into the test world.
 
+Prebuilt binaries (WIP):
+- Windows executable and macOS app packaging are in progress through CI exports.
 
-Windows: Run CodingCubed.exe that was installed from itch.io (link above) (WIP)
-Mac: Run CodingCubed.app that was installed from itch.io (link above) (WIP)
+========================================
+4) How to Use the Software
+========================================
+Current controls:
+- Move: W / A / S / D
+- Jump: Space
+- Run: Shift
+- Place block: Right Mouse Button
+- Break block (hold): Left Mouse Button
 
+Current gameplay flow:
+1. Start in the test world.
+2. Move around and place blocks on valid surfaces.
+3. Hold left click on a block to break it.
+4. Experiment with layout and movement.
 
+Planned flow (WIP):
+- Tutorial level
+- Sequential puzzle levels
+- Sandbox mode after progression
 
-////////////////////
-How to Use
-\\\\\\\\\\\\\\\\\\\\
+========================================
+5) How to Report a Bug
+========================================
+Report issues through GitHub Issues for this repository.
 
+Include:
+1. Short bug title
+2. Steps to reproduce (numbered)
+3. Expected behavior
+4. Actual behavior
+5. Platform details (OS version, Godot version if running from source)
+6. Screenshots or short video (if available)
 
+Recommended labels:
+- bug
+- gameplay
+- ui
+- docs
 
-To start, navigate to the tutorial level (WIP) . While playing it, you should become familiar with the environment and how to interact with it. After completing the tutorial, navigate to the levels (WIP), and select the first one. After completing the first level (WIP), you will unlock the second one, and so on. Play through all levels to beat the game. When all levels are complete, sandbox mode will be made available. Navigate to the sandbox mode to try out unique programs with the block coding language.
-
-
-
-
-
-////////////////////
-How to Report a Bug
-\\\\\\\\\\\\\\\\\\\\
-
-
-
-In our game's UI, there is a 'Report a Bug' button (WIP). Click this, and fill out the form.
-
-
-
-
-
-////////////////////
-Known Bugs
-\\\\\\\\\\\\\\\\\\\\
-
-
-Player gets trapped by placing blocks on top of themself.
-
-
-
-
-
-
-
-
+========================================
+6) Known Bugs / Limitations
+========================================
+- Player can still become trapped in certain block placement scenarios.
+- Tutorial, puzzle progression, and sandbox mode are not fully integrated yet (WIP).
+- No in-game bug report button yet (WIP); use GitHub Issues directly.

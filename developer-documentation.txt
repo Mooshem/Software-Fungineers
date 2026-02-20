@@ -1,68 +1,98 @@
-/////////////////////////
-How to Obtain Source Code
-/////////////////////////
+Coding Cubed - Developer Documentation
 
+========================================
+1) How to Obtain Source Code
+========================================
+Repo: https://github.com/Mooshem/Software-Fungineers
 
-To obtain source code, pull the repository from github. Navigate to the 'coding-cubed' directory. This is the godot project directory.
+1. Install Git.
+2. Clone:
+   git clone https://github.com/Mooshem/Software-Fungineers.git
+3. Enter repo:
+   cd Software-Fungineers
 
+This project currently uses one repo (no submodules).
 
+========================================
+2) Directory Structure
+========================================
+Top-level:
+- coding-cubed/ (Godot project)
+- reports/ (weekly progress reports)
+- user-manual.txt (user documentation)
+- developer-documentation.txt (this file)
+- .github/workflows/ (CI workflows)
 
-////////////////////////
-Directory Structure
-////////////////////////
+Inside `coding-cubed/` (main files):
+- player.gd
+- player.tscn
+- test_world.tscn
+- main.tscn
+- Blocks/block.tscn
+- project.godot
+- export_presets.cfg
 
+========================================
+3) How to Build the Software
+========================================
+Prerequisites:
+- Godot Engine 4.6 (stable)
+- Git
 
-Root directory contains the following:
+Steps:
+1. Open Godot 4.6.
+2. Import the `coding-cubed` directory as a project.
+3. Press Play to run.
+4. Default scene should be `test_world.tscn`.
 
-coding-cubed: Godot repository 
-developer-documentation.txt: This document. Information about how to contribute to this project
-living-document.txt: Document with current updates, changes, and individual team progress.
-reports: directory containing weekly progress reports for team progress.
-top: Record of commits on the project.
-user-manual.txt: Documentation focused on people who want to use our project.
+CI build:
+- GitHub Actions workflow at `.github/workflows/main.yml`
+- Trigger: push to `main`
+- Current job exports Windows build artifacts
 
+========================================
+4) How to Test the Software
+========================================
+Current testing is manual in Godot (no automated unit tests yet).
 
+Quick regression checklist:
+1. Player movement works (W/A/S/D, jump, run).
+2. Mouse look works.
+3. Right-click places blocks on valid surfaces.
+4. Left-click hold breaks placed blocks.
+5. Escape releases mouse capture.
+6. No crashes when placing/removing blocks repeatedly or when falling off the world.
 
-////////////////////////
-How to Build Software
-////////////////////////
+========================================
+5) How to Add New Tests
+========================================
+Current status:
+- Automated test harness is not integrated yet.
 
-...
+For now, include manual test steps in your PR:
+- normal case
+- edge case
+- bugfix before/after behavior (if applicable)
 
+If scripted tests are added later, use naming like:
+- test_<system>_<behavior>.gd
+Example: `test_player_movement.gd`
 
+========================================
+6) How to Build a Release
+========================================
+Automated path:
+1. Push tested changes to `main`.
+2. GitHub Actions runs export workflow.
+3. Download build artifact from workflow run page.
 
+Manual fallback:
+1. Open project in Godot 4.6.
+2. Go to Project -> Export.
+3. Select configured preset in `export_presets.cfg`.
+4. Export to desired output path.
 
-
-////////////////////////
-How to Test Software
-////////////////////////
-
-...
-
-
-
-
-
-
-////////////////////////
-How to Add new Tests
-////////////////////////
-
-...
-
-
-
-
-
-
-
-////////////////////////
-How to build a release
-////////////////////////
-
-...
-
-
-
-
-
+Before release:
+1. Verify project opens without missing resources.
+2. Run basic manual regression checks.
+3. Confirm build launches.
