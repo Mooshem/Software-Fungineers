@@ -54,8 +54,9 @@ jobs:
           brew install --cask godot
           godot --headless --editor --quit || true
           mkdir -p "$HOME/Library/Application Support/Godot/export_templates"
-          curl -L https://downloads.tuxfamily.org/godotengine/4.6/Godot_v4.6-stable_export_templates.tpz -o templates.tpz
-          unzip templates.tpz -d "$HOME/Library/Application Support/Godot/export_templates"
+          curl -L https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_export_templates.tpz -o templates.tpz
+          unzip templates.tpz
+          mv templates "$HOME/Library/Application Support/Godot/export_templates/4.6.stable"
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
