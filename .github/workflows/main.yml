@@ -56,7 +56,7 @@ jobs:
           mkdir -p "$HOME/Library/Application Support/Godot/export_templates"
           curl -L https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz -o templates.tpz
           unzip templates.tpz
-          mv templates "$HOME/Library/Application Support/Godot/export_templates/${GODOT_VERSION}.stable"
+          mv templates "$HOME/Library/Application Support/Godot/export_templates/4.6.stable"
       - name: Mac Build
         run: |
           mkdir -v -p build/mac
