@@ -42,13 +42,14 @@ size_flags_horizontal = 4
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.93737036, 0.9373702, 0.9373702, 1)
+color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 
-[node name="Label" type="Label" parent="SubViewport/Control" index="1" unique_id=1883127859]
+[node name="Title" type="Label" parent="SubViewport/Control" index="1" unique_id=1883127859]
 layout_mode = 0
+offset_left = 744.0
 offset_top = 30.0
-offset_right = 1920.0
-offset_bottom = 1110.0
+offset_right = 1176.0
+offset_bottom = 122.0
 text = "Variable"
 label_settings = SubResource("LabelSettings_ax10m")
 horizontal_alignment = 1
