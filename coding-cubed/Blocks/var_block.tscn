@@ -2,6 +2,54 @@
 
 [ext_resource type="PackedScene" uid="uid://hghm4yft87x" path="res://Blocks/block.tscn" id="1_kajha"]
 [ext_resource type="Script" uid="uid://dglu7item483p" path="res://Blocks/var_block.gd" id="2_ax10m"]
+[ext_resource type="FontFile" uid="uid://c5ifdp7n35j1v" path="res://Courier Prime Sans.ttf" id="3_o0gkh"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ax10m"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0gkh"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_ax10m")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qsvqc"]
+material = SubResource("StandardMaterial3D_o0gkh")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ax10m"]
+font = ExtResource("3_o0gkh")
+font_size = 90
+font_color = Color(0, 0, 0, 1)
 
 [node name="Block" unique_id=1262073338 instance=ExtResource("1_kajha")]
 script = ExtResource("2_ax10m")
+
+[node name="UIDisplay" type="MeshInstance3D" parent="." index="2" unique_id=2081556341]
+transform = Transform3D(2, 0, 0, 0, 1.125, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("QuadMesh_qsvqc")
+
+[node name="SubViewport" type="SubViewport" parent="." index="3" unique_id=450718952]
+transparent_bg = true
+size = Vector2i(1920, 1080)
+
+[node name="Control" type="Control" parent="SubViewport" index="0" unique_id=81056685]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Control" index="0" unique_id=246052020]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.93737036, 0.9373702, 0.9373702, 1)
+
+[node name="Label" type="Label" parent="SubViewport/Control" index="1" unique_id=1883127859]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 1920.0
+offset_bottom = 1110.0
+text = "Variable"
+label_settings = SubResource("LabelSettings_ax10m")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
