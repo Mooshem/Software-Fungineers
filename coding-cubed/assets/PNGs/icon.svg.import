@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ifs2sq4segl"
-path.s3tc="res://.godot/imported/grass.png-4c3ee0add209cb1a9ddd7cfecf1145d1.s3tc.ctex"
-path.etc2="res://.godot/imported/grass.png-4c3ee0add209cb1a9ddd7cfecf1145d1.etc2.ctex"
+uid="uid://b8nu103rwp7qv"
+path.s3tc="res://.godot/imported/icon.svg-33704bf2b66086cf274e30e42c9dfec6.s3tc.ctex"
+path.etc2="res://.godot/imported/icon.svg-33704bf2b66086cf274e30e42c9dfec6.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://PNGs/grass.png"
-dest_files=["res://.godot/imported/grass.png-4c3ee0add209cb1a9ddd7cfecf1145d1.s3tc.ctex", "res://.godot/imported/grass.png-4c3ee0add209cb1a9ddd7cfecf1145d1.etc2.ctex"]
+source_file="res://assets/PNGs/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-33704bf2b66086cf274e30e42c9dfec6.s3tc.ctex", "res://.godot/imported/icon.svg-33704bf2b66086cf274e30e42c9dfec6.etc2.ctex"]
 
 [params]
 
@@ -40,3 +40,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

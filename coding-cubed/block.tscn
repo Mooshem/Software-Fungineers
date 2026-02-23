@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c7w4creeuc0b8"]
 
-[ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://PNGs/block-2.png" id="1_im0tn"]
+[ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="1_im0tn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qncar"]
 
