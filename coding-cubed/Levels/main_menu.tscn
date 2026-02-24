@@ -1,0 +1,190 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1v3q8h5t5s6m"]
+
+[ext_resource type="Script" path="res://Levels/main_menu.gd" id="1_v6x0o"]
+[ext_resource type="PackedScene" uid="uid://d3bhnn7n85gkl" path="res://Levels/sandbox.tscn" id="2_nxj8r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.05, 0.05, 0.07, 0.86)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.78, 0.86, 1, 1)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.14, 0.14, 0.2, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.65, 0.74, 0.94, 1)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.2, 0.22, 0.3, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.92, 1, 1)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0.1, 0.1, 0.15, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.55, 0.62, 0.78, 1)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v6x0o")
+
+[node name="BackgroundViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="BackgroundViewportContainer"]
+size = Vector2i(1920, 1080)
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="BackgroundWorld" parent="BackgroundViewportContainer/SubViewport" instance=ExtResource("2_nxj8r")]
+
+[node name="BackdropTint" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+mouse_filter = 2
+
+[node name="MenuRoot" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuRoot"]
+custom_minimum_size = Vector2(380, 460)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="MenuRoot/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 24.0
+offset_right = -28.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="MenuRoot/Panel/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "CODING CUBED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelsButton" type="Button" parent="MenuRoot/Panel/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+text = "LEVELS"
+
+[node name="SandboxButton" type="Button" parent="MenuRoot/Panel/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+text = "SANDBOX"
+
+[node name="SettingsButton" type="Button" parent="MenuRoot/Panel/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="MenuRoot/Panel/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+text = "QUIT"
+
+[node name="SettingsNotice" type="Label" parent="MenuRoot"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Settings panel placeholder (WIP)."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoticeTimer" type="Timer" parent="."]
+wait_time = 1.6
+one_shot = true
+
+[node name="HoverSfx" type="AudioStreamPlayer" parent="."]
+
+[node name="ClickSfx" type="AudioStreamPlayer" parent="."]
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="MenuRoot/Panel/VBox/LevelsButton" to="." method="_on_levels_button_pressed"]
+[connection signal="pressed" from="MenuRoot/Panel/VBox/SandboxButton" to="." method="_on_sandbox_button_pressed"]
+[connection signal="pressed" from="MenuRoot/Panel/VBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuRoot/Panel/VBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="timeout" from="NoticeTimer" to="." method="_on_notice_timer_timeout"]
