@@ -13,11 +13,17 @@ transparency = 1
 albedo_texture = SubResource("ViewportTexture_ax10m")
 
 [sub_resource type="QuadMesh" id="QuadMesh_qsvqc"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_o0gkh")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ax10m"]
 font = ExtResource("3_o0gkh")
 font_size = 90
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o0gkh"]
+font = ExtResource("3_o0gkh")
+font_size = 60
 font_color = Color(0, 0, 0, 1)
 
 [node name="Block" unique_id=1262073338 instance=ExtResource("1_kajha")]
@@ -54,3 +60,27 @@ text = "Variable"
 label_settings = SubResource("LabelSettings_ax10m")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="VarLabel" type="Label" parent="SubViewport/Control" index="2" unique_id=1573135998]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 540.0
+offset_right = 424.0
+offset_bottom = 601.0
+text = "var name:"
+label_settings = SubResource("LabelSettings_o0gkh")
+
+[node name="LineEdit" type="LineEdit" parent="SubViewport/Control" index="3" unique_id=665547559]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_o0gkh")
+theme_override_font_sizes/font_size = 60
+placeholder_text = "Text"
+max_length = 20
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
