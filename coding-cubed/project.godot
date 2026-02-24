@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Coding Cubed"
-run/main_scene="uid://d3bhnn7n85gkl"
+run/main_scene="res://Levels/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/PNGs/icon.svg"
 

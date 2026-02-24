@@ -1,0 +1,124 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvb5d5j5gv8pq"]
+
+[ext_resource type="Script" path="res://Levels/level_select.gd" id="1_u2rj8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.06, 0.06, 0.09, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.74, 0.84, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.15, 0.15, 0.22, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.66, 0.76, 0.95, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.22, 0.22, 0.33, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88, 0.94, 1, 1)
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u2rj8")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.03, 0.05, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Center"]
+custom_minimum_size = Vector2(420, 430)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "LEVEL SELECT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelOneButton" type="Button" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "LEVEL 1 (PLACEHOLDER)"
+
+[node name="LevelTwoButton" type="Button" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "LEVEL 2 (PLACEHOLDER)"
+
+[node name="BackButton" type="Button" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "BACK"
+
+[node name="Notice" type="Label" parent="Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Levels are placeholders right now."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FadeOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Center/Panel/VBox/LevelOneButton" to="." method="_on_level_one_button_pressed"]
+[connection signal="pressed" from="Center/Panel/VBox/LevelTwoButton" to="." method="_on_level_two_button_pressed"]
+[connection signal="pressed" from="Center/Panel/VBox/BackButton" to="." method="_on_back_button_pressed"]
