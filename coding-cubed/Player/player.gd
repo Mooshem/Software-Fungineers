@@ -9,9 +9,16 @@ extends CharacterBody3D
 @onready var head: Node3D = $Head
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var hotbar: HBoxContainer = $CanvasLayer/Hotbar
+@onready var pause_menu: Control = $CanvasLayer/PauseMenu
+@onready var pause_resume_button: Button = $CanvasLayer/PauseMenu/Center/Panel/VBox/ResumeButton
+@onready var pause_settings_notice: Label = $CanvasLayer/PauseMenu/Center/Panel/VBox/SettingsNotice
+@onready var pause_notice_timer: Timer = $CanvasLayer/PauseNoticeTimer
+@onready var pause_fade_overlay: ColorRect = $CanvasLayer/PauseFadeOverlay
 
 # Captures the block scene to add to the scene when necessary.
 var BlockScene = preload("res://Blocks/block.tscn")
+const MAIN_MENU_SCENE = "res://Levels/main_menu.tscn"
+const PAUSE_FADE_DURATION = 0.25
 
 # Game modifiers for movement, jumping, and direction.
 const SPEED = 5.0
@@ -31,18 +38,30 @@ var BREAK_TIMER: float = 0.0
 # How long is required to break a block.
 var BREAK_TIME: float = 1
 var selected_slot: int = 0
+var is_pause_transitioning: bool = false
 
 func _ready() -> void:
 	"""Initializes environment variables and methods."""
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pause_menu.visible = false
+	pause_settings_notice.visible = false
+	pause_fade_overlay.modulate.a = 0.0
 	update_hotbar_visuals()
 
 func _unhandled_input(event: InputEvent) -> void:
 	"""Handles one time events."""
+	if Input.is_action_just_pressed("ui_cancel"):
+		_toggle_pause_menu()
+		return
+	if _is_pause_menu_open():
+		return
 	handle_one_time_events(event)
 
 func _physics_process(delta: float) -> void:
 	"""Handles continuous physics and game updates each frame."""
+	if _is_pause_menu_open():
+		return
 	handle_constant_events(delta)
 				
 func handle_one_time_events(event: InputEvent) -> void:
@@ -94,10 +113,6 @@ func handle_one_time_events(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("slot_3"):
 		set_hotbar_slot(2)
 		
-	# Exit mouse capture when UI Cancel (usually Escape) is pressed.
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
 func handle_constant_events(delta: float) -> void:
 	"""Handles all the user's constant events (holding down or physics calcuations done every frame)."""
 	if Input.is_action_pressed("break_block"):
@@ -186,3 +201,56 @@ func apply_block_variant(block: Node, slot_index: int) -> void:
 
 	variant_material.albedo_color = HOTBAR_COLORS[slot_index]
 	mesh_instance.material_override = variant_material
+
+func _is_pause_menu_open() -> bool:
+	return pause_menu.visible
+
+func _toggle_pause_menu() -> void:
+	if is_pause_transitioning:
+		return
+	if _is_pause_menu_open():
+		_resume_game()
+	else:
+		_pause_game()
+
+func _pause_game() -> void:
+	pause_menu.visible = true
+	get_tree().paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	pause_resume_button.grab_focus()
+
+func _resume_game() -> void:
+	get_tree().paused = false
+	pause_menu.visible = false
+	pause_settings_notice.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _on_resume_button_pressed() -> void:
+	_resume_game()
+
+func _on_settings_button_pressed() -> void:
+	pause_settings_notice.visible = true
+	pause_notice_timer.start()
+
+func _on_main_menu_button_pressed() -> void:
+	if is_pause_transitioning:
+		return
+	is_pause_transitioning = true
+	var tween := create_tween()
+	tween.tween_property(pause_fade_overlay, "modulate:a", 1.0, PAUSE_FADE_DURATION)
+	await tween.finished
+	get_tree().paused = false
+	get_tree().change_scene_to_file(MAIN_MENU_SCENE)
+
+func _on_quit_button_pressed() -> void:
+	if is_pause_transitioning:
+		return
+	is_pause_transitioning = true
+	var tween := create_tween()
+	tween.tween_property(pause_fade_overlay, "modulate:a", 1.0, PAUSE_FADE_DURATION)
+	await tween.finished
+	get_tree().paused = false
+	get_tree().quit()
+
+func _on_pause_notice_timer_timeout() -> void:
+	pause_settings_notice.visible = false
