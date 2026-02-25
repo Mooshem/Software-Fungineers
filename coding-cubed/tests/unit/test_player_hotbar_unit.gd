@@ -37,3 +37,4 @@ func test_apply_block_variant_assigns_selected_slot_color() -> void:
 	var material := mesh_instance.material_override as StandardMaterial3D
 	assert_not_null(material, "Override material should be StandardMaterial3D.")
 	assert_eq(material.albedo_color, _player.HOTBAR_COLORS[1], "Variant color should match selected hotbar slot.")
+	block.free()

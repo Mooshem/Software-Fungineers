@@ -29,7 +29,12 @@ func test_pause_toggle_twice_resumes_game_and_hides_overlay() -> void:
 
 	assert_false(_player._is_pause_menu_open(), "Pause menu should close when toggled again.")
 	assert_false(get_tree().paused, "Tree should resume when pause menu closes.")
-	assert_eq(Input.get_mouse_mode(), Input.MOUSE_MODE_CAPTURED, "Mouse should be recaptured for gameplay on resume.")
+	# In headless CI, mouse capture is unavailable and remains visible.
+	# In desktop runtime, gameplay should recapture the mouse.
+	if DisplayServer.get_name() == "headless":
+		assert_eq(Input.get_mouse_mode(), Input.MOUSE_MODE_VISIBLE, "Headless CI keeps mouse mode visible.")
+	else:
+		assert_eq(Input.get_mouse_mode(), Input.MOUSE_MODE_CAPTURED, "Mouse should be recaptured for gameplay on resume.")
 
 func test_settings_placeholder_message_can_show_and_hide() -> void:
 	_player._pause_game()
