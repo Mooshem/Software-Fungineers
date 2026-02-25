@@ -10,6 +10,30 @@ font_size = 18
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_panel"]
+bg_color = Color(0.06, 0.06, 0.09, 0.92)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.78, 0.86, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_button"]
+bg_color = Color(0.14, 0.14, 0.2, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.65, 0.74, 0.94, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_button_hover"]
+bg_color = Color(0.2, 0.22, 0.3, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.92, 1, 1)
+
 [node name="Player" type="CharacterBody3D" unique_id=399912352]
 script = ExtResource("1_4flbx")
 
@@ -86,6 +110,114 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dimmer" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.52)
+
+[node name="Center" type="CenterContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu/Center"]
+custom_minimum_size = Vector2(360, 420)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pause_panel")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Center/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
+text = "RESUME"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
+text = "SETTINGS"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
+text = "MAIN MENU"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
+text = "QUIT"
+
+[node name="SettingsNotice" type="Label" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+visible = false
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Settings panel placeholder (WIP)."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseNoticeTimer" type="Timer" parent="CanvasLayer"]
+wait_time = 1.6
+one_shot = true
+
+[node name="PauseFadeOverlay" type="ColorRect" parent="CanvasLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Head" type="Node3D" parent="." unique_id=838375207]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)
 
@@ -112,3 +244,9 @@ transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, 0.1, 0.35, 0)
 
 [node name="Left Leg" type="CSGBox3D" parent="." unique_id=1783009752]
 transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, -0.1, 0.35, 0)
+
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Center/Panel/VBox/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Center/Panel/VBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Center/Panel/VBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Center/Panel/VBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="timeout" from="CanvasLayer/PauseNoticeTimer" to="." method="_on_pause_notice_timer_timeout"]
