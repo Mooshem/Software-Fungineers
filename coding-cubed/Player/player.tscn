@@ -34,7 +34,7 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.85, 0.92, 1, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=399912352]
+[node name="Player" type="CharacterBody3D" unique_id=399912352 groups=["player"]]
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1936830890]
@@ -79,6 +79,7 @@ theme_override_constants/separation = 12
 
 [node name="Slot0" type="Panel" parent="CanvasLayer/Hotbar" unique_id=18632852]
 custom_minimum_size = Vector2(64, 36)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot0" unique_id=125211753]
 layout_mode = 0
@@ -90,6 +91,7 @@ vertical_alignment = 1
 
 [node name="Slot1" type="Panel" parent="CanvasLayer/Hotbar" unique_id=1800058292]
 custom_minimum_size = Vector2(64, 36)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot1" unique_id=358489731]
 layout_mode = 0
@@ -101,6 +103,7 @@ vertical_alignment = 1
 
 [node name="Slot2" type="Panel" parent="CanvasLayer/Hotbar" unique_id=1960700952]
 custom_minimum_size = Vector2(64, 36)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot2" unique_id=975822441]
 layout_mode = 0
