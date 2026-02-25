@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1v3q8h5t5s6m"]
+[gd_scene format=3 uid="uid://d1v3q8h5t5s6m"]
 
-[ext_resource type="Script" path="res://Levels/main_menu.gd" id="1_v6x0o"]
+[ext_resource type="Script" uid="uid://byxllfkx5hyx1" path="res://Levels/main_menu.gd" id="1_v6x0o"]
 [ext_resource type="PackedScene" uid="uid://d3bhnn7n85gkl" path="res://Levels/sandbox.tscn" id="2_nxj8r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
@@ -10,10 +10,6 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.78, 0.86, 1, 1)
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
 bg_color = Color(0.14, 0.14, 0.2, 0.95)
@@ -22,22 +18,6 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.65, 0.74, 0.94, 1)
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
-bg_color = Color(0.2, 0.22, 0.3, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.85, 0.92, 1, 1)
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
 bg_color = Color(0.1, 0.1, 0.15, 1)
@@ -46,12 +26,16 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.55, 0.62, 0.78, 1)
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.2, 0.22, 0.3, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.92, 1, 1)
+
+[node name="MainMenu" type="Control" unique_id=1332041562]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,34 +44,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v6x0o")
 
-[node name="BackgroundViewportContainer" type="SubViewportContainer" parent="."]
+[node name="BackgroundViewportContainer" type="SubViewportContainer" parent="." unique_id=283196475]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stretch = true
 mouse_filter = 2
+stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="BackgroundViewportContainer"]
-size = Vector2i(1920, 1080)
+[node name="SubViewport" type="SubViewport" parent="BackgroundViewportContainer" unique_id=1738140577]
 handle_input_locally = false
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="BackgroundWorld" parent="BackgroundViewportContainer/SubViewport" instance=ExtResource("2_nxj8r")]
+[node name="BackgroundWorld" parent="BackgroundViewportContainer/SubViewport" unique_id=1911506475 instance=ExtResource("2_nxj8r")]
 
-[node name="BackdropTint" type="ColorRect" parent="."]
+[node name="BackdropTint" type="ColorRect" parent="." unique_id=2009982993]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
 mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
 
-[node name="MenuRoot" type="CenterContainer" parent="."]
+[node name="MenuRoot" type="CenterContainer" parent="." unique_id=1632772273]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,12 +79,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="MenuRoot"]
+[node name="Panel" type="Panel" parent="MenuRoot" unique_id=945907966]
 custom_minimum_size = Vector2(380, 460)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="VBox" type="VBoxContainer" parent="MenuRoot/Panel"]
+[node name="VBox" type="VBoxContainer" parent="MenuRoot/Panel" unique_id=828096469]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +97,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="MenuRoot/Panel/VBox"]
+[node name="Title" type="Label" parent="MenuRoot/Panel/VBox" unique_id=1143211231]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
@@ -121,43 +105,43 @@ text = "CODING CUBED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LevelsButton" type="Button" parent="MenuRoot/Panel/VBox"]
+[node name="LevelsButton" type="Button" parent="MenuRoot/Panel/VBox" unique_id=226394049]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "LEVELS"
 
-[node name="SandboxButton" type="Button" parent="MenuRoot/Panel/VBox"]
+[node name="SandboxButton" type="Button" parent="MenuRoot/Panel/VBox" unique_id=1495633100]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "SANDBOX"
 
-[node name="SettingsButton" type="Button" parent="MenuRoot/Panel/VBox"]
+[node name="SettingsButton" type="Button" parent="MenuRoot/Panel/VBox" unique_id=294886672]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "SETTINGS"
 
-[node name="QuitButton" type="Button" parent="MenuRoot/Panel/VBox"]
+[node name="QuitButton" type="Button" parent="MenuRoot/Panel/VBox" unique_id=568902686]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_button")
-theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "QUIT"
 
-[node name="SettingsNotice" type="Label" parent="MenuRoot"]
+[node name="SettingsNotice" type="Label" parent="MenuRoot" unique_id=378490271]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
@@ -165,15 +149,15 @@ text = "Settings panel placeholder (WIP)."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NoticeTimer" type="Timer" parent="."]
+[node name="NoticeTimer" type="Timer" parent="." unique_id=2108600822]
 wait_time = 1.6
 one_shot = true
 
-[node name="HoverSfx" type="AudioStreamPlayer" parent="."]
+[node name="HoverSfx" type="AudioStreamPlayer" parent="." unique_id=1033840473]
 
-[node name="ClickSfx" type="AudioStreamPlayer" parent="."]
+[node name="ClickSfx" type="AudioStreamPlayer" parent="." unique_id=443511885]
 
-[node name="FadeOverlay" type="ColorRect" parent="."]
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=9089275]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

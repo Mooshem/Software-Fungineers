@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://hl5m8ph6hd6b"]
+
+[ext_resource type="Script" uid="uid://c3anfhkk5dfv8" path="res://Blocks/wire.gd" id="1_xh18t"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qncar"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuguq"]
+albedo_color = Color(1, 0.36078432, 0.0627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qncar"]
+material = SubResource("StandardMaterial3D_xuguq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xh18t"]
+albedo_color = Color(1, 0.36078432, 0.0627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1h3pd"]
+material = SubResource("StandardMaterial3D_xh18t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxgyo"]
+albedo_color = Color(1, 0.36078432, 0.0627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjuoq"]
+material = SubResource("StandardMaterial3D_xxgyo")
+
+[node name="Block" type="StaticBody3D" unique_id=2143554485]
+physics_material_override = SubResource("PhysicsMaterial_qncar")
+script = ExtResource("1_xh18t")
+
+[node name="wire_end" type="MeshInstance3D" parent="." unique_id=109011169]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.5, 0.05, 0.5)
+visible = false
+mesh = SubResource("BoxMesh_qncar")
+
+[node name="wire_corner" type="Node3D" parent="." unique_id=1202472346]
+transform = Transform3D(0.099999994, 0, 0, 0, 0.099999994, 0, 0, 0, 1, 0.5, 0.05, 0.5)
+
+[node name="arm_x" type="MeshInstance3D" parent="wire_corner" unique_id=1867045298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0.25)
+mesh = SubResource("BoxMesh_1h3pd")
+
+[node name="arm_y" type="MeshInstance3D" parent="wire_corner" unique_id=1055196624]
+transform = Transform3D(5.5, 0, 0, 0, 1, 0, 0, 0, 0.1, 2.25, 0, 0)
+mesh = SubResource("BoxMesh_jjuoq")
+
+[node name="wire_straight" type="MeshInstance3D" parent="." unique_id=1312941309]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.5, 0.05, 0.5)
+visible = false
+mesh = SubResource("BoxMesh_qncar")
