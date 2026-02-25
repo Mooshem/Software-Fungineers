@@ -24,6 +24,7 @@ TEAM INFORMATION
 
         Discord
 
+
 ===================================================================
 Project Description
 ===================================================================   
@@ -483,6 +484,7 @@ Project Description
         How we will get that feedback:
             Recruit non-programmer friends and family for playtesting, and create feedback forms asking specific questions.
 
+
 ===================================================================
 Implementations
 ===================================================================
@@ -580,6 +582,7 @@ Software Architecture
                 to implement with Godot’s built-in signal system while 
                 maintaining sufficient modularity.
 
+
 ===================================================================
 Software Design
 ===================================================================
@@ -607,6 +610,7 @@ Software Design
             Classes: SaveManager, SettingsManager, ProgressTracker
             Responsibilities: Handles saving/loading player progress, puzzle completion data,
             and user settings locally using JSON files.
+
 
 ===================================================================
 Coding Guidelines
@@ -773,6 +777,7 @@ V) Documentation Plan
     Our team plans on delivering documentation for keybinds, a user manual, and an information doc on what
     each block does and what it represents in coding languages, and help text for each puzzle.
 
+
 ===================================================================
 Testing Plan
 ===================================================================
@@ -835,6 +840,39 @@ Why GitHub Actions?
     runner, while the Mac export runs on a native macos-latest runner and installs Godot via Homebrew to 
     ensure a proper macOS build environment. Both workflows produce uploadable artifacts for their 
     respective platforms.
+
+CI Services Pros/Cons Matrix:
+
+    +-------------------+--------------------------------+--------------------------------+
+    | CI Service        | Pros                           | Cons                           |
+    +-------------------+--------------------------------+--------------------------------+
+    | GitHub Actions    | - Native GitHub integration,   | - Limited compute minutes on   |
+    |                   |   no external setup needed     |   free tier for private repos  |
+    |                   | - Config lives in repo as      | - Can be slow to start runners |
+    |                   |   versioned .yml files         |   compared to some competitors |
+    |                   | - Large marketplace of         | - YAML config can become       |
+    |                   |   community actions            |   complex for large pipelines  |
+    |                   | - Supports Docker and          |                                |
+    |                   |   multiple runner environments |                                |
+    |                   | - Free for public repos        |                                |
+    +-------------------+--------------------------------+--------------------------------+
+    | CircleCI          | - Fast build times             | - Requires external account    |
+    |                   | - Highly customizable          |   and webhook setup            |
+    |                   |   pipelines                    | - Free tier has limited        |
+    |                   | - Good Docker support          |   credits per month            |
+    |                   | - Parallelism support for      | - Config is separate from      |
+    |                   |   splitting test suites        |   GitHub, adding overhead      |
+    |                   |                                | - Less community resources     |
+    |                   |                                |   for Godot specifically       |
+    +-------------------+--------------------------------+--------------------------------+
+    | Travis CI         | - Simple, readable config      | - Free tier was removed,       |
+    |                   | - Long-standing service with   |   now requires a paid plan     |
+    |                   |   large community              | - Slower adoption of new       |
+    |                   | - Good documentation           |   features compared to rivals  |
+    |                   |                                | - Requires external account    |
+    |                   |                                |   and webhook setup            |
+    |                   |                                | - Declining community usage    |
+    +-------------------+--------------------------------+--------------------------------+
 
 Which Tests Are Executed in the CI Build?
     All tests following GUT's naming convention, where test files and test functions are both prefixed with 
