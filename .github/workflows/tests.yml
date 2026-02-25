@@ -1,0 +1,36 @@
+name: "godot tests"
+
+on:
+  push:
+    branches:
+      - main
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  gut-tests:
+    name: GUT Test Suite
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Install runtime deps
+        run: |
+          apt-get update
+          apt-get install -y libfontconfig1
+
+      - name: Import project assets/classes
+        working-directory: ./coding-cubed
+        run: godot --headless --import --quit
+
+      - name: Run GUT tests (headless)
+        working-directory: ./coding-cubed
+        run: godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit

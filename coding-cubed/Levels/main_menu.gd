@@ -2,6 +2,7 @@ extends Control
 
 const LEVEL_SELECT_SCENE := "res://Levels/level_select.tscn"
 const SANDBOX_SCENE := "res://Levels/sandbox.tscn"
+
 const FADE_DURATION := 0.25
 const BACKGROUND_YAW_SPEED := 0.12
 const BACKGROUND_SWAY_SPEED := 0.8
@@ -25,11 +26,14 @@ var _camera_time: float = 0.0
 var _base_head_rotation_x: float = 0.0
 
 func _ready() -> void:
+	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_wire_button_effects(levels_button)
 	_wire_button_effects(sandbox_button)
 	_wire_button_effects(settings_button)
 	_wire_button_effects(quit_button)
+	if background_player != null:
+		background_player.process_mode = Node.PROCESS_MODE_DISABLED
 	if background_player_ui != null:
 		background_player_ui.visible = false
 	if background_head != null:
