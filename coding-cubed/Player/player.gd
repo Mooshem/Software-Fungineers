@@ -17,6 +17,7 @@ extends CharacterBody3D
 
 # Captures the block scene to add to the scene when necessary.
 var BlockScene = preload("res://Blocks/block.tscn")
+var WireScene = preload("res://Blocks/wire.tscn")
 const MAIN_MENU_SCENE = "res://Levels/main_menu.tscn"
 const PAUSE_FADE_DURATION = 0.25
 
@@ -96,12 +97,18 @@ func handle_one_time_events(event: InputEvent) -> void:
 			
 			# If block is in player, don't place.
 			if player_position != place_position and player_head_position != place_position:
-				var block = BlockScene.instantiate()
-				apply_block_variant(block, selected_slot)
+				var block
+				# If slot 3 (index 2), place wire
+				if selected_slot == 2:
+					block = WireScene.instantiate()
+				else:
+					block = BlockScene.instantiate()
+					apply_block_variant(block, selected_slot)
+
 				block.set_meta("hotbar_slot", selected_slot)
 				get_parent().add_child(block)
-				block.global_position = place_position
-	
+				block.global_position = place_position.round()
+
 	if Input.is_action_just_pressed("scroll_down"):
 		change_hotbar_slot(-1)
 	if Input.is_action_just_pressed("scroll_up"):
