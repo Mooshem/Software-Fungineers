@@ -23,6 +23,10 @@ config/icon="res://assets/PNGs/icon.svg"
 
 project/assembly_name="Coding Cubed"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
 [input]
 
 move_forward={

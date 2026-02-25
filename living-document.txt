@@ -24,6 +24,7 @@ TEAM INFORMATION
 
         Discord
 
+
 ===================================================================
 Project Description
 ===================================================================   
@@ -483,6 +484,7 @@ Project Description
         How we will get that feedback:
             Recruit non-programmer friends and family for playtesting, and create feedback forms asking specific questions.
 
+
 ===================================================================
 Implementations
 ===================================================================
@@ -580,6 +582,7 @@ Software Architecture
                 to implement with Godot’s built-in signal system while 
                 maintaining sufficient modularity.
 
+
 ===================================================================
 Software Design
 ===================================================================
@@ -607,6 +610,7 @@ Software Design
             Classes: SaveManager, SettingsManager, ProgressTracker
             Responsibilities: Handles saving/loading player progress, puzzle completion data,
             and user settings locally using JSON files.
+
 
 ===================================================================
 Coding Guidelines
@@ -772,3 +776,114 @@ V) Documentation Plan
 
     Our team plans on delivering documentation for keybinds, a user manual, and an information doc on what
     each block does and what it represents in coding languages, and help text for each puzzle.
+
+
+===================================================================
+Testing Plan
+===================================================================
+
+Test-Automation Infrastructure:
+    GUT
+    https://gut.readthedocs.io
+
+Why GUT?
+    GUT (Godot Unit Test) is a widely-used third-party testing plugin for Godot projects. We chose it 
+    because it is written in and designed for GDScript, which is the scripting language our project uses. 
+    It integrates directly into the Godot editor, supports running tests headlessly from the command line, 
+    making CI integration straightforward. It also provides familiar testing conventions like assert_eq, 
+    before_each, and after_each that make tests easy to read and write.
+
+How to Add New Test Cases:
+    1. Navigate to the tests/ directory in the project root.
+    2. Create a new GDScript file with a test_ prefix (e.g., test_player.gd). GUT uses this prefix to 
+       automatically discover and run test files.
+    3. At the top of the file, add extends GutTest.
+    4. Write individual test functions with names beginning with test_ (e.g., func test_player_takes_damage()).
+    5. Use GUT's built-in assertion methods such as assert_eq, assert_true, and assert_null to verify 
+       expected behavior.
+    6. Run your tests either through the GUT panel in the Godot editor, or from the command line using 
+       headless mode for CI purposes.
+    7. Refer to existing tests in tests/ or the GUT documentation for examples.
+
+CI Service:
+    We use GitHub Actions as our CI service. It is configured via two YAML workflow files located in 
+    .github/workflows/ in the repository. GitHub Actions accesses the repository automatically since it is 
+    a native GitHub feature, requiring no external account linking or webhook setup.
+
+    The first workflow (tests.yml) handles automated testing. The workflow is triggered on:
+        - Any push to main or any branch matching feature/**
+        - Any pull request targeting main
+        - Manual triggers via workflow_dispatch (useful for debugging CI without a commit)
+
+    The build runs on ubuntu-24.04 using the barichello/godot-ci:4.6.1 Docker image, which provides a 
+    pre-configured headless Godot environment. The CI pipeline does the following in order:
+        1. Checks out the repository (with LFS support for binary assets)
+        2. Installs libfontconfig1, a runtime dependency required by Godot in headless mode
+        3. Imports project assets and classes so Godot's resource system is initialized
+        4. Runs the full GUT test suite headlessly via the command line
+
+    The second workflow (export.yml) handles platform exports and is triggered on pushes to main and manual 
+    triggers. It contains two jobs: the Windows export job runs on ubuntu-24.04 using the barichello/godot-ci 
+    Docker image to produce a .exe build, and the Mac export job runs on a native macos-latest runner, 
+    installing Godot via Homebrew and downloading export templates directly from the Godot releases page. 
+    Both jobs upload their builds as artifacts using actions/upload-artifact, making them available for 
+    download directly from the GitHub Actions run.
+
+Why GitHub Actions?
+    We chose GitHub Actions because it integrates natively with our GitHub repository, requiring no external 
+    account setup or webhook configuration. It is free for public repositories, and the workflow 
+    configuration lives directly in the repo as versioned .yml files, meaning CI changes are tracked 
+    alongside the code. GitHub Actions also has a large marketplace of community actions (such as 
+    actions/checkout and actions/upload-artifact) that simplified our setup, and it supports both Docker 
+    containers and multiple runner environments. This was particularly important for our project, as we run 
+    two separate export workflows: the Windows export uses the barichello/godot-ci Docker image on an Ubuntu 
+    runner, while the Mac export runs on a native macos-latest runner and installs Godot via Homebrew to 
+    ensure a proper macOS build environment. Both workflows produce uploadable artifacts for their 
+    respective platforms.
+
+CI Services Pros/Cons Matrix:
+
+    +-------------------+--------------------------------+--------------------------------+
+    | CI Service        | Pros                           | Cons                           |
+    +-------------------+--------------------------------+--------------------------------+
+    | GitHub Actions    | - Native GitHub integration,   | - Limited compute minutes on   |
+    |                   |   no external setup needed     |   free tier for private repos  |
+    |                   | - Config lives in repo as      | - Can be slow to start runners |
+    |                   |   versioned .yml files         |   compared to some competitors |
+    |                   | - Large marketplace of         | - YAML config can become       |
+    |                   |   community actions            |   complex for large pipelines  |
+    |                   | - Supports Docker and          |                                |
+    |                   |   multiple runner environments |                                |
+    |                   | - Free for public repos        |                                |
+    +-------------------+--------------------------------+--------------------------------+
+    | CircleCI          | - Fast build times             | - Requires external account    |
+    |                   | - Highly customizable          |   and webhook setup            |
+    |                   |   pipelines                    | - Free tier has limited        |
+    |                   | - Good Docker support          |   credits per month            |
+    |                   | - Parallelism support for      | - Config is separate from      |
+    |                   |   splitting test suites        |   GitHub, adding overhead      |
+    |                   |                                | - Less community resources     |
+    |                   |                                |   for Godot specifically       |
+    +-------------------+--------------------------------+--------------------------------+
+    | Travis CI         | - Simple, readable config      | - Free tier was removed,       |
+    |                   | - Long-standing service with   |   now requires a paid plan     |
+    |                   |   large community              | - Slower adoption of new       |
+    |                   | - Good documentation           |   features compared to rivals  |
+    |                   |                                | - Requires external account    |
+    |                   |                                |   and webhook setup            |
+    |                   |                                | - Declining community usage    |
+    +-------------------+--------------------------------+--------------------------------+
+
+Which Tests Are Executed in the CI Build?
+    All tests following GUT's naming convention, where test files and test functions are both prefixed with 
+    test_, will be automatically discovered and executed in the CI build. This includes unit tests, 
+    integration tests, validation tests, and system tests. The CI workflow invokes GUT with the 
+    -gdir=res://tests and -ginclude_subdirs flags, meaning any test file placed anywhere within the tests/ 
+    directory or its subdirectories will be picked up and run automatically without any additional 
+    configuration.
+
+Triggers for a CI Build:
+    A CI build is triggered by any push to main or any branch matching feature/**, any pull request targeting 
+    main, and manual triggers via workflow_dispatch. The export workflow is triggered only on pushes to main 
+    and manual triggers, as platform builds are intended to reflect stable, merged code rather than 
+    work-in-progress branches.
