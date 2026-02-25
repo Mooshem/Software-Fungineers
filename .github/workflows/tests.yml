@@ -22,6 +22,15 @@ jobs:
         with:
           lfs: true
 
+      - name: Install runtime deps
+        run: |
+          apt-get update
+          apt-get install -y libfontconfig1
+
+      - name: Import project assets/classes
+        working-directory: ./coding-cubed
+        run: godot --headless --import --quit
+
       - name: Run GUT tests (headless)
         working-directory: ./coding-cubed
         run: godot --headless -s addons/gut/gut_cmdln.gd -gdir=res://tests -ginclude_subdirs -gexit
