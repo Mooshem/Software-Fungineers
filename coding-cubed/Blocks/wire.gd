@@ -7,6 +7,7 @@ extends Node3D
 const MAX_CONNECTIONS := 2
 var connections: Array[Node3D] = []
 var powered := false
+var preferred_dir := Vector3.ZERO
 
 var _end_base_rot: Vector3
 var _straight_base_rot: Vector3
@@ -30,20 +31,24 @@ func initialize_connections():
 	then tells neighbors to refresh their visuals only.
 	"""
 	var all_nodes = get_tree().get_nodes_in_group("signal_nodes")
+	var priority_nodes: Array[Node3D] = []
+	var other_nodes: Array[Node3D] = []
 
 	for node in all_nodes:
-		if connections.size() >= MAX_CONNECTIONS:
-			break
-		if node == self or connections.has(node):
+		if not node is Node3D:
 			continue
-		if not is_adjacent(node):
+		var node_3d := node as Node3D
+		if node_3d == self or connections.has(node_3d):
 			continue
-		# Ask the neighbor if it can take one more connection
-		if not node.has_method("request_connection"):
+		if not is_adjacent(node_3d):
 			continue
-		if node.call("request_connection", self):
-			# Neighbor accepted — add our side
-			connections.append(node)
+		if preferred_dir != Vector3.ZERO and _get_grid_dir_to(node_3d).dot(preferred_dir) > 0.5:
+			priority_nodes.append(node_3d)
+		else:
+			other_nodes.append(node_3d)
+
+	_try_connect_candidates(priority_nodes)
+	_try_connect_candidates(other_nodes)
 
 	update_visuals()
 
@@ -67,6 +72,18 @@ func request_connection(requester: Node3D) -> bool:
 
 func refresh_visuals():
 	"""Called externally to redraw after connections change."""
+	update_visuals()
+
+func set_preferred_dir(raw_dir: Vector3) -> void:
+	var flat_dir := raw_dir
+	flat_dir.y = 0
+	if flat_dir.length_squared() < 0.0001:
+		preferred_dir = Vector3.ZERO
+		return
+	if abs(flat_dir.x) > abs(flat_dir.z):
+		preferred_dir = Vector3(sign(flat_dir.x), 0, 0)
+	else:
+		preferred_dir = Vector3(0, 0, sign(flat_dir.z))
 	update_visuals()
 
 func is_adjacent(node: Node3D) -> bool:
@@ -104,7 +121,10 @@ func update_visuals():
 	match connections.size():
 		0:
 			$wire_end.visible = true
-			$wire_end.rotation_degrees = _end_base_rot
+			if preferred_dir == Vector3.ZERO:
+				$wire_end.rotation_degrees = _end_base_rot
+			else:
+				_rotate_end_toward(preferred_dir)
 
 		1:
 			$wire_end.visible = true
@@ -141,6 +161,9 @@ func _dir_key(dir: Vector3) -> String:
 
 func _rotate_end():
 	var grid_dir = _get_grid_dir_to(connections[0])
+	_rotate_end_toward(grid_dir)
+
+func _rotate_end_toward(grid_dir: Vector3):
 	var y_offset: float
 	match _dir_key(grid_dir):
 		"0,1":  y_offset = 0.0
@@ -168,3 +191,12 @@ func _rotate_corner(d1: Vector3, d2: Vector3):
 			y_offset = 0.0
 			print("Wire: unhandled corner: ", combined)
 	$wire_corner.rotation_degrees = Vector3(_corner_base_rot.x, _corner_base_rot.y + y_offset, _corner_base_rot.z)
+
+func _try_connect_candidates(candidates: Array[Node3D]) -> void:
+	for node in candidates:
+		if connections.size() >= MAX_CONNECTIONS:
+			return
+		if not node.has_method("request_connection"):
+			continue
+		if node.call("request_connection", self):
+			connections.append(node)
