@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bn86nsjl8plpi" path="res://Player/player.tscn" id="1_7t7j1"]
 [ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="2_o45c4"]
-[ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_o45c4"]
+[ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://assets/PNGs/grass2.png" id="3_o45c4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
 albedo_texture = ExtResource("2_o45c4")
@@ -15,8 +15,7 @@ material = SubResource("StandardMaterial3D_o45c4")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmlkh"]
 albedo_texture = ExtResource("3_o45c4")
-albedo_texture_force_srgb = true
-uv1_scale = Vector3(150, 150, 150)
+uv1_scale = Vector3(150, 100, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_um60u"]
 material = SubResource("StandardMaterial3D_fmlkh")
@@ -40,6 +39,7 @@ disable_mode = 1
 mesh = SubResource("BoxMesh_fmlkh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NorthWall" unique_id=1984020996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94937587, 0)
 visibility_parent = NodePath("../MeshInstance3D")
 shape = SubResource("BoxShape3D_7t7j1")
 
