@@ -10,11 +10,21 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0gkh"]
 resource_local_to_scene = true
 transparency = 1
+cull_mode = 1
+albedo_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
 albedo_texture = SubResource("ViewportTexture_ax10m")
 
 [sub_resource type="QuadMesh" id="QuadMesh_qsvqc"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_o0gkh")
+flip_faces = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsvqc"]
+transparency = 1
+albedo_color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ovfwn"]
+material = SubResource("StandardMaterial3D_qsvqc")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ax10m"]
 font = ExtResource("3_o0gkh")
@@ -26,6 +36,10 @@ font = ExtResource("3_o0gkh")
 font_size = 60
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0gkh"]
+bg_color = Color(1, 1, 1, 1)
+expand_margin_top = 9.0
+
 [node name="Block" unique_id=1262073338 instance=ExtResource("1_kajha")]
 script = ExtResource("2_ax10m")
 
@@ -33,7 +47,11 @@ script = ExtResource("2_ax10m")
 transform = Transform3D(2, 0, 0, 0, 1.125, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("QuadMesh_qsvqc")
 
-[node name="SubViewport" type="SubViewport" parent="." index="3" unique_id=450718952]
+[node name="UIBackDisplay" type="MeshInstance3D" parent="." index="3" unique_id=55855101]
+transform = Transform3D(-2, 0, -8.742278e-08, 0, 1.125, 0, 1.7484555e-07, 0, -1, 0, 2, 0)
+mesh = SubResource("QuadMesh_ovfwn")
+
+[node name="SubViewport" type="SubViewport" parent="." index="4" unique_id=450718952]
 transparent_bg = true
 size = Vector2i(1920, 1080)
 
@@ -61,7 +79,7 @@ label_settings = SubResource("LabelSettings_ax10m")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="VarLabel" type="Label" parent="SubViewport/Control" index="2" unique_id=1573135998]
+[node name="VarInputLabel" type="Label" parent="SubViewport/Control" index="2" unique_id=1573135998]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 540.0
@@ -70,14 +88,52 @@ offset_bottom = 601.0
 text = "var name:"
 label_settings = SubResource("LabelSettings_o0gkh")
 
-[node name="LineEdit" type="LineEdit" parent="SubViewport/Control" index="3" unique_id=665547559]
+[node name="ValInputLabel" type="Label" parent="SubViewport/Control" index="3" unique_id=1772733777]
 layout_mode = 0
-offset_right = 150.0
-offset_bottom = 64.0
+offset_left = 1040.0
+offset_top = 540.0
+offset_right = 1400.0
+offset_bottom = 601.0
+text = "var value:"
+label_settings = SubResource("LabelSettings_o0gkh")
+
+[node name="VarInput" type="LineEdit" parent="SubViewport/Control" index="4" unique_id=665547559]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 535.5
+offset_right = 840.0
+offset_bottom = 604.5
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
 theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_o0gkh")
 theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_o0gkh")
+placeholder_text = "Text"
+max_length = 20
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
+
+[node name="ValInput" type="LineEdit" parent="SubViewport/Control" index="5" unique_id=1223258193]
+layout_mode = 0
+offset_left = 1420.0
+offset_top = 535.5
+offset_right = 1820.0
+offset_bottom = 604.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_o0gkh")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_o0gkh")
 placeholder_text = "Text"
 max_length = 20
 emoji_menu_enabled = false

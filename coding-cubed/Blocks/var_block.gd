@@ -7,13 +7,21 @@ extends StaticBody3D
 
 # Environment variables to be initialized.
 @onready var ui_display = $UIDisplay
+@onready var ui_backDisplay = $UIBackDisplay
 var ui_visible: bool = false
 var raycast: RayCast3D
+var var_name
 
 func _ready() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
-		var raycast = player.get_node("Head/Camera3D/Raycast3D")
+		raycast = player.get_node("Head/Camera3D/RayCast3D")
+		
+	# Set UI to invisible by default.
+	if ui_display:
+		ui_display.visible = false
+	if ui_backDisplay:
+		ui_backDisplay.visible = false
 
 
 func _process(delta: float) -> void:
@@ -44,15 +52,20 @@ func toggle_ui() -> void:
 		
 	ui_visible = !ui_visible
 	ui_display.visible = ui_visible
+	ui_backDisplay.visible = ui_visible
 	
 	if ui_visible:
-		# Get the direction of the vector from raycast.
-		var hit_normal = raycast.get_collision_normal()
+		# Get the forward direction of the raycast.
+		var raycast_direction = raycast.global_transform.basis.z
 		
-		# Position 1 unit away from block in normal direction.
-		ui_display.position = hit_normal
+		# Get block center to open UI from.
+		var block_center = global_position + Vector3(0.5, 0.5, 0.5)
 		
-		# Make the UI face the player (opposite of raycast vector direction).
-		var raycast_direction = -raycast.global_transform.basis.z
-		ui_display.look_at(ui_display.global_position + raycast_direction)
+		# Position the UI 1.25 units in the opposite direction to raycast point from block center.
+		ui_display.global_position = block_center + (raycast_direction * 1.25)
+		ui_backDisplay.global_position = block_center + (raycast_direction * 1.25)
+		
+		# Make UI face the player.
+		ui_display.look_at(ui_display.global_position - raycast_direction)
+		ui_backDisplay.look_at(ui_backDisplay.global_position + raycast_direction)
 		
