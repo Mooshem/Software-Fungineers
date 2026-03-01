@@ -19,6 +19,10 @@ run/main_scene="res://Levels/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/PNGs/icon.svg"
 
+[autoload]
+
+Music="*uid://b067m7y0d6wga"
+
 [dotnet]
 
 project/assembly_name="Coding Cubed"

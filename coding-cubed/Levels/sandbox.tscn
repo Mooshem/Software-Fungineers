@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="2_o45c4"]
 [ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_o45c4"]
 [ext_resource type="PackedScene" uid="uid://bshtabc12lj4s" path="res://Blocks/var_block.tscn" id="4_fmlkh"]
+[ext_resource type="PackedScene" uid="uid://b067m7y0d6wga" path="res://Levels/Music.tscn" id="5_um60u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
 albedo_texture = ExtResource("2_o45c4")
@@ -93,3 +94,5 @@ shape = SubResource("BoxShape3D_forfm")
 
 [node name="VarBlock" parent="." unique_id=1262073338 instance=ExtResource("4_fmlkh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="BGMusic" parent="." unique_id=296702093 instance=ExtResource("5_um60u")]

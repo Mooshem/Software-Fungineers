@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnpownqekgccr"
+path="res://.godot/imported/On The Flip - The Grey Room _ Density & Time.mp3-57bcd6fa85a9a5b5d8ee382704aed070.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/On The Flip - The Grey Room _ Density & Time.mp3"
+dest_files=["res://.godot/imported/On The Flip - The Grey Room _ Density & Time.mp3-57bcd6fa85a9a5b5d8ee382704aed070.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
