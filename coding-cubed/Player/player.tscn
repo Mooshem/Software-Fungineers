@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bn86nsjl8plpi"]
 
 [ext_resource type="Script" uid="uid://cxsycsojl48e5" path="res://Player/player.gd" id="1_4flbx"]
+[ext_resource type="FontFile" uid="uid://c5ifdp7n35j1v" path="res://Courier Prime Sans.ttf" id="2_4ntmi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 size = Vector3(0.7, 1.8, 0.7)
@@ -33,6 +34,20 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.85, 0.92, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_btcbx"]
+font = ExtResource("2_4ntmi")
+font_size = 90
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gwnis"]
+font = ExtResource("2_4ntmi")
+font_size = 60
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k53q1"]
+bg_color = Color(1, 1, 1, 1)
+expand_margin_top = 9.0
 
 [node name="Player" type="CharacterBody3D" unique_id=399912352 groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -113,9 +128,9 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=2043972534]
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -123,7 +138,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Dimmer" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+[node name="Dimmer" type="ColorRect" parent="CanvasLayer/PauseMenu" unique_id=393044843]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,7 +148,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.52)
 
-[node name="Center" type="CenterContainer" parent="CanvasLayer/PauseMenu"]
+[node name="Center" type="CenterContainer" parent="CanvasLayer/PauseMenu" unique_id=449501593]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,12 +156,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu/Center"]
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu/Center" unique_id=390231673]
 custom_minimum_size = Vector2(360, 420)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pause_panel")
 
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Center/Panel"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Center/Panel" unique_id=1035831595]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,7 +174,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/Center/Panel/VBox" unique_id=2050376799]
 custom_minimum_size = Vector2(0, 76)
 layout_mode = 2
 theme_override_font_sizes/font_size = 44
@@ -167,7 +182,7 @@ text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox" unique_id=1779443216]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
@@ -175,7 +190,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
 text = "RESUME"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox" unique_id=1436893972]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
@@ -183,7 +198,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
 text = "SETTINGS"
 
-[node name="MainMenuButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox" unique_id=320188998]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
@@ -191,7 +206,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
 text = "MAIN MENU"
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/Center/Panel/VBox" unique_id=924643223]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
@@ -199,7 +214,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
 text = "QUIT"
 
-[node name="SettingsNotice" type="Label" parent="CanvasLayer/PauseMenu/Center/Panel/VBox"]
+[node name="SettingsNotice" type="Label" parent="CanvasLayer/PauseMenu/Center/Panel/VBox" unique_id=185723365]
 visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -207,12 +222,11 @@ text = "Settings panel placeholder (WIP)."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseNoticeTimer" type="Timer" parent="CanvasLayer"]
+[node name="PauseNoticeTimer" type="Timer" parent="CanvasLayer" unique_id=2109474573]
 wait_time = 1.6
 one_shot = true
 
-[node name="PauseFadeOverlay" type="ColorRect" parent="CanvasLayer"]
-layout_mode = 1
+[node name="PauseFadeOverlay" type="ColorRect" parent="CanvasLayer" unique_id=954158910]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -220,6 +234,92 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="VariableBlockMenu" type="Control" parent="CanvasLayer" unique_id=156675408]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/VariableBlockMenu" unique_id=1430362247]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+
+[node name="Title" type="Label" parent="CanvasLayer/VariableBlockMenu" unique_id=1362558455]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 30.0
+offset_right = 1176.0
+offset_bottom = 122.0
+text = "Variable"
+label_settings = SubResource("LabelSettings_btcbx")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VarInputLabel" type="Label" parent="CanvasLayer/VariableBlockMenu" unique_id=485354106]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 540.0
+offset_right = 424.0
+offset_bottom = 601.0
+text = "var name:"
+label_settings = SubResource("LabelSettings_gwnis")
+
+[node name="ValInputLabel" type="Label" parent="CanvasLayer/VariableBlockMenu" unique_id=897814230]
+layout_mode = 0
+offset_left = 1040.0
+offset_top = 540.0
+offset_right = 1400.0
+offset_bottom = 601.0
+text = "var value:"
+label_settings = SubResource("LabelSettings_gwnis")
+
+[node name="VarInput" type="LineEdit" parent="CanvasLayer/VariableBlockMenu" unique_id=1519258677]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 535.5
+offset_right = 840.0
+offset_bottom = 604.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_k53q1")
+placeholder_text = "Text"
+max_length = 20
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
+
+[node name="ValInput" type="LineEdit" parent="CanvasLayer/VariableBlockMenu" unique_id=913679748]
+layout_mode = 0
+offset_left = 1420.0
+offset_top = 535.5
+offset_right = 1820.0
+offset_bottom = 604.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_k53q1")
+placeholder_text = "Text"
+max_length = 20
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
 
 [node name="Head" type="Node3D" parent="." unique_id=838375207]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)

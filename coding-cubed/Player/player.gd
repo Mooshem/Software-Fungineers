@@ -1,5 +1,5 @@
 """
-Developers: Donovan Thach, Cash Limberg, Zheng Chen
+Developers: Donovan Thach, Cash Limberg, Zheng Chen, Daniel Martin
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
@@ -14,6 +14,9 @@ extends CharacterBody3D
 @onready var pause_settings_notice: Label = $CanvasLayer/PauseMenu/Center/Panel/VBox/SettingsNotice
 @onready var pause_notice_timer: Timer = $CanvasLayer/PauseNoticeTimer
 @onready var pause_fade_overlay: ColorRect = $CanvasLayer/PauseFadeOverlay
+
+# Block Menus
+@onready var variable_block_menu: Control = $CanvasLayer/VariableBlockMenu
 
 # Captures the block scene to add to the scene when necessary.
 var BlockScene = preload("res://Blocks/block.tscn")
@@ -50,6 +53,7 @@ func _ready() -> void:
 	pause_menu.visible = false
 	pause_settings_notice.visible = false
 	pause_fade_overlay.modulate.a = 0.0
+	variable_block_menu.visible = false
 	update_hotbar_visuals()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -134,6 +138,8 @@ func handle_one_time_events(event: InputEvent) -> void:
 		set_hotbar_slot(1)
 	if Input.is_action_just_pressed("slot_3"):
 		set_hotbar_slot(2)
+	if Input.is_action_just_pressed("open_block_interaction"):
+		_var_menu_interact()
 		
 func handle_constant_events(delta: float) -> void:
 	"""Handles all the user's constant events (holding down or physics calcuations done every frame)."""
@@ -343,3 +349,15 @@ func _on_quit_button_pressed() -> void:
 
 func _on_pause_notice_timer_timeout() -> void:
 	pause_settings_notice.visible = false
+
+# Variable block overlay
+func _var_menu_interact() -> void:
+	if variable_block_menu.visible:
+		variable_block_menu.visible = false
+		get_tree().paused = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	else:
+		variable_block_menu.visible = true
+		get_tree().paused = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
