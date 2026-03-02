@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cxsycsojl48e5" path="res://Player/player.gd" id="1_4flbx"]
 [ext_resource type="FontFile" uid="uid://c5ifdp7n35j1v" path="res://Courier Prime Sans.ttf" id="2_4ntmi"]
+[ext_resource type="Script" uid="uid://ton0bvcnl1gu" path="res://Player/variable_block_menu.gd" id="2_gwnis"]
+[ext_resource type="Texture2D" uid="uid://badh28mm13br7" path="res://PNGs/close_button.png" id="3_btcbx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 size = Vector3(0.7, 1.8, 0.7)
@@ -48,6 +50,27 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k53q1"]
 bg_color = Color(1, 1, 1, 1)
 expand_margin_top = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwnis"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btcbx"]
+bg_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhl08"]
+bg_color = Color(0.5504412, 0.55044115, 0.550441, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Player" type="CharacterBody3D" unique_id=399912352 groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -241,10 +264,18 @@ color = Color(0, 0, 0, 1)
 
 [node name="VariableBlockMenu" type="Control" parent="CanvasLayer" unique_id=156675408]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = 108.0
+offset_right = 192.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 size_flags_horizontal = 4
+script = ExtResource("2_gwnis")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/VariableBlockMenu" unique_id=1430362247]
 layout_mode = 0
@@ -324,6 +355,17 @@ emoji_menu_enabled = false
 clear_button_enabled = true
 text_direction = 1
 language = "en"
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/VariableBlockMenu" unique_id=1198928352]
+layout_mode = 0
+offset_left = 1830.0
+offset_top = 30.0
+offset_right = 1890.0
+offset_bottom = 90.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_gwnis")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btcbx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fhl08")
+icon = ExtResource("3_btcbx")
 
 [node name="Head" type="Node3D" parent="." unique_id=838375207]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)
