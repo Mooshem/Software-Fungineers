@@ -17,11 +17,21 @@ extends CharacterBody3D
 
 # Block Menus
 @onready var variable_block_menu: Control = $CanvasLayer/VariableBlockMenu
+@onready var block_place_sfx: AudioStreamPlayer = $BlockPlaceSfx
+@onready var block_break_sfx: AudioStreamPlayer = $BlockBreakSfx
 
 # Captures the block scene to add to the scene when necessary.
 var BlockScene = preload("res://Blocks/block.tscn")
 var WireScene = preload("res://Blocks/wire.tscn")
 var IfScene = preload("res://Blocks/if_block.tscn")
+
+# Block placement sound effects.
+const BLOCK_PLACE_SOUNDS: Array[AudioStream] = [
+	preload("res://assets/Audio/blockplace1.mp3"),
+	preload("res://assets/Audio/blockplace2.mp3"),
+	preload("res://assets/Audio/blockplace3.mp3")
+]
+const BLOCK_BREAK_SOUND: AudioStream = preload("res://assets/Audio/blockbreak1.mp3")
 const MAIN_MENU_SCENE = "res://Levels/main_menu.tscn"
 const PAUSE_FADE_DURATION = 0.25
 
@@ -46,6 +56,7 @@ var BREAK_TIMER: float = 0.0
 var BREAK_TIME: float = 1
 var selected_slot: int = 0
 var is_pause_transitioning: bool = false
+var _breaking_block: Node = null
 
 func _ready() -> void:
 	"""Initializes environment variables and methods."""
@@ -133,6 +144,7 @@ func handle_one_time_events(event: InputEvent) -> void:
 				block.global_position = place_position.round()
 				if selected_slot == 2 and block.has_method("set_preferred_dir"):
 					block.call("set_preferred_dir", wire_preferred_dir)
+				_play_block_place_sound()
 
 	if Input.is_action_just_pressed("scroll_down"):
 		change_hotbar_slot(-1)
@@ -152,17 +164,39 @@ func handle_constant_events(delta: float) -> void:
 	if Input.is_action_pressed("break_block"):
 		# Incrememt the timer using frames.
 		BREAK_TIMER += delta
-		
-		if BREAK_TIMER >= BREAK_TIME and ray.is_colliding():
-			# Get the target block.
+		if ray.is_colliding():
 			var target_block = ray.get_collider()
-			if target_block and target_block.scene_file_path.begins_with("res://Blocks/"):
-				# Remove the block from the current scene.
-				target_block.queue_free()
-				BREAK_TIMER = 0.0
+			if target_block and target_block.scene_file_path == "res://Blocks/block.tscn":
+				# Standard block: wobble + break sound + timer.
+				if _breaking_block != null and _breaking_block != target_block and _breaking_block.has_method("set_break_progress"):
+					_breaking_block.set_break_progress(0.0)
+				_breaking_block = target_block
+				if _breaking_block.has_method("set_break_progress"):
+					_breaking_block.set_break_progress(BREAK_TIMER / BREAK_TIME)
+				if BREAK_TIMER <= delta and block_break_sfx and BLOCK_BREAK_SOUND:
+					block_break_sfx.stream = BLOCK_BREAK_SOUND
+					block_break_sfx.play()
+				if BREAK_TIMER >= BREAK_TIME:
+					target_block.queue_free()
+					BREAK_TIMER = 0.0
+					_breaking_block = null
+					if block_break_sfx and block_break_sfx.playing:
+						block_break_sfx.stop()
+			elif target_block and target_block.scene_file_path.begins_with("res://Blocks/"):
+				# Other blocks (e.g. if_block, wire): break after hold, no wobble.
+				if BREAK_TIMER >= BREAK_TIME:
+					target_block.queue_free()
+					BREAK_TIMER = 0.0
+					if block_break_sfx and BLOCK_BREAK_SOUND:
+						block_break_sfx.stream = BLOCK_BREAK_SOUND
+						block_break_sfx.play()
+		else:
+			BREAK_TIMER = 0.0
+			_reset_breaking_block()
 	else:
-		# Resets break timer.
+		# Resets break timer and stop break sound when player releases.
 		BREAK_TIMER = 0.0
+		_reset_breaking_block()
 			
 	
 	if not is_on_floor():
@@ -216,6 +250,21 @@ func update_hotbar_visuals() -> void:
 			slot_panel.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		else:
 			slot_panel.modulate = Color(0.65, 0.65, 0.65, 1.0)
+
+func _reset_breaking_block() -> void:
+	"""Stops break sound and resets wobble on the block we were breaking."""
+	if block_break_sfx and block_break_sfx.playing:
+		block_break_sfx.stop()
+	if _breaking_block != null and is_instance_valid(_breaking_block) and _breaking_block.has_method("set_break_progress"):
+		_breaking_block.set_break_progress(0.0)
+	_breaking_block = null
+
+func _play_block_place_sound() -> void:
+	"""Plays a random block placement sound effect."""
+	if block_place_sfx == null or BLOCK_PLACE_SOUNDS.is_empty():
+		return
+	block_place_sfx.stream = BLOCK_PLACE_SOUNDS.pick_random()
+	block_place_sfx.play()
 
 func apply_block_variant(block: Node, slot_index: int) -> void:
 	"""Changes the type of block placed depending on which hotbar slot is selected."""
