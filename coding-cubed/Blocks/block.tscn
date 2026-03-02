@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://hghm4yft87x"]
 
-[ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="1_im0tn"]
 [ext_resource type="Script" path="res://Blocks/block.gd" id="2_block"]
+[ext_resource type="Texture2D" uid="uid://d2onpxwd2m1ms" path="res://assets/PNGs/variable_block.png" id="2_c82x6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qncar"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfwl5"]
-albedo_texture = ExtResource("1_im0tn")
-uv1_scale = Vector3(2, 2, 2)
+shading_mode = 0
+albedo_texture = ExtResource("2_c82x6")
+uv1_triplanar = true
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_qncar"]
@@ -16,8 +17,8 @@ material = SubResource("StandardMaterial3D_xfwl5")
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfwl5"]
 
 [node name="Block" type="StaticBody3D" unique_id=2143554485]
-script = ExtResource("2_block")
 physics_material_override = SubResource("PhysicsMaterial_qncar")
+script = ExtResource("2_block")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=109011169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
