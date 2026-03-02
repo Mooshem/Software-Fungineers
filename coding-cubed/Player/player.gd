@@ -23,6 +23,7 @@ extends CharacterBody3D
 # Captures the block scene to add to the scene when necessary.
 var BlockScene = preload("res://Blocks/block.tscn")
 var WireScene = preload("res://Blocks/wire.tscn")
+var IfScene = preload("res://Blocks/if_block.tscn")
 
 # Block placement sound effects.
 const BLOCK_PLACE_SOUNDS: Array[AudioStream] = [
@@ -117,12 +118,17 @@ func handle_one_time_events(event: InputEvent) -> void:
 			if player_position != place_position and player_head_position != place_position:
 				var block
 				var wire_preferred_dir := Vector3.ZERO
+				
 				# If slot 3 (index 2), place wire
 				if selected_slot == 2:
 					var wire_placement = _resolve_wire_placement(hit_position, hit_normal, target_block)
 					place_position = wire_placement["position"]
 					wire_preferred_dir = wire_placement["preferred_dir"]
 					block = WireScene.instantiate()
+				# If slot 2 (index 1), place if block
+				elif selected_slot == 1:
+					block = IfScene.instantiate()
+					apply_block_variant(block, selected_slot)
 				else:
 					block = BlockScene.instantiate()
 					apply_block_variant(block, selected_slot)
@@ -161,23 +167,29 @@ func handle_constant_events(delta: float) -> void:
 		if ray.is_colliding():
 			var target_block = ray.get_collider()
 			if target_block and target_block.scene_file_path == "res://Blocks/block.tscn":
-				# Reset wobble on previous block if we switched targets.
+				# Standard block: wobble + break sound + timer.
 				if _breaking_block != null and _breaking_block != target_block and _breaking_block.has_method("set_break_progress"):
 					_breaking_block.set_break_progress(0.0)
 				_breaking_block = target_block
 				if _breaking_block.has_method("set_break_progress"):
 					_breaking_block.set_break_progress(BREAK_TIMER / BREAK_TIME)
-				# Start break sound when we first start breaking this block.
 				if BREAK_TIMER <= delta and block_break_sfx and BLOCK_BREAK_SOUND:
 					block_break_sfx.stream = BLOCK_BREAK_SOUND
 					block_break_sfx.play()
 				if BREAK_TIMER >= BREAK_TIME:
-					# Remove the block from the current scene.
 					target_block.queue_free()
 					BREAK_TIMER = 0.0
 					_breaking_block = null
 					if block_break_sfx and block_break_sfx.playing:
 						block_break_sfx.stop()
+			elif target_block and target_block.scene_file_path.begins_with("res://Blocks/"):
+				# Other blocks (e.g. if_block, wire): break after hold, no wobble.
+				if BREAK_TIMER >= BREAK_TIME:
+					target_block.queue_free()
+					BREAK_TIMER = 0.0
+					if block_break_sfx and BLOCK_BREAK_SOUND:
+						block_break_sfx.stream = BLOCK_BREAK_SOUND
+						block_break_sfx.play()
 		else:
 			BREAK_TIMER = 0.0
 			_reset_breaking_block()
