@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmd6ntefkf1vd"]
 
 [ext_resource type="Texture2D" uid="uid://bq0wa871xp1gi" path="res://assets/PNGs/if_block.png" id="1_mpt6d"]
+[ext_resource type="Script" path="res://Blocks/if_block.gd" id="2_if_block"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qncar"]
 
@@ -16,6 +17,7 @@ material = SubResource("StandardMaterial3D_xfwl5")
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfwl5"]
 
 [node name="If_block" type="StaticBody3D" unique_id=2143554485]
+script = ExtResource("2_if_block")
 physics_material_override = SubResource("PhysicsMaterial_qncar")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=109011169]

@@ -22,7 +22,7 @@ func _on_save_button_pressed() -> void:
 	# For save button to be implemented.
 	if current_block:
 		current_block.var_name = name_input.text
-		current_block.var_value = val_input.text
+		current_block.var_val = val_input.text
 	_close()
 
 func _on_close_button_pressed() -> void:
