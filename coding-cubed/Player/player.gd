@@ -156,8 +156,8 @@ func handle_one_time_events(event: InputEvent) -> void:
 		set_hotbar_slot(1)
 	if Input.is_action_just_pressed("slot_3"):
 		set_hotbar_slot(2)
-	if Input.is_action_just_pressed("open_block_interaction"):
-		_var_menu_interact()
+	# if Input.is_action_just_pressed("open_block_interaction"):
+	# 	_var_menu_interact()
 		
 func handle_constant_events(delta: float) -> void:
 	"""Handles all the user's constant events (holding down or physics calcuations done every frame)."""
@@ -408,6 +408,7 @@ func _on_quit_button_pressed() -> void:
 func _on_pause_notice_timer_timeout() -> void:
 	pause_settings_notice.visible = false
 
+"""
 # Variable block overlay
 func _var_menu_interact() -> void:
 	if variable_block_menu.visible:
@@ -419,3 +420,4 @@ func _var_menu_interact() -> void:
 		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+"""
