@@ -21,6 +21,7 @@ extends CharacterBody3D
 # Captures the block scene to add to the scene when necessary.
 var BlockScene = preload("res://Blocks/block.tscn")
 var WireScene = preload("res://Blocks/wire.tscn")
+var IfScene = preload("res://Blocks/if_block.tscn")
 const MAIN_MENU_SCENE = "res://Levels/main_menu.tscn"
 const PAUSE_FADE_DURATION = 0.25
 
@@ -106,12 +107,17 @@ func handle_one_time_events(event: InputEvent) -> void:
 			if player_position != place_position and player_head_position != place_position:
 				var block
 				var wire_preferred_dir := Vector3.ZERO
+				
 				# If slot 3 (index 2), place wire
 				if selected_slot == 2:
 					var wire_placement = _resolve_wire_placement(hit_position, hit_normal, target_block)
 					place_position = wire_placement["position"]
 					wire_preferred_dir = wire_placement["preferred_dir"]
 					block = WireScene.instantiate()
+				# If slot 2 (index 1), place if block
+				elif selected_slot == 1:
+					block = IfScene.instantiate()
+					apply_block_variant(block, selected_slot)
 				else:
 					block = BlockScene.instantiate()
 					apply_block_variant(block, selected_slot)
@@ -150,7 +156,7 @@ func handle_constant_events(delta: float) -> void:
 		if BREAK_TIMER >= BREAK_TIME and ray.is_colliding():
 			# Get the target block.
 			var target_block = ray.get_collider()
-			if target_block and target_block.scene_file_path == "res://Blocks/block.tscn":
+			if target_block and target_block.scene_file_path.begins_with("res://Blocks/"):
 				# Remove the block from the current scene.
 				target_block.queue_free()
 				BREAK_TIMER = 0.0
