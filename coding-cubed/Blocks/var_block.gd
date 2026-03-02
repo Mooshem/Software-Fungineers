@@ -3,7 +3,7 @@ Developer: Donovan Thach
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
-extends StaticBody3D
+extends BreakableBlock
 
 # Global variables to be set.
 var raycast: RayCast3D
@@ -12,6 +12,7 @@ var var_val: String = ""
 var player = null
 
 func _ready() -> void:
+	super._ready()
 	# Get the player node from Player scene.
 	player = get_tree().get_first_node_in_group("player")
 	if player:

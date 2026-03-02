@@ -166,13 +166,12 @@ func handle_constant_events(delta: float) -> void:
 		BREAK_TIMER += delta
 		if ray.is_colliding():
 			var target_block = ray.get_collider()
-			if target_block and target_block.scene_file_path == "res://Blocks/block.tscn":
-				# Standard block: wobble + break sound + timer.
+			if target_block and target_block.has_method("set_break_progress"):
+				# BreakableBlock (block, var_block, if_block): wobble + break sound + timer.
 				if _breaking_block != null and _breaking_block != target_block and _breaking_block.has_method("set_break_progress"):
 					_breaking_block.set_break_progress(0.0)
 				_breaking_block = target_block
-				if _breaking_block.has_method("set_break_progress"):
-					_breaking_block.set_break_progress(BREAK_TIMER / BREAK_TIME)
+				_breaking_block.set_break_progress(BREAK_TIMER / BREAK_TIME)
 				if BREAK_TIMER <= delta and block_break_sfx and BLOCK_BREAK_SOUND:
 					block_break_sfx.stream = BLOCK_BREAK_SOUND
 					block_break_sfx.play()
@@ -182,14 +181,18 @@ func handle_constant_events(delta: float) -> void:
 					_breaking_block = null
 					if block_break_sfx and block_break_sfx.playing:
 						block_break_sfx.stop()
-			elif target_block and target_block.scene_file_path.begins_with("res://Blocks/"):
-				# Other blocks (e.g. if_block, wire): break after hold, no wobble.
+			elif target_block and str(target_block.scene_file_path).begins_with("res://Blocks/"):
+				# Other Blocks (e.g. wire): break after hold, no wobble.
 				if BREAK_TIMER >= BREAK_TIME:
 					target_block.queue_free()
 					BREAK_TIMER = 0.0
 					if block_break_sfx and BLOCK_BREAK_SOUND:
 						block_break_sfx.stream = BLOCK_BREAK_SOUND
 						block_break_sfx.play()
+			else:
+				# Looking at non-block (floor, wall, etc.): reset so previous block stops wobbling.
+				BREAK_TIMER = 0.0
+				_reset_breaking_block()
 		else:
 			BREAK_TIMER = 0.0
 			_reset_breaking_block()
