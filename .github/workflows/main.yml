@@ -42,7 +42,7 @@ jobs:
           path: build/windows
       - name: Upload to itch.io
         run: |
-          curl -L -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+          wget -O butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
           unzip butler.zip
           chmod +x butler
           ./butler push build/windows ${{ env.ITCH_GAME_ID }}:windows
