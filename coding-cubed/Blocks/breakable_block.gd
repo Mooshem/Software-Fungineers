@@ -33,3 +33,4 @@ func _process(delta: float) -> void:
 	var rot_z := cos(_wobble_time * (WOBBLE_SPEED * 1.1)) * intensity
 	var basis := Basis.from_euler(Vector3(rot_x, 0.0, rot_z))
 	_mesh_instance.transform = Transform3D(basis, MESH_OFFSET)
+	

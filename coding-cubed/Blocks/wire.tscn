@@ -22,6 +22,24 @@ albedo_color = Color(1, 0.36078432, 0.0627451, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_jjuoq"]
 material = SubResource("StandardMaterial3D_xxgyo")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h3pd"]
+albedo_color = Color(1, 0.36078432, 0.0627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xxgyo"]
+material = SubResource("StandardMaterial3D_1h3pd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjuoq"]
+albedo_color = Color(1, 0.36078432, 0.0627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v4nmr"]
+material = SubResource("StandardMaterial3D_jjuoq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4nmr"]
+albedo_color = Color(1, 0.36078432, 0.0627451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l6l05"]
+material = SubResource("StandardMaterial3D_v4nmr")
+
 [node name="Block" type="StaticBody3D" unique_id=2143554485]
 physics_material_override = SubResource("PhysicsMaterial_qncar")
 script = ExtResource("1_xh18t")
@@ -33,6 +51,7 @@ mesh = SubResource("BoxMesh_qncar")
 
 [node name="wire_corner" type="Node3D" parent="." unique_id=1202472346]
 transform = Transform3D(0.099999994, 0, 0, 0, 0.099999994, 0, 0, 0, 1, 0.5, 0.05, 0.5)
+visible = false
 
 [node name="arm_x" type="MeshInstance3D" parent="wire_corner" unique_id=1867045298]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0.25)
@@ -46,3 +65,27 @@ mesh = SubResource("BoxMesh_jjuoq")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.5, 0.05, 0.5)
 visible = false
 mesh = SubResource("BoxMesh_qncar")
+
+[node name="wire_t" type="Node3D" parent="." unique_id=658472439]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 0.1, 0, -1, 0, -4.371139e-08, 0.5, 0.05, 0.5)
+visible = false
+
+[node name="arm_long" type="MeshInstance3D" parent="wire_t" unique_id=815796238]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_xxgyo")
+
+[node name="arm_short" type="MeshInstance3D" parent="wire_t" unique_id=2125888735]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.1, 0.25, 0, 0)
+mesh = SubResource("BoxMesh_v4nmr")
+
+[node name="wire_cross" type="Node3D" parent="." unique_id=596113314]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.5, 0.05, 0.5)
+visible = false
+
+[node name="arm_x" type="MeshInstance3D" parent="wire_cross" unique_id=1647919222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_l6l05")
+
+[node name="arm_y" type="MeshInstance3D" parent="wire_cross" unique_id=324171772]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_l6l05")
