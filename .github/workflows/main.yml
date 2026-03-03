@@ -76,9 +76,10 @@ jobs:
           name: mac
           path: build/mac
       - name: Upload to itch.io
-        uses: josephbmanley/butler-publish-itchio-action@master
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          ./butler push build/mac ${{ env.ITCH_GAME_ID }}:mac
         env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
-          CHANNEL: mac
-          ITCH_GAME: ${{ env.ITCH_GAME_ID }}
-          PACKAGE: build/mac
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
