@@ -17,11 +17,12 @@ extends CharacterBody3D
 
 # Block Menus
 @onready var variable_block_menu: Control = $CanvasLayer/VariableBlockMenu
+@onready var if_block_menu: Control = $CanvasLayer/IfBlockMenu
 @onready var block_place_sfx: AudioStreamPlayer = $BlockPlaceSfx
 @onready var block_break_sfx: AudioStreamPlayer = $BlockBreakSfx
 
 # Captures the block scene to add to the scene when necessary.
-var BlockScene = preload("res://Blocks/block.tscn")
+var VarBlockScene = preload("res://Blocks/var_block.tscn")
 var WireScene = preload("res://Blocks/wire.tscn")
 var IfScene = preload("res://Blocks/if_block.tscn")
 
@@ -41,11 +42,6 @@ const JUMP_VELOCITY = 5.5
 const MOUSE_SENSITIVITY = 0.003
 
 # Hotbar settings.
-const HOTBAR_COLORS: Array[Color] = [
-	Color(1.0, 1.0, 1.0, 1.0),
-	Color(0.75, 0.95, 1.0, 1.0),
-	Color(1.0, 0.82, 0.65, 1.0)
-]
 const HOTBAR_SLOT_COUNT: int = 3
 const GRID_STEP: float = 1.0
 const GRID_EPSILON: float = 0.05
@@ -65,7 +61,10 @@ func _ready() -> void:
 	pause_menu.visible = false
 	pause_settings_notice.visible = false
 	pause_fade_overlay.modulate.a = 0.0
+	
+	# Blocks
 	variable_block_menu.visible = false
+	if_block_menu.visible = false
 	update_hotbar_visuals()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -75,21 +74,25 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if _is_pause_menu_open():
 		return
-	if Input.is_action_just_pressed("open_block_interaction"):
-		_var_menu_interact()
-		return
 	if _is_var_menu_open():
+		return
+	if _is_if_menu_open():
 		return
 	handle_one_time_events(event)
 
 func _is_var_menu_open() -> bool:
 	return variable_block_menu.visible
 	
+func _is_if_menu_open() -> bool:
+	return if_block_menu.visible
+	
 func _physics_process(delta: float) -> void:
 	"""Handles continuous physics and game updates each frame."""
 	if _is_pause_menu_open():
 		return
 	if _is_var_menu_open():
+		return
+	if _is_if_menu_open():
 		return
 	handle_constant_events(delta)
 				
@@ -140,7 +143,7 @@ func handle_one_time_events(event: InputEvent) -> void:
 					block = IfScene.instantiate()
 					apply_block_variant(block, selected_slot)
 				else:
-					block = BlockScene.instantiate()
+					block = VarBlockScene.instantiate()
 					apply_block_variant(block, selected_slot)
 
 				if player_position == place_position or player_head_position == place_position:
@@ -293,7 +296,6 @@ func apply_block_variant(block: Node, slot_index: int) -> void:
 	else:
 		variant_material = StandardMaterial3D.new()
 
-	variant_material.albedo_color = HOTBAR_COLORS[slot_index]
 	mesh_instance.material_override = variant_material
 
 func _resolve_wire_placement(hit_position: Vector3, hit_normal: Vector3, target: Object) -> Dictionary:
