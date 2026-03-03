@@ -13,3 +13,12 @@ Coding Cubed will allow users to learn how to program through video game logic a
 ## Repository Layout
 - `coding-cubed/` - Godot project source files and assets
 - `reports/` - weekly project reports
+
+## How to Build and Test the System
+1. Navigate to: https://tehlamo.itch.io/coding-cubed  
+2. Download the appropriate file for your operating system:  
+   - **Coding Cubed.zip** (macOS)  
+   - **coding-cubed-windows.zip** (Windows)  
+3. Locate the downloaded file in Finder (macOS) or File Explorer (Windows).  
+4. Right-click the application and select **Open** to launch it.
+
