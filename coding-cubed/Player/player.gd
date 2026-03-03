@@ -75,9 +75,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if _is_pause_menu_open():
 		return
-	if Input.is_action_just_pressed("open_block_interaction"):
-		_var_menu_interact()
-		return
 	if _is_var_menu_open():
 		return
 	handle_one_time_events(event)
