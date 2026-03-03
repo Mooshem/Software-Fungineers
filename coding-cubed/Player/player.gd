@@ -75,11 +75,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if _is_pause_menu_open():
 		return
+	if _is_var_menu_open():
+		return
 	handle_one_time_events(event)
 
+func _is_var_menu_open() -> bool:
+	return variable_block_menu.visible
+	
 func _physics_process(delta: float) -> void:
 	"""Handles continuous physics and game updates each frame."""
 	if _is_pause_menu_open():
+		return
+	if _is_var_menu_open():
 		return
 	handle_constant_events(delta)
 				
@@ -156,8 +163,6 @@ func handle_one_time_events(event: InputEvent) -> void:
 		set_hotbar_slot(1)
 	if Input.is_action_just_pressed("slot_3"):
 		set_hotbar_slot(2)
-	if Input.is_action_just_pressed("open_block_interaction"):
-		_var_menu_interact()
 		
 func handle_constant_events(delta: float) -> void:
 	"""Handles all the user's constant events (holding down or physics calcuations done every frame)."""
@@ -408,14 +413,16 @@ func _on_quit_button_pressed() -> void:
 func _on_pause_notice_timer_timeout() -> void:
 	pause_settings_notice.visible = false
 
+"""
 # Variable block overlay
 func _var_menu_interact() -> void:
 	if variable_block_menu.visible:
 		variable_block_menu.visible = false
 		get_tree().paused = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		variable_block_menu.visible = true
 		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+"""

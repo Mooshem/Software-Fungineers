@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxsycsojl48e5" path="res://Player/player.gd" id="1_4flbx"]
 [ext_resource type="FontFile" uid="uid://c5ifdp7n35j1v" path="res://Courier Prime Sans.ttf" id="2_4ntmi"]
-[ext_resource type="Script" uid="uid://ton0bvcnl1gu" path="res://Player/variable_block_menu.gd" id="2_gwnis"]
+[ext_resource type="Script" path="res://Player/variable_block_menu.gd" id="2_gwnis"]
 [ext_resource type="Texture2D" uid="uid://badh28mm13br7" path="res://PNGs/close_button.png" id="3_btcbx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
@@ -72,12 +72,33 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtle1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od3ui"]
+bg_color = Color(0.38039216, 0.38039216, 0.38039216, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00tjw"]
+bg_color = Color(0.54901963, 0.54901963, 0.54901963, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Player" type="CharacterBody3D" unique_id=399912352 groups=["player"]]
 script = ExtResource("1_4flbx")
 
-[node name="BlockPlaceSfx" type="AudioStreamPlayer" parent="."]
+[node name="BlockPlaceSfx" type="AudioStreamPlayer" parent="." unique_id=1844654873]
 
-[node name="BlockBreakSfx" type="AudioStreamPlayer" parent="."]
+[node name="BlockBreakSfx" type="AudioStreamPlayer" parent="." unique_id=1419422580]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1936830890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -264,17 +285,20 @@ color = Color(0, 0, 0, 1)
 
 [node name="VariableBlockMenu" type="Control" parent="CanvasLayer" unique_id=156675408]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 192.0
-offset_top = 108.0
-offset_right = 192.0
-offset_bottom = 108.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -216.0
+offset_right = -384.0
+offset_bottom = -216.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("2_gwnis")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/VariableBlockMenu" unique_id=1430362247]
@@ -282,6 +306,7 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="CanvasLayer/VariableBlockMenu" unique_id=1362558455]
 layout_mode = 0
@@ -367,6 +392,20 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_btcbx")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fhl08")
 icon = ExtResource("3_btcbx")
 
+[node name="SaveButton" type="Button" parent="CanvasLayer/VariableBlockMenu" unique_id=1301415171]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 810.0
+offset_right = 1050.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtle1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_od3ui")
+theme_override_styles/hover = SubResource("StyleBoxFlat_00tjw")
+text = "Save"
+
 [node name="Head" type="Node3D" parent="." unique_id=838375207]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)
 
@@ -399,3 +438,5 @@ transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, -0.1, 0.35, 0)
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Center/Panel/VBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Center/Panel/VBox/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/PauseNoticeTimer" to="." method="_on_pause_notice_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/VariableBlockMenu/CloseButton" to="CanvasLayer/VariableBlockMenu" method="_on_close_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VariableBlockMenu/SaveButton" to="CanvasLayer/VariableBlockMenu" method="_on_save_button_pressed"]

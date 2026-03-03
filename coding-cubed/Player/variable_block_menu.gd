@@ -1,5 +1,5 @@
 """
-Developer: Donovan Thach
+Developer: Donovan Thach, Daniel Martin
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
@@ -19,7 +19,7 @@ func open_for_block(block) -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func _on_save_button_pressed() -> void:
-	# For save button to be implemented.
+	# Saves current values assigned to the block raycast collided with.
 	if current_block:
 		current_block.var_name = name_input.text
 		current_block.var_val = val_input.text
