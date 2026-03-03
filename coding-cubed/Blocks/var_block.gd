@@ -42,9 +42,7 @@ func _open_player_menu() -> void:
 	# Get the menu of the variable block open.
 	var menu = player.get_node("CanvasLayer/VariableBlockMenu")
 	menu.open_for_block(self)
-<<<<<<< HEAD
 	get_tree().paused = true
-=======
 	
 func _notify_adjacent_wires() -> void:
 	var all_nodes = get_tree().get_nodes_in_group("signal_nodes")
@@ -62,4 +60,3 @@ func _notify_adjacent_wires() -> void:
 	
 func request_connection(requester: Node3D) -> bool:
 	return true
->>>>>>> origin/main

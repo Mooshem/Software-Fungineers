@@ -1,5 +1,5 @@
 class_name FlowBlock
-extends StaticBody3D
+extends BreakableBlock
 
 func _ready() -> void:
 	add_to_group("signal_nodes")

@@ -6,23 +6,26 @@ Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript
 extends Control
 
 var current_block = null
-@onready var var_name_input = $VarInput
-@onready var val_input = $ValInput
+@onready var var1_input = $Var1Input
+@onready var var2_input = $Var2Input
+@onready var comparison = $Comparison
 
 func open_for_block(block) -> void:
 	# Get current block and set inputs for it's attributes.
 	current_block = block
-	var_name_input.text = block.var_name
-	val_input.text = block.var_val
+	var1_input.text = block.var1_name
+	var2_input.text = block.var2_name
+	comparison.text = block.compare
 	visible = true
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
+	
 func _on_save_button_pressed() -> void:
 	# Saves current values assigned to the block raycast collided with.
 	if current_block:
-		current_block.var_name = var_name_input.text
-		current_block.var_val = val_input.text
+		current_block.var1_name = var1_input.text
+		current_block.var2_name = var2_input.text
+		current_block.compare = comparison.text
 	_close()
 
 func _on_close_button_pressed() -> void:
