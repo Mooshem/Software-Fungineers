@@ -58,7 +58,7 @@ func test_change_hotbar_slot_increments():
 	assert_eq(player.selected_slot, 1, "Slot should increment by 1")
 
 func test_change_hotbar_slot_wraps_forward():
-	player.selected_slot = 2
+	player.selected_slot = player.HOTBAR_SLOT_COUNT - 1
 	player.change_hotbar_slot(1)
 	assert_eq(player.selected_slot, 0, "Slot should wrap around to 0")
 
