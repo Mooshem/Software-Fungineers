@@ -1,10 +1,11 @@
-###
-# Cash Limberg
-###
+"""
+Developers: Cash Limberg, Donovan Thach
+Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
+"""
 
 extends Node3D
 
-const MAX_CONNECTIONS := 2
+const MAX_CONNECTIONS := 4
 var connections: Array[Node3D] = []
 var powered := false
 var preferred_dir := Vector3.ZERO
@@ -12,12 +13,14 @@ var preferred_dir := Vector3.ZERO
 var _end_base_rot: Vector3
 var _straight_base_rot: Vector3
 var _corner_base_rot: Vector3
+var _t_base_rot: Vector3
 
 func _ready():
 	add_to_group("signal_nodes")
 	_end_base_rot = $wire_end.rotation_degrees
 	_straight_base_rot = $wire_straight.rotation_degrees
 	_corner_base_rot = $wire_corner.rotation_degrees
+	_t_base_rot = $wire_t.rotation_degrees
 	call_deferred("initialize_connections")
 
 # =========================
@@ -117,6 +120,8 @@ func update_visuals():
 	$wire_end.visible = false
 	$wire_straight.visible = false
 	$wire_corner.visible = false
+	$wire_t.visible = false
+	$wire_cross.visible = false
 
 	match connections.size():
 		0:
@@ -139,6 +144,13 @@ func update_visuals():
 			else:
 				$wire_corner.visible = true
 				_rotate_corner(d1, d2)
+				
+		3:
+			$wire_t.visible = true
+			_rotate_t()
+			
+		4:
+			$wire_cross.visible = true
 
 # =========================
 # DIRECTION HELPERS
@@ -191,6 +203,32 @@ func _rotate_corner(d1: Vector3, d2: Vector3):
 			y_offset = 0.0
 			print("Wire: unhandled corner: ", combined)
 	$wire_corner.rotation_degrees = Vector3(_corner_base_rot.x, _corner_base_rot.y + y_offset, _corner_base_rot.z)
+	
+func _rotate_t() -> void:
+	var all_dirs = [Vector3(0, 0, 1), Vector3(1, 0, 0), Vector3(0, 0, -1), Vector3(-1, 0, 0)]
+	var connected_dirs = []
+	for c in connections:
+		connected_dirs.append(_get_grid_dir_to(c))
+		
+	var missing_dir = Vector3.ZERO
+	for dir in all_dirs:
+		var found = false
+		for cd in connected_dirs:
+			if cd.dot(dir) > 0.5:
+				found = true
+				break
+		if not found:
+			missing_dir = dir
+			break
+			
+	var y_offset: float
+	match _dir_key(missing_dir):
+		"0,1": y_offset = 0.0
+		"1,0": y_offset = 90.0
+		"0,-1": y_offset = 180.0
+		"-1,0": y_offset = 270.0
+		_: y_offset = 0.0
+	$wire_t.rotation_degrees = Vector3(_t_base_rot.x, _t_base_rot.y + y_offset, _t_base_rot.z)
 
 func _try_connect_candidates(candidates: Array[Node3D]) -> void:
 	for node in candidates:
