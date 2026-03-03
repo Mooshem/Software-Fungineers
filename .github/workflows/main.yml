@@ -41,12 +41,13 @@ jobs:
           name: windows
           path: build/windows
       - name: Upload to itch.io
-        uses: josephbmanley/butler-publish-itchio-action@master
+        run: |
+          curl -L -o butler.zip https://broth.itch.zone/butler/darwin-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          ./butler push build/windows ${{ env.ITCH_GAME_ID }}:windows
         env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
-          CHANNEL: windows
-          ITCH_GAME: ${{ env.ITCH_GAME_ID }}
-          PACKAGE: build/windows
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
   export-mac:
     name: Mac Export
@@ -77,7 +78,7 @@ jobs:
           path: build/mac
       - name: Upload to itch.io
         run: |
-          curl -L -o butler.zip https://broth.itch.ovh/butler/darwin-amd64/LATEST/archive/default
+          curl -L -o butler.zip https://broth.itch.zone/butler/darwin-amd64/LATEST/archive/default
           unzip butler.zip
           chmod +x butler
           ./butler push build/mac ${{ env.ITCH_GAME_ID }}:mac
