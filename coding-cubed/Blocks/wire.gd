@@ -3,7 +3,7 @@ Developers: Cash Limberg, Donovan Thach
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
-extends Node3D
+extends Area3D
 
 const MAX_CONNECTIONS := 4
 var connections: Array[Node3D] = []
@@ -25,6 +25,7 @@ const SIGNAL_PULSE_DURATION := 0.08
 
 func _ready():
 	add_to_group("signal_nodes")
+	add_to_group("block")
 	_end_base_rot = $wire_end.rotation_degrees
 	_straight_base_rot = $wire_straight.rotation_degrees
 	_corner_base_rot = $wire_corner.rotation_degrees
