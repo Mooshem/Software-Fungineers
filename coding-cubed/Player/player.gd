@@ -18,6 +18,7 @@ extends CharacterBody3D
 # Block Menus
 @onready var variable_block_menu: Control = $CanvasLayer/VariableBlockMenu
 @onready var if_block_menu: Control = $CanvasLayer/IfBlockMenu
+@onready var increment_block_menu: Control = $CanvasLayer/IncrementBlockMenu
 @onready var block_place_sfx: AudioStreamPlayer = $BlockPlaceSfx
 @onready var block_break_sfx: AudioStreamPlayer = $BlockBreakSfx
 
@@ -25,6 +26,8 @@ extends CharacterBody3D
 var VarBlockScene = preload("res://Blocks/var_block.tscn")
 var WireScene = preload("res://Blocks/wire.tscn")
 var IfScene = preload("res://Blocks/if_block.tscn")
+var StartBlockScene = preload("res://Blocks/start_block.tscn")
+var IncrementScene = preload("res://Blocks/increment_block.tscn")
 
 # Block placement sound effects.
 const BLOCK_PLACE_SOUNDS: Array[AudioStream] = [
@@ -42,7 +45,7 @@ const JUMP_VELOCITY = 5.5
 const MOUSE_SENSITIVITY = 0.003
 
 # Hotbar settings.
-const HOTBAR_SLOT_COUNT: int = 3
+const HOTBAR_SLOT_COUNT: int = 5
 const GRID_STEP: float = 1.0
 const GRID_EPSILON: float = 0.05
 
@@ -65,6 +68,7 @@ func _ready() -> void:
 	# Blocks
 	variable_block_menu.visible = false
 	if_block_menu.visible = false
+	increment_block_menu.visible = false
 	update_hotbar_visuals()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -78,6 +82,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if _is_if_menu_open():
 		return
+	if _is_increment_menu_open():
+		return
 	handle_one_time_events(event)
 
 func _is_var_menu_open() -> bool:
@@ -85,6 +91,9 @@ func _is_var_menu_open() -> bool:
 	
 func _is_if_menu_open() -> bool:
 	return if_block_menu.visible
+
+func _is_increment_menu_open() -> bool:
+	return increment_block_menu.visible
 	
 func _physics_process(delta: float) -> void:
 	"""Handles continuous physics and game updates each frame."""
@@ -93,6 +102,8 @@ func _physics_process(delta: float) -> void:
 	if _is_var_menu_open():
 		return
 	if _is_if_menu_open():
+		return
+	if _is_increment_menu_open():
 		return
 	handle_constant_events(delta)
 				
@@ -142,6 +153,13 @@ func handle_one_time_events(event: InputEvent) -> void:
 				elif selected_slot == 1:
 					block = IfScene.instantiate()
 					apply_block_variant(block, selected_slot)
+				# If slot 4 (index 3), place start block
+				elif selected_slot == 3:
+					block = StartBlockScene.instantiate()
+				# If slot 5 (index 4), place increment block
+				elif selected_slot == 4:
+					block = IncrementScene.instantiate()
+					apply_block_variant(block, selected_slot)
 				else:
 					block = VarBlockScene.instantiate()
 					apply_block_variant(block, selected_slot)
@@ -169,6 +187,10 @@ func handle_one_time_events(event: InputEvent) -> void:
 		set_hotbar_slot(1)
 	if Input.is_action_just_pressed("slot_3"):
 		set_hotbar_slot(2)
+	if Input.is_action_just_pressed("slot_4"):
+		set_hotbar_slot(3)
+	if Input.is_action_just_pressed("slot_5"):
+		set_hotbar_slot(4)
 		
 func handle_constant_events(delta: float) -> void:
 	"""Handles all the user's constant events (holding down or physics calcuations done every frame)."""

@@ -11,6 +11,8 @@ var player = null
 
 #Power stuff
 var powered := false
+var _input_sources: Array[NodePath] = []
+var _true_output_path: NodePath = NodePath()
 
 # conditional variables
 var var1_name: String = ""
@@ -78,25 +80,78 @@ func _get_var_value(name: String) -> String:
 	return ""
 	
 	
-	# Signals
-func recieve_signal() -> void:
-	if powered:
+# Signals
+func receive_signal(run_id: int = -1, from_node: Node = null, step_id: int = 0) -> void:
+	if not should_process_signal(run_id, step_id):
 		return
+	if from_node == null:
+		return
+	var source_path := get_path_to(from_node)
+	if not _input_sources.has(source_path):
+		_input_sources.append(source_path)
+	flash_signal()
 	powered = true
 	if evaluate():
-		_emit_signal_to_outputs
+		_emit_signal_to_outputs(run_id, from_node, step_id)
 		
-func _emit_signal_to_outputs() -> void:
-	var all_powered_nodes = get_tree().get_nodes_in_group("signal_nodes")
-	for node in all_powered_nodes:
-		if node == self:
-			continue
+func _emit_signal_to_outputs(run_id: int, from_node: Node = null, step_id: int = 0) -> void:
+	var target := _resolve_true_output_target(from_node)
+	if target == null:
+		return
+	if SIGNAL_HOP_DELAY > 0.0:
+		await get_tree().create_timer(SIGNAL_HOP_DELAY).timeout
+	target.call_deferred("receive_signal", run_id, self, step_id + 1)
+
+func _resolve_true_output_target(from_node: Node = null) -> Node3D:
+	# Reuse existing sticky target when still valid and still a legal true output.
+	if _true_output_path != NodePath():
+		var cached := get_node_or_null(_true_output_path) as Node3D
+		if _is_valid_true_output(cached, from_node):
+			return cached
+
+	# Otherwise pick a deterministic target from current legal candidates.
+	var candidates: Array[Node3D] = []
+	var all_nodes = get_tree().get_nodes_in_group("signal_nodes")
+	for node in all_nodes:
 		if not node is Node3D:
 			continue
-		var node3d := node as Node3D
-		if node3d.has_method("receive_signal") and node3d.has_method("is_adjacent"):
-			if node3d.call("is_adjacent"):
-				node3d.call_deferred("receive_signal")
+		var node_3d := node as Node3D
+		if _is_valid_true_output(node_3d, from_node):
+			candidates.append(node_3d)
+
+	if candidates.is_empty():
+		_true_output_path = NodePath()
+		return null
+
+	candidates.sort_custom(func(a: Node3D, b: Node3D) -> bool:
+		return str(a.get_path()) < str(b.get_path())
+	)
+
+	var chosen := candidates[0]
+	_true_output_path = get_path_to(chosen)
+	return chosen
+
+func _is_valid_true_output(node_3d: Node3D, from_node: Node = null) -> bool:
+	if node_3d == null:
+		return false
+	if node_3d == self:
+		return false
+	if from_node != null and node_3d == from_node:
+		return false
+	if not node_3d.has_method("receive_signal"):
+		return false
+	if not is_adjacent(node_3d):
+		return false
+	# Never emit to learned input-source sides.
+	var node_path := get_path_to(node_3d)
+	if _input_sources.has(node_path):
+		return false
+	return true
+
+func reset_signal_state() -> void:
+	super.reset_signal_state()
+	_input_sources.clear()
+	_true_output_path = NodePath()
 		
 			
 	

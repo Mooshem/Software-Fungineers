@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Blocks/increment_block.gd" id="1_inc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_inc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inc"]
+albedo_color = Color(0.26, 0.67, 1, 1)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_inc"]
+material = SubResource("StandardMaterial3D_inc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_inc"]
+
+[node name="IncrementBlock" type="StaticBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_inc")
+script = ExtResource("1_inc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+mesh = SubResource("BoxMesh_inc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_inc")
+

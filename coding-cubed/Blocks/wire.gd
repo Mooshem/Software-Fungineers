@@ -9,11 +9,19 @@ const MAX_CONNECTIONS := 4
 var connections: Array[Node3D] = []
 var powered := false
 var preferred_dir := Vector3.ZERO
+var _last_run_id_processed: int = -1
 
 var _end_base_rot: Vector3
 var _straight_base_rot: Vector3
 var _corner_base_rot: Vector3
 var _t_base_rot: Vector3
+var _wire_meshes: Array[MeshInstance3D] = []
+var _base_colors: Dictionary = {}
+var _last_signal_key: String = ""
+
+const SIGNAL_ON_COLOR := Color(1.0, 0.2, 0.2, 1.0)
+const SIGNAL_PULSE_COLOR := Color(1.0, 0.9, 0.2, 1.0)
+const SIGNAL_PULSE_DURATION := 0.08
 
 func _ready():
 	add_to_group("signal_nodes")
@@ -21,6 +29,9 @@ func _ready():
 	_straight_base_rot = $wire_straight.rotation_degrees
 	_corner_base_rot = $wire_corner.rotation_degrees
 	_t_base_rot = $wire_t.rotation_degrees
+	_cache_wire_meshes(self)
+	_prepare_wire_materials()
+	_set_signal_visual(false)
 	call_deferred("initialize_connections")
 
 # =========================
@@ -104,13 +115,26 @@ func is_adjacent(node: Node3D) -> bool:
 # SIGNAL PROPAGATION
 # =========================
 
-func receive_signal():
-	if powered:
+func receive_signal(run_id: int = -1, from_node: Node = null, step_id: int = 0):
+	var key := "%d:%d" % [run_id, step_id]
+	if _last_signal_key == key:
 		return
+	_last_signal_key = key
 	powered = true
+	await _pulse_signal_visual()
 	for node in connections:
+		if from_node != null and node == from_node:
+			continue
 		if node.has_method("receive_signal"):
-			node.call_deferred("receive_signal")
+			if FlowBlock.SIGNAL_HOP_DELAY > 0.0:
+				await get_tree().create_timer(FlowBlock.SIGNAL_HOP_DELAY).timeout
+			node.call_deferred("receive_signal", run_id, self, step_id + 1)
+
+func reset_signal_state() -> void:
+	powered = false
+	_last_run_id_processed = -1
+	_last_signal_key = ""
+	_set_signal_visual(false)
 
 # =========================
 # VISUALS
@@ -238,3 +262,46 @@ func _try_connect_candidates(candidates: Array[Node3D]) -> void:
 			continue
 		if node.call("request_connection", self):
 			connections.append(node)
+
+func _cache_wire_meshes(node: Node) -> void:
+	for child in node.get_children():
+		if child is MeshInstance3D:
+			_wire_meshes.append(child as MeshInstance3D)
+		_cache_wire_meshes(child)
+
+func _prepare_wire_materials() -> void:
+	for mesh in _wire_meshes:
+		var mat := mesh.material_override as StandardMaterial3D
+		if mat == null:
+			var active := mesh.get_active_material(0)
+			if active is StandardMaterial3D:
+				mat = (active as StandardMaterial3D).duplicate()
+				mesh.material_override = mat
+		elif mat != null:
+			mat = mat.duplicate()
+			mesh.material_override = mat
+
+		if mat != null:
+			_base_colors[mesh.get_path()] = mat.albedo_color
+
+func _set_signal_visual(is_on: bool) -> void:
+	for mesh in _wire_meshes:
+		var mat := mesh.material_override as StandardMaterial3D
+		if mat == null:
+			continue
+		var key := mesh.get_path()
+		var base_color: Color = _base_colors.get(key, mat.albedo_color)
+		mat.albedo_color = SIGNAL_ON_COLOR if is_on else base_color
+
+func _set_wire_color(color: Color) -> void:
+	for mesh in _wire_meshes:
+		var mat := mesh.material_override as StandardMaterial3D
+		if mat == null:
+			continue
+		mat.albedo_color = color
+
+func _pulse_signal_visual() -> void:
+	# Brief bright pulse to show the exact hop, then hold red until reset.
+	_set_wire_color(SIGNAL_PULSE_COLOR)
+	await get_tree().create_timer(SIGNAL_PULSE_DURATION).timeout
+	_set_signal_visual(true)
