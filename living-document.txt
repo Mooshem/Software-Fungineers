@@ -81,8 +81,7 @@ Project Description
     Use Cases
     \\\\\\\\\\\\\\\\\\
 
-######################################
-    Daniel Martin - Use Case: Sandbox Mode
+    **Daniel Martin - Use Case: Sandbox Mode**
 
         As a user, I want to be able to experiment with combinations 
         of blocks not taught by the tutorial/puzzles so that I can 
@@ -111,10 +110,10 @@ Project Description
             - Block interactions are not robust: Placing in unplanned ways leads to bugs.
             - Placing too many blocks stresses resources too highly, program crashes.
 
-######################################
+        **Cash Limberg - Use Case: Introduction Learning Path**
 
-        CL - A user wants to get into programming, but they are unsure where to start. They will
-             use our game to learn how programming language fundamentals function.
+            Cranjis McBasketball wants to learn the fundamentals of programming, but he isn't sure 
+            where to start. He will use our program to learn the fundamentals of programming.
 
             Actor: Cranjis McBasketball
             Triggers: Mr McBasketball doesn't know where to start learning programming, and wants 
@@ -137,9 +136,7 @@ Project Description
                 - Mr McBasketball does not complete puzzle 1, which doesn't allow him to 
                   continue to puzzle 2
 
-######################################
-
-        Zheng Chen - Use Case: Code Visualization for Debugging
+        **Zheng Chen - Use Case: Code Visualization for Debugging**
     
             As a user, I want to visualize how my code executes step-by-step 
             so that I can understand why my programs don't produce expected 
@@ -177,9 +174,7 @@ Project Description
                 - Visualization speed cannot be adjusted properly, hindering comprehension
                 - User's computer doesn't meet minimum requirements, causing lag
 
-######################################
-
-        Donovan Thach - Use Case: Preferred Learning
+        **Donovan Thach - Use Case: Preferred Learning**
 
         As a user, I want a simpler more engaging way to learn
         how to program, like playing a game, so I can more easily
@@ -211,8 +206,6 @@ Project Description
                   difficult to be learned by a novice programmer
                 - Tutorial level is stuck on the success screen; never allows user to 
                   pass the tutorial, locking access to the game
-
-######################################
 
     //////////////////
     Non-Functional Requirements
