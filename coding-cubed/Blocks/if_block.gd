@@ -3,11 +3,16 @@ Developer: Daniel Martin
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
-extends BreakableBlock
+extends FlowBlock
 
 # Global variables to be set.
 var raycast: RayCast3D
 var player = null
+
+#Power stuff
+var powered := false
+
+# conditional variables
 var var1_name: String = ""
 var var2_name: String = ""
 var compare: String = ">"
@@ -71,3 +76,28 @@ func _get_var_value(name: String) -> String:
 			return node.var_val
 	push_warning("IfBlock: no variable block found with name '%s'" % name)
 	return ""
+	
+	
+	# Signals
+func recieve_signal() -> void:
+	if powered:
+		return
+	powered = true
+	if evaluate():
+		_emit_signal_to_outputs
+		
+func _emit_signal_to_outputs() -> void:
+	var all_powered_nodes = get_tree().get_nodes_in_group("signal_nodes")
+	for node in all_powered_nodes:
+		if node == self:
+			continue
+		if not node is Node3D:
+			continue
+		var node3d := node as Node3D
+		if node3d.has_method("receive_signal") and node3d.has_method("is_adjacent"):
+			if node3d.call("is_adjacent"):
+				node3d.call_deferred("receive_signal")
+		
+			
+	
+			
