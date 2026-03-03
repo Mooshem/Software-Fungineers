@@ -20,8 +20,8 @@ func after_each() -> void:
 func test_change_hotbar_slot_wraps_from_zero_to_last() -> void:
 	_player.selected_slot = 0
 	_player.change_hotbar_slot(-1)
-	assert_eq(_player.selected_slot, 2, "Scrolling below slot 0 should wrap to slot 2.")
+	assert_eq(_player.selected_slot, _player.HOTBAR_SLOT_COUNT - 1, "Scrolling below slot 0 should wrap to the last slot.")
 
 func test_set_hotbar_slot_clamps_out_of_range_index() -> void:
 	_player.set_hotbar_slot(99)
-	assert_eq(_player.selected_slot, 2, "Slot index should clamp to the max slot.")
+	assert_eq(_player.selected_slot, _player.HOTBAR_SLOT_COUNT - 1, "Slot index should clamp to the max slot.")

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ton0bvcnl1gu" path="res://Player/variable_block_menu.gd" id="2_gwnis"]
 [ext_resource type="Texture2D" uid="uid://badh28mm13br7" path="res://PNGs/close_button.png" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://dbdprwcro0exa" path="res://Player/if_block_menu.gd" id="5_k53q1"]
+[ext_resource type="Script" path="res://Player/increment_block_menu.gd" id="6_inc_menu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 size = Vector3(0.7, 1.8, 0.7)
@@ -178,6 +179,30 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 36.0
 text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot3" type="Panel" parent="CanvasLayer/Hotbar"]
+custom_minimum_size = Vector2(64, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot3"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 36.0
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slot4" type="Panel" parent="CanvasLayer/Hotbar"]
+custom_minimum_size = Vector2(64, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot4"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 36.0
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -566,6 +591,130 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_od3ui")
 theme_override_styles/hover = SubResource("StyleBoxFlat_00tjw")
 text = "Save"
 
+[node name="IncrementBlockMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -216.0
+offset_right = -384.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("6_inc_menu")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 30.0
+offset_right = 1176.0
+offset_bottom = 122.0
+text = "Increment"
+label_settings = SubResource("LabelSettings_btcbx")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TargetVarLabel" type="Label" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 320.0
+offset_right = 740.0
+offset_bottom = 381.0
+text = "Target Variable Name:"
+label_settings = SubResource("LabelSettings_gwnis")
+
+[node name="StepLabel" type="Label" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_left = 1160.0
+offset_top = 320.0
+offset_right = 1800.0
+offset_bottom = 381.0
+text = "Increment By:"
+label_settings = SubResource("LabelSettings_gwnis")
+
+[node name="TargetVarInput" type="LineEdit" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 420.0
+offset_right = 780.0
+offset_bottom = 489.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_k53q1")
+placeholder_text = "e.g. i"
+max_length = 20
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
+
+[node name="StepInput" type="LineEdit" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_left = 1280.0
+offset_top = 420.0
+offset_right = 1680.0
+offset_bottom = 489.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_k53q1")
+placeholder_text = "1"
+max_length = 8
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_left = 1830.0
+offset_top = 30.0
+offset_right = 1890.0
+offset_bottom = 90.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_gwnis")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btcbx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fhl08")
+icon = ExtResource("3_btcbx")
+
+[node name="SaveButton" type="Button" parent="CanvasLayer/IncrementBlockMenu"]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 810.0
+offset_right = 1050.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtle1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_od3ui")
+theme_override_styles/hover = SubResource("StyleBoxFlat_00tjw")
+text = "Save"
+
 [node name="Head" type="Node3D" parent="." unique_id=838375207]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)
 
@@ -602,3 +751,5 @@ transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, -0.1, 0.35, 0)
 [connection signal="pressed" from="CanvasLayer/VariableBlockMenu/SaveButton" to="CanvasLayer/VariableBlockMenu" method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/IfBlockMenu/CloseButton" to="CanvasLayer/IfBlockMenu" method="_on_close_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/IfBlockMenu/SaveButton" to="CanvasLayer/IfBlockMenu" method="_on_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/IncrementBlockMenu/CloseButton" to="CanvasLayer/IncrementBlockMenu" method="_on_close_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/IncrementBlockMenu/SaveButton" to="CanvasLayer/IncrementBlockMenu" method="_on_save_button_pressed"]
