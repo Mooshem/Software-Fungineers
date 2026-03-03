@@ -1,5 +1,5 @@
 """
-Developer: Donovan Thach
+Developer: Donovan Thach, Daniel Martin
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
