@@ -416,6 +416,7 @@ func _on_quit_button_pressed() -> void:
 func _on_pause_notice_timer_timeout() -> void:
 	pause_settings_notice.visible = false
 
+"""
 # Variable block overlay
 func _var_menu_interact() -> void:
 	if variable_block_menu.visible:
@@ -427,3 +428,4 @@ func _var_menu_interact() -> void:
 		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
+"""
