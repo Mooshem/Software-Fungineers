@@ -22,3 +22,18 @@ Coding Cubed will allow users to learn how to program through video game logic a
 3. Locate the downloaded file in Finder (macOS) or File Explorer (Windows).  
 4. Right-click the application and select **Open** to launch it.
 
+## How to Run the System
+1. Select **Sandbox** to navigate to the sandbox mode
+2. A user has a hotbar selection shown on the screen (tabs 1, 2, 3, 4, and 5). Cycle through these by pressing the corresponding numbers on your
+   keyboard. (1 for hotbar item 1, etc.)
+3. Hotbar Items are as follows:
+   1. Variable block
+   2. If block
+   3. Wire
+   4. Signal Start
+   5. Incrementer
+4. Interact with these blocks by clicking 'i' on them.
+5. To place blocks, right click.
+6. To break blocks, hold left click.
+7. use WASD to move, and space to jump.
+8. use ESC to pause the game and navigate to quit or the main menu. 
