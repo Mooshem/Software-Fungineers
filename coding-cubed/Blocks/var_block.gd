@@ -1,5 +1,5 @@
 """
-Developer: Donovan Thach
+Developer: Donovan Thach, Daniel Martin
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
@@ -15,6 +15,8 @@ func _ready() -> void:
 	add_to_group("signal_nodes")
 	call_deferred("_notify_adjacent_wires")
 	super._ready()
+	# Add to searchable list for other blocks.
+	add_to_group("var_blocks")
 	# Get the player node from Player scene.
 	player = get_tree().get_first_node_in_group("player")
 	if player:
@@ -40,6 +42,9 @@ func _open_player_menu() -> void:
 	# Get the menu of the variable block open.
 	var menu = player.get_node("CanvasLayer/VariableBlockMenu")
 	menu.open_for_block(self)
+<<<<<<< HEAD
+	get_tree().paused = true
+=======
 	
 func _notify_adjacent_wires() -> void:
 	var all_nodes = get_tree().get_nodes_in_group("signal_nodes")
@@ -57,3 +62,4 @@ func _notify_adjacent_wires() -> void:
 	
 func request_connection(requester: Node3D) -> bool:
 	return true
+>>>>>>> origin/main

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxsycsojl48e5" path="res://Player/player.gd" id="1_4flbx"]
 [ext_resource type="FontFile" uid="uid://c5ifdp7n35j1v" path="res://Courier Prime Sans.ttf" id="2_4ntmi"]
-[ext_resource type="Script" path="res://Player/variable_block_menu.gd" id="2_gwnis"]
+[ext_resource type="Script" uid="uid://ton0bvcnl1gu" path="res://Player/variable_block_menu.gd" id="2_gwnis"]
 [ext_resource type="Texture2D" uid="uid://badh28mm13br7" path="res://PNGs/close_button.png" id="3_btcbx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
@@ -92,6 +92,10 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_gwnis"]
+default_base_scale = 2.0
+default_font_size = 200
 
 [node name="Player" type="CharacterBody3D" unique_id=399912352 groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -406,6 +410,161 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_od3ui")
 theme_override_styles/hover = SubResource("StyleBoxFlat_00tjw")
 text = "Save"
 
+[node name="IfBlockMenu" type="Control" parent="CanvasLayer" unique_id=1325629880]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -216.0
+offset_right = -384.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_gwnis")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/IfBlockMenu" unique_id=1893265616]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.9372549, 0.9372549, 0.9372549, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="CanvasLayer/IfBlockMenu" unique_id=1477314089]
+layout_mode = 0
+offset_left = 744.0
+offset_top = 30.0
+offset_right = 1176.0
+offset_bottom = 122.0
+text = "If"
+label_settings = SubResource("LabelSettings_btcbx")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Var1InputLabel" type="Label" parent="CanvasLayer/IfBlockMenu" unique_id=356355352]
+layout_mode = 0
+offset_left = 177.5
+offset_top = 265.0
+offset_right = 717.5
+offset_bottom = 326.0
+text = "First Variable:"
+label_settings = SubResource("LabelSettings_gwnis")
+
+[node name="Var2InputLabel" type="Label" parent="CanvasLayer/IfBlockMenu" unique_id=1207767834]
+layout_mode = 0
+offset_left = 1222.5
+offset_top = 275.00003
+offset_right = 1798.5
+offset_bottom = 336.00003
+text = "Second Variable:"
+label_settings = SubResource("LabelSettings_gwnis")
+
+[node name="Var1Input" type="LineEdit" parent="CanvasLayer/IfBlockMenu" unique_id=1679224236]
+layout_mode = 0
+offset_left = 237.49997
+offset_top = 334.99997
+offset_right = 637.5
+offset_bottom = 403.99997
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_k53q1")
+placeholder_text = "Text"
+max_length = 20
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
+
+[node name="Comparison" type="OptionButton" parent="CanvasLayer/IfBlockMenu" unique_id=678945331]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 827.5
+offset_top = 260.0
+offset_right = 1127.5
+offset_bottom = 569.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gwnis")
+theme_override_font_sizes/font_size = 220
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 6
+popup/item_0/text = ">"
+popup/item_0/id = 0
+popup/item_1/text = "<"
+popup/item_1/id = 1
+popup/item_2/text = ">="
+popup/item_2/id = 2
+popup/item_3/text = "<="
+popup/item_3/id = 3
+popup/item_4/text = "=="
+popup/item_4/id = 4
+popup/item_5/text = "!="
+popup/item_5/id = 5
+
+[node name="Var2Input" type="LineEdit" parent="CanvasLayer/IfBlockMenu" unique_id=1708349059]
+layout_mode = 0
+offset_left = 1285.0
+offset_top = 349.99997
+offset_right = 1685.0
+offset_bottom = 418.99997
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 0.5019608)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_k53q1")
+placeholder_text = "Text"
+max_length = 20
+emoji_menu_enabled = false
+clear_button_enabled = true
+text_direction = 1
+language = "en"
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/IfBlockMenu" unique_id=1658199724]
+layout_mode = 0
+offset_left = 1830.0
+offset_top = 30.0
+offset_right = 1890.0
+offset_bottom = 90.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_gwnis")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btcbx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fhl08")
+icon = ExtResource("3_btcbx")
+
+[node name="SaveButton" type="Button" parent="CanvasLayer/IfBlockMenu" unique_id=1687847335]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 810.0
+offset_right = 1050.0
+offset_bottom = 880.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4ntmi")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtle1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_od3ui")
+theme_override_styles/hover = SubResource("StyleBoxFlat_00tjw")
+text = "Save"
+
 [node name="Head" type="Node3D" parent="." unique_id=838375207]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 1.6, 0)
 
@@ -440,3 +599,5 @@ transform = Transform3D(0.2, 0, 0, 0, 0.7, 0, 0, 0, 0.2, -0.1, 0.35, 0)
 [connection signal="timeout" from="CanvasLayer/PauseNoticeTimer" to="." method="_on_pause_notice_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/VariableBlockMenu/CloseButton" to="CanvasLayer/VariableBlockMenu" method="_on_close_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VariableBlockMenu/SaveButton" to="CanvasLayer/VariableBlockMenu" method="_on_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/IfBlockMenu/CloseButton" to="CanvasLayer/IfBlockMenu" method="_on_close_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/IfBlockMenu/SaveButton" to="CanvasLayer/IfBlockMenu" method="_on_save_button_pressed"]
