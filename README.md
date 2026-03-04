@@ -27,7 +27,7 @@ Coding Cubed will allow users to learn how to program through video game logic a
 3. Locate the downloaded file in Finder (macOS) or File Explorer (Windows).  
 4. Right-click the application and select **Open** to launch it.
 
-** Playing the Game **
+**Playing the Game**
 
 1. Select **Sandbox** to navigate to the sandbox mode
 2. A user has a hotbar selection shown on the screen (tabs 1, 2, 3, 4, and 5). Cycle through these by pressing the corresponding numbers on your
@@ -42,4 +42,14 @@ Coding Cubed will allow users to learn how to program through video game logic a
 5. To place blocks, right click.
 6. To break blocks, hold left click.
 7. use WASD to move, and space to jump.
-8. use ESC to pause the game and navigate to quit or the main menu. 
+8. use ESC to pause the game and navigate to quit or the main menu.
+
+## Use Cases for Demo
+
+1. Download the game (reference 'How to Run the System')
+2. Open the Sandbox by clicking 'Sandbox'
+3. Place hotbar selection 1, 2, 3, 4, and 5.
+4. Interact with blocks with 'i'.
+5. Input values for 'name' and 'value' on variable block
+6. Input values for 'first variable' and 'second variable' on if block
+7. Input values for 'target variable name' and 'increment value' for increment block
