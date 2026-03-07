@@ -9,6 +9,9 @@ var var_name: String = ""
 var var_val: String = ""
 var player = null
 
+# Variable to prevent block breaking.
+var is_locked: bool = true
+
 func _ready() -> void:
 	super._ready()
 	add_to_group("var_blocks")

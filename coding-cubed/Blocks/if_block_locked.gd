@@ -1,5 +1,5 @@
 """
-Developer: Daniel Martin
+Developer: Daniel Martin, Donovan Thach
 Documentation : https://docs.godotengine.org/en/4.4/tutorials/scripting/gdscript/gdscript_basics.html
 """
 
@@ -18,6 +18,9 @@ var _true_output_path: NodePath = NodePath()
 var var1_name: String = ""
 var var2_name: String = ""
 var compare: String = ">"
+
+# Variable to prevent block breaking.
+var is_locked: bool = true
 
 func _ready() -> void:
 	super._ready()

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b067m7y0d6wga" path="res://Levels/music.tscn" id="5_um60u"]
 [ext_resource type="PackedScene" uid="uid://m7u4n0nrmdqi" path="res://Blocks/if_block_locked.tscn" id="6_forfm"]
 [ext_resource type="PackedScene" uid="uid://owepxypliupr" path="res://Blocks/increment_block_locked.tscn" id="7_o3scy"]
+[ext_resource type="PackedScene" uid="uid://btka1ennwbapp" path="res://Blocks/start_block_locked.tscn" id="8_20ygc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
 albedo_texture = ExtResource("2_o45c4")
@@ -104,3 +105,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
 
 [node name="IncrementBlock" parent="." unique_id=1468588949 instance=ExtResource("7_o3scy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="StartBlock" parent="." unique_id=983277647 instance=ExtResource("8_20ygc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)

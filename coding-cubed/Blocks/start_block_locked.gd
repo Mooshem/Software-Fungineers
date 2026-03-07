@@ -10,6 +10,9 @@ var raycast: RayCast3D
 var player: Node = null
 var _primary_output_path: NodePath = NodePath()
 
+# Variable to prevent block breaking.
+var is_locked: bool = true
+
 @onready var _mesh: MeshInstance3D = $MeshInstance3D
 var _base_color: Color = Color(0.9, 0.2, 0.2, 1.0)
 
@@ -19,6 +22,16 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	if player:
 		raycast = player.get_node("Head/Camera3D/RayCast3D")
+		
+	# Gray shift to denote unchangability in game.
+	var mesh = $MeshInstance3D
+	if mesh:
+		var existing = mesh.get_active_material(0)
+		if existing is StandardMaterial3D:
+			var mat = existing.duplicate() as StandardMaterial3D
+			mat.albedo_color = Color(0.351, 0.0, 0.057, 1.0)
+			mesh.material_override = mat
+	
 	# Cache the starting material color for later restores.
 	if _mesh and _mesh.material_override is StandardMaterial3D:
 		var mat := _mesh.material_override as StandardMaterial3D

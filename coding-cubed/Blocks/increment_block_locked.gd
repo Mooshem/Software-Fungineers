@@ -12,6 +12,9 @@ var powered := false
 var target_var_name: String = ""
 var increment_by: int = 1
 
+# Varaible to prevent block breaking.
+var is_locked: bool = true
+
 func _ready() -> void:
 	super._ready()
 	player = get_tree().get_first_node_in_group("player")
