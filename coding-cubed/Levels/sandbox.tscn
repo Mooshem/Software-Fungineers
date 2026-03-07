@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_o45c4"]
 [ext_resource type="PackedScene" uid="uid://diiqyg0w0mal3" path="res://Blocks/var_block_locked.tscn" id="5_forfm"]
 [ext_resource type="PackedScene" uid="uid://b067m7y0d6wga" path="res://Levels/music.tscn" id="5_um60u"]
+[ext_resource type="PackedScene" uid="uid://m7u4n0nrmdqi" path="res://Blocks/if_block_locked.tscn" id="6_forfm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
 albedo_texture = ExtResource("2_o45c4")
@@ -96,3 +97,6 @@ shape = SubResource("BoxShape3D_forfm")
 
 [node name="Block" parent="." unique_id=1262073338 instance=ExtResource("5_forfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="If_block" parent="." unique_id=2143554485 instance=ExtResource("6_forfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)

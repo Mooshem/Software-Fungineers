@@ -10,12 +10,19 @@ var current_block = null
 @onready var var2_input = $Var2Input
 @onready var comparison = $Comparison
 
-func open_for_block(block) -> void:
+func open_for_block(block, read_only: bool = false) -> void:
 	# Get current block and set inputs for it's attributes.
 	current_block = block
 	var1_input.text = block.var1_name
 	var2_input.text = block.var2_name
 	comparison.text = block.compare
+	
+	# Prevent changes in UI.
+	var1_input.editable = !read_only
+	var2_input.editable = !read_only
+	comparison.disabled = read_only
+	$SaveButton.visible = !read_only
+	
 	visible = true
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
