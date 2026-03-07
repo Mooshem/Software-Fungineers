@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bn86nsjl8plpi" path="res://Player/player.tscn" id="1_7t7j1"]
 [ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="2_o45c4"]
 [ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_o45c4"]
+[ext_resource type="PackedScene" uid="uid://diiqyg0w0mal3" path="res://Blocks/var_block_locked.tscn" id="5_forfm"]
 [ext_resource type="PackedScene" uid="uid://b067m7y0d6wga" path="res://Levels/music.tscn" id="5_um60u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
@@ -92,3 +93,6 @@ mesh = SubResource("BoxMesh_um60u")
 shape = SubResource("BoxShape3D_forfm")
 
 [node name="BGMusic" parent="." unique_id=296702093 instance=ExtResource("5_um60u")]
+
+[node name="Block" parent="." unique_id=1262073338 instance=ExtResource("5_forfm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
