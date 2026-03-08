@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://owepxypliupr"]
+
+[ext_resource type="Script" uid="uid://fn3rhhwrhmoi" path="res://Blocks/increment_block_locked.gd" id="1_6y3dw"]
+[ext_resource type="Texture2D" uid="uid://c3hx7gmgmc2sk" path="res://assets/PNGs/increment_block.png" id="2_buixb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_inc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inc"]
+albedo_texture = ExtResource("2_buixb")
+uv1_scale = Vector3(3, 2, 2)
+texture_filter = 0
+point_size = 128.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_inc"]
+material = SubResource("StandardMaterial3D_inc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_inc"]
+
+[node name="IncrementBlock" type="StaticBody3D" unique_id=1468588949]
+physics_material_override = SubResource("PhysicsMaterial_inc")
+script = ExtResource("1_6y3dw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=8574591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+mesh = SubResource("BoxMesh_inc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=966618944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_inc")

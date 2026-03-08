@@ -9,10 +9,16 @@ var current_block = null
 @onready var target_var_input = $TargetVarInput
 @onready var step_input = $StepInput
 
-func open_for_block(block) -> void:
+func open_for_block(block, read_only: bool = false) -> void:
 	current_block = block
 	target_var_input.text = str(block.target_var_name)
 	step_input.text = str(block.increment_by)
+	
+	# Prevent changes in block.
+	target_var_input.editable = !read_only
+	step_input.editable = !read_only
+	$SaveButton.visible = !read_only
+	
 	visible = true
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -9,11 +9,17 @@ var current_block = null
 @onready var var_name_input = $VarInput
 @onready var val_input = $ValInput
 
-func open_for_block(block) -> void:
+func open_for_block(block, read_only: bool = false) -> void:
 	# Get current block and set inputs for it's attributes.
 	current_block = block
 	var_name_input.text = block.var_name
 	val_input.text = block.var_val
+	
+	# Disable inputs and hide save button if block is locked (read-only for unchangeables).
+	var_name_input.editable = !read_only
+	val_input.editable = !read_only
+	$SaveButton.visible = !read_only
+	
 	visible = true
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
