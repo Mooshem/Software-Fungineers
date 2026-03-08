@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="2_o45c4"]
 [ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_o45c4"]
 [ext_resource type="PackedScene" uid="uid://diiqyg0w0mal3" path="res://Blocks/var_block_locked.tscn" id="5_forfm"]
-[ext_resource type="PackedScene" uid="uid://b067m7y0d6wga" path="res://Levels/music.tscn" id="5_um60u"]
+[ext_resource type="PackedScene" path="res://Levels/music.tscn" id="5_um60u"]
 [ext_resource type="PackedScene" uid="uid://m7u4n0nrmdqi" path="res://Blocks/if_block_locked.tscn" id="6_forfm"]
 [ext_resource type="PackedScene" uid="uid://owepxypliupr" path="res://Blocks/increment_block_locked.tscn" id="7_o3scy"]
 [ext_resource type="PackedScene" uid="uid://btka1ennwbapp" path="res://Blocks/start_block_locked.tscn" id="8_20ygc"]
+[ext_resource type="PackedScene" uid="uid://bamwejqhtlk32" path="res://Blocks/end_block.tscn" id="9_0b5w1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
 albedo_texture = ExtResource("2_o45c4")
@@ -108,3 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
 
 [node name="StartBlock" parent="." unique_id=983277647 instance=ExtResource("8_20ygc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="End_Block" parent="." unique_id=210528658 instance=ExtResource("9_0b5w1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
