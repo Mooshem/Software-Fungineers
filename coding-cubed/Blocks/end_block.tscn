@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bamwejqhtlk32"]
+
+[ext_resource type="Script" uid="uid://du8k03ky7qr4y" path="res://Blocks/end_block.gd" id="1_506kv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qncar"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vmkw"]
+albedo_color = Color(0, 0.6901961, 0.69803923, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bcjco"]
+material = SubResource("StandardMaterial3D_2vmkw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfwl5"]
+
+[node name="End_Block" type="StaticBody3D" unique_id=2143554485]
+physics_material_override = SubResource("PhysicsMaterial_qncar")
+script = ExtResource("1_506kv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=109011169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+mesh = SubResource("BoxMesh_bcjco")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2019592382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+shape = SubResource("BoxShape3D_xfwl5")
+debug_color = Color(1, 0.46666667, 1, 1)
