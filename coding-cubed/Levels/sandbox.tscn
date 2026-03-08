@@ -4,27 +4,27 @@
 [ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="2_o45c4"]
 [ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_o45c4"]
 [ext_resource type="PackedScene" uid="uid://diiqyg0w0mal3" path="res://Blocks/var_block_locked.tscn" id="5_forfm"]
-[ext_resource type="PackedScene" uid="uid://b067m7y0d6wga" path="res://Levels/music.tscn" id="5_um60u"]
+[ext_resource type="PackedScene" path="res://Levels/music.tscn" id="5_um60u"]
 [ext_resource type="PackedScene" uid="uid://m7u4n0nrmdqi" path="res://Blocks/if_block_locked.tscn" id="6_forfm"]
 [ext_resource type="PackedScene" uid="uid://owepxypliupr" path="res://Blocks/increment_block_locked.tscn" id="7_o3scy"]
-[ext_resource type="PackedScene" uid="uid://btka1ennwbapp" path="res://Blocks/start_block_locked.tscn" id="8_20ygc"]
+[ext_resource type="PackedScene" uid="uid://btka1ennwbapp" path="res://Blocks/end_block_locked.tscn" id="8_20ygc"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b5w1"]
 albedo_texture = ExtResource("2_o45c4")
 uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fmlkh"]
-material = SubResource("StandardMaterial3D_o45c4")
+material = SubResource("StandardMaterial3D_0b5w1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7t7j1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmlkh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20ygc"]
 albedo_texture = ExtResource("3_o45c4")
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(150, 100, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_um60u"]
-material = SubResource("StandardMaterial3D_fmlkh")
+material = SubResource("StandardMaterial3D_20ygc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_forfm"]
 
@@ -37,51 +37,53 @@ sky_mode = 1
 
 [node name="Player" parent="." unique_id=1176242734 instance=ExtResource("1_7t7j1")]
 
-[node name="NorthWall" type="StaticBody3D" parent="." unique_id=862442905]
+[node name="Walls" type="Node3D" parent="." unique_id=1281441095]
+
+[node name="NorthWall" type="StaticBody3D" parent="Walls" unique_id=862442905]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -50, -22.564142, 0)
 disable_mode = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NorthWall" unique_id=1992466882]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/NorthWall" unique_id=1992466882]
 mesh = SubResource("BoxMesh_fmlkh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthWall" unique_id=1984020996]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/NorthWall" unique_id=1984020996]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94937587, 0)
 visibility_parent = NodePath("../MeshInstance3D")
 shape = SubResource("BoxShape3D_7t7j1")
 
-[node name="WestWall" type="StaticBody3D" parent="." unique_id=965131944]
+[node name="WestWall" type="StaticBody3D" parent="Walls" unique_id=965131944]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 25, 50)
 disable_mode = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WestWall" unique_id=2106014481]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/WestWall" unique_id=2106014481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95572126, 0)
 mesh = SubResource("BoxMesh_fmlkh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WestWall" unique_id=1235518944]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WestWall" unique_id=1235518944]
 visibility_parent = NodePath("../MeshInstance3D")
 shape = SubResource("BoxShape3D_7t7j1")
 
-[node name="SouthWall" type="StaticBody3D" parent="." unique_id=1084116078]
+[node name="SouthWall" type="StaticBody3D" parent="Walls" unique_id=1084116078]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 50, 25, 0)
 disable_mode = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SouthWall" unique_id=2123312771]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/SouthWall" unique_id=2123312771]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9549215, 0)
 mesh = SubResource("BoxMesh_fmlkh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthWall" unique_id=1059367033]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/SouthWall" unique_id=1059367033]
 visibility_parent = NodePath("../MeshInstance3D")
 shape = SubResource("BoxShape3D_7t7j1")
 
-[node name="EastWall" type="StaticBody3D" parent="." unique_id=1363991257]
+[node name="EastWall" type="StaticBody3D" parent="Walls" unique_id=1363991257]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 25, -50)
 disable_mode = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="EastWall" unique_id=2054913477]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/EastWall" unique_id=2054913477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9534663, 0)
 mesh = SubResource("BoxMesh_fmlkh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EastWall" unique_id=1417055872]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/EastWall" unique_id=1417055872]
 visibility_parent = NodePath("../MeshInstance3D")
 shape = SubResource("BoxShape3D_7t7j1")
 

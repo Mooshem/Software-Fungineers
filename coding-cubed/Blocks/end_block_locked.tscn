@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://btsu7ttn5pslv"]
+[gd_scene format=3 uid="uid://btka1ennwbapp"]
 
-[ext_resource type="Script" uid="uid://dqrjw32j8yug1" path="res://Blocks/start_block_locked.gd" id="1_7fmya"]
+[ext_resource type="Script" uid="uid://dqrjw32j8yug1" path="res://Blocks/end_block_locked.gd" id="1_7fmya"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
 
 [sub_resource type="StandardMaterial3D" id="3"]
-albedo_color = Color(0.9, 0.2, 0.2, 1)
+albedo_color = Color(0, 0.4982527, 0.955651, 1)
 
 [sub_resource type="BoxMesh" id="2"]
 
 [sub_resource type="BoxShape3D" id="4"]
 
-[node name="StartBlock" type="StaticBody3D" unique_id=983277647]
+[node name="EndBlock" type="StaticBody3D" unique_id=983277647]
 physics_material_override = SubResource("1")
 script = ExtResource("1_7fmya")
 
