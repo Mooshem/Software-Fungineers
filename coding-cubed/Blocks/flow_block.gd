@@ -59,6 +59,8 @@ func emit_signal_to_adjacent_with_run(run_id: int, from_node: Node = null, step_
 		var node_3d := node as Node3D
 		if not node_3d.has_method("receive_signal"):
 			continue
+		if not is_instance_valid(node_3d):
+			continue
 		if is_adjacent(node_3d):
 			if SIGNAL_HOP_DELAY > 0.0:
 				await get_tree().create_timer(SIGNAL_HOP_DELAY).timeout
