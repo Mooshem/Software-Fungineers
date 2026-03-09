@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var head: Node3D = $Head
 @onready var ray: RayCast3D = $Head/Camera3D/RayCast3D
 @onready var hotbar: HBoxContainer = $CanvasLayer/Hotbar
+@onready var hotbar_selection_label: Label = $CanvasLayer/HotbarSelectionLabel
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 @onready var pause_resume_button: Button = $CanvasLayer/PauseMenu/Center/Panel/VBox/ResumeButton
 @onready var pause_settings_notice: Label = $CanvasLayer/PauseMenu/Center/Panel/VBox/SettingsNotice
@@ -48,6 +49,10 @@ const MOUSE_SENSITIVITY = 0.003
 const HOTBAR_SLOT_COUNT: int = 5
 const GRID_STEP: float = 1.0
 const GRID_EPSILON: float = 0.05
+const HOTBAR_SLOT_SHORT_NAMES := ["VAR", "IF", "WIRE", "START", "INC"]
+const HOTBAR_SLOT_DISPLAY_NAMES := ["Variable Block", "If Block", "Wire", "Start Block", "Increment Block"]
+const HOTBAR_SELECTION_POPUP_TIME := 0.6
+const HOTBAR_SELECTION_FADE_TIME := 0.25
 
 # Timer used to sense how long left click is held.
 var BREAK_TIMER: float = 0.0
@@ -56,6 +61,7 @@ var BREAK_TIME: float = 1
 var selected_slot: int = 0
 var is_pause_transitioning: bool = false
 var _breaking_block: Node = null
+var _hotbar_selection_tween: Tween = null
 
 func _ready() -> void:
 	"""Initializes environment variables and methods."""
@@ -70,6 +76,9 @@ func _ready() -> void:
 	if_block_menu.visible = false
 	increment_block_menu.visible = false
 	update_hotbar_visuals()
+	if hotbar_selection_label != null:
+		hotbar_selection_label.visible = false
+		hotbar_selection_label.modulate.a = 0.0
 
 func _unhandled_input(event: InputEvent) -> void:
 	"""Handles one time events."""
@@ -278,14 +287,14 @@ func handle_constant_events(delta: float) -> void:
 func change_hotbar_slot(direction: int) -> void:
 	"""Changes the current hotbar slot."""
 	selected_slot = posmod(selected_slot + direction, HOTBAR_SLOT_COUNT)
-	update_hotbar_visuals()
+	update_hotbar_visuals(true)
 
 func set_hotbar_slot(slot_index: int) -> void:
 	"""Sets the hotbar based on the current hotbar count."""
 	selected_slot = clamp(slot_index, 0, HOTBAR_SLOT_COUNT - 1)
-	update_hotbar_visuals()
+	update_hotbar_visuals(true)
 
-func update_hotbar_visuals() -> void:
+func update_hotbar_visuals(show_selection_feedback: bool = false) -> void:
 	"""Visually updates the hotbar to show which item is currently selected."""
 	if hotbar == null:
 		return
@@ -294,10 +303,36 @@ func update_hotbar_visuals() -> void:
 		var slot_panel := hotbar.get_child(i) as Panel
 		if slot_panel == null:
 			continue
+		var slot_label := slot_panel.get_node_or_null("Label") as Label
+		if slot_label != null and i < HOTBAR_SLOT_SHORT_NAMES.size():
+			slot_label.text = "%d\n%s" % [i + 1, HOTBAR_SLOT_SHORT_NAMES[i]]
 		if i == selected_slot:
 			slot_panel.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		else:
 			slot_panel.modulate = Color(0.65, 0.65, 0.65, 1.0)
+
+	if hotbar_selection_label != null and selected_slot < HOTBAR_SLOT_DISPLAY_NAMES.size():
+		hotbar_selection_label.text = "Selected: %s" % HOTBAR_SLOT_DISPLAY_NAMES[selected_slot]
+		if show_selection_feedback:
+			_show_hotbar_selection_feedback()
+
+func _show_hotbar_selection_feedback() -> void:
+	if hotbar_selection_label == null:
+		return
+	if _hotbar_selection_tween != null:
+		_hotbar_selection_tween.kill()
+	_hotbar_selection_tween = create_tween()
+	hotbar_selection_label.visible = true
+	hotbar_selection_label.modulate.a = 0.0
+	_hotbar_selection_tween.tween_property(hotbar_selection_label, "modulate:a", 1.0, HOTBAR_SELECTION_FADE_TIME)
+	_hotbar_selection_tween.tween_interval(HOTBAR_SELECTION_POPUP_TIME)
+	_hotbar_selection_tween.tween_property(hotbar_selection_label, "modulate:a", 0.0, HOTBAR_SELECTION_FADE_TIME)
+	_hotbar_selection_tween.finished.connect(_hide_hotbar_selection_label)
+
+func _hide_hotbar_selection_label() -> void:
+	if hotbar_selection_label != null:
+		hotbar_selection_label.visible = false
+	_hotbar_selection_tween = null
 
 func _reset_breaking_block() -> void:
 	"""Stops break sound and resets wobble on the block we were breaking."""

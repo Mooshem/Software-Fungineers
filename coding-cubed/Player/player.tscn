@@ -132,77 +132,97 @@ label_settings = SubResource("LabelSettings_4flbx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Hotbar" type="HBoxContainer" parent="CanvasLayer" unique_id=176210341]
-anchors_preset = 8
+[node name="HotbarSelectionLabel" type="Label" parent="CanvasLayer" unique_id=754338201]
+anchors_preset = 10
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = 260.0
-offset_right = 120.0
-offset_bottom = 300.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -82.0
+offset_right = 180.0
+offset_bottom = -58.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+text = "Selected: Variable Block"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hotbar" type="HBoxContainer" parent="CanvasLayer" unique_id=176210341]
+anchors_preset = 10
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -234.0
+offset_top = -56.0
+offset_right = 234.0
+offset_bottom = -12.0
+grow_horizontal = 2
 theme_override_constants/separation = 12
 
 [node name="Slot0" type="Panel" parent="CanvasLayer/Hotbar" unique_id=18632852]
-custom_minimum_size = Vector2(64, 36)
+custom_minimum_size = Vector2(84, 44)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot0" unique_id=125211753]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 36.0
-text = "1"
+offset_right = 84.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 12
+text = "1\nVAR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Slot1" type="Panel" parent="CanvasLayer/Hotbar" unique_id=1800058292]
-custom_minimum_size = Vector2(64, 36)
+custom_minimum_size = Vector2(84, 44)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot1" unique_id=358489731]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 36.0
-text = "2"
+offset_right = 84.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 12
+text = "2\nIF"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Slot2" type="Panel" parent="CanvasLayer/Hotbar" unique_id=1960700952]
-custom_minimum_size = Vector2(64, 36)
+custom_minimum_size = Vector2(84, 44)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot2" unique_id=975822441]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 36.0
-text = "3"
+offset_right = 84.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 12
+text = "3\nWIRE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Slot3" type="Panel" parent="CanvasLayer/Hotbar" unique_id=1813679204]
-custom_minimum_size = Vector2(64, 36)
+custom_minimum_size = Vector2(84, 44)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot3" unique_id=1649049016]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 36.0
-text = "4"
+offset_right = 84.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 12
+text = "4\nSTART"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Slot4" type="Panel" parent="CanvasLayer/Hotbar" unique_id=814037931]
-custom_minimum_size = Vector2(64, 36)
+custom_minimum_size = Vector2(84, 44)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Hotbar/Slot4" unique_id=15218796]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 36.0
-text = "5"
+offset_right = 84.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 12
+text = "5\nINC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
