@@ -2,6 +2,7 @@ extends Control
 
 const MAIN_MENU_SCENE := "res://Levels/main_menu.tscn"
 const SANDBOX_SCENE := "res://Levels/sandbox.tscn"
+const LEVEL_ONE_SCENE := "res://Levels/Level1.tscn"
 const FADE_DURATION := 0.25
 
 @onready var notice_label: Label = $Center/Panel/VBox/Notice
@@ -14,7 +15,7 @@ func _ready() -> void:
 	$Center/Panel/VBox/LevelOneButton.grab_focus()
 
 func _on_level_one_button_pressed() -> void:
-	_transition_to_scene(SANDBOX_SCENE)
+	_transition_to_scene(LEVEL_ONE_SCENE)
 
 func _on_level_two_button_pressed() -> void:
 	notice_label.text = "Level 2 is a placeholder for now."
