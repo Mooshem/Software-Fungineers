@@ -153,8 +153,10 @@ func handle_one_time_events(event: InputEvent) -> void:
 				elif selected_slot == 1:
 					block = IfScene.instantiate()
 					apply_block_variant(block, selected_slot)
-				# If slot 4 (index 3), place start block
+				# If slot 4 (index 3), place start block (signal block) — allow snap to wires/blocks and replace wire in cell
 				elif selected_slot == 3:
+					var start_placement = _resolve_wire_placement(hit_position, hit_normal, target_block)
+					place_position = start_placement["position"]
 					block = StartBlockScene.instantiate()
 				# If slot 5 (index 4), place increment block
 				elif selected_slot == 4:
@@ -167,7 +169,15 @@ func handle_one_time_events(event: InputEvent) -> void:
 				if player_position == place_position or player_head_position == place_position:
 					return
 
-				if _is_block_cell_occupied(place_position):
+				# For start block (sandbox): allow replacing a wire in the target cell so it's placeable on wires
+				if selected_slot == 3:
+					var existing := _get_block_at_cell(place_position)
+					if existing != null:
+						if _is_wire_scene(existing):
+							existing.queue_free()
+						else:
+							return
+				elif _is_block_cell_occupied(place_position):
 					return
 
 				block.set_meta("hotbar_slot", selected_slot)
@@ -374,10 +384,13 @@ func _to_cardinal_dir(direction: Vector3) -> Vector3:
 	return Vector3(0, 0, sign(flat.z))
 
 func _is_block_cell_occupied(cell_position: Vector3) -> bool:
+	return _get_block_at_cell(cell_position) != null
+
+func _get_block_at_cell(cell_position: Vector3) -> Node3D:
 	var parent := get_parent()
 	if parent == null:
-		return false
-
+		return null
+	var cell := cell_position.round()
 	for child in parent.get_children():
 		if not child is Node3D:
 			continue
@@ -385,9 +398,13 @@ func _is_block_cell_occupied(cell_position: Vector3) -> bool:
 		var path := str(node_3d.scene_file_path)
 		if not path.begins_with("res://Blocks/"):
 			continue
-		if node_3d.global_position.distance_to(cell_position.round()) <= GRID_EPSILON:
-			return true
-	return false
+		if node_3d.global_position.distance_to(cell) <= GRID_EPSILON:
+			return node_3d
+	return null
+
+func _is_wire_scene(node: Node) -> bool:
+	"""True if the node is from the wire scene (so start block can replace it in sandbox)."""
+	return "wire" in str(node.scene_file_path)
 
 func _is_pause_menu_open() -> bool:
 	return pause_menu.visible

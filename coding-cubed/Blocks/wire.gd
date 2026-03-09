@@ -39,12 +39,21 @@ func _ready():
 # CONNECTION DISCOVERY
 # =========================
 
+func _prune_dead_connections() -> void:
+	"""Remove any connection that has been freed (e.g. after queue_free). Prevents crashes when propagating signals or updating visuals."""
+	var i := connections.size() - 1
+	while i >= 0:
+		if not is_instance_valid(connections[i]):
+			connections.remove_at(i)
+		i -= 1
+
 func initialize_connections():
 	"""
 	Only the newly placed wire drives connection building.
 	It finds adjacent wires that still have room, links both sides,
 	then tells neighbors to refresh their visuals only.
 	"""
+	_prune_dead_connections()
 	var all_nodes = get_tree().get_nodes_in_group("signal_nodes")
 	var priority_nodes: Array[Node3D] = []
 	var other_nodes: Array[Node3D] = []
@@ -69,7 +78,7 @@ func initialize_connections():
 
 	# Tell neighbors to redraw now that connections are settled
 	for node in connections:
-		if node.has_method("refresh_visuals"):
+		if is_instance_valid(node) and node.has_method("refresh_visuals"):
 			node.refresh_visuals()
 
 func request_connection(requester: Node3D) -> bool:
@@ -117,6 +126,7 @@ func is_adjacent(node: Node3D) -> bool:
 # =========================
 
 func receive_signal(run_id: int = -1, from_node: Node = null, step_id: int = 0):
+	_prune_dead_connections()
 	var key := "%d:%d" % [run_id, step_id]
 	if _last_signal_key == key:
 		return
@@ -124,6 +134,8 @@ func receive_signal(run_id: int = -1, from_node: Node = null, step_id: int = 0):
 	powered = true
 	await _pulse_signal_visual()
 	for node in connections:
+		if not is_instance_valid(node):
+			continue
 		if from_node != null and node == from_node:
 			continue
 		if node.has_method("receive_signal"):
@@ -142,6 +154,7 @@ func reset_signal_state() -> void:
 # =========================
 
 func update_visuals():
+	_prune_dead_connections()
 	$wire_end.visible = false
 	$wire_straight.visible = false
 	$wire_corner.visible = false
