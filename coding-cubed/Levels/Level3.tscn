@@ -40,7 +40,7 @@ const LEVEL_SELECT_SCENE := \"res://Levels/level_select.tscn\"
 const FADE_DURATION       := 0.25
 
 # Hardcoded condition (edit these values, never exposed to the player)
-const COND_VAR1    : String = \"a\"   # name of the first variable block
+const COND_VAR1    : String = \"d\"   # name of the first variable block
 const COND_VAR2    : String = \"b\"      # name OR literal to compare against
 const COND_COMPARE : String = \">\"      # >, <, >=, <=, ==, !=
 # ──────────────────────────────────────────────────────────────────────────
@@ -225,12 +225,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 script = SubResource("GDScript_vybwq")
 
 [node name="If_block5" parent="." unique_id=1084689618 instance=ExtResource("7_dxjb0")]
+var1_name = "a"
+var2_name = "b"
+compare = "=="
 
 [node name="If_block6" parent="." unique_id=2019216372 instance=ExtResource("7_dxjb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+var1_name = "b"
+var2_name = "c"
+compare = ">"
 
 [node name="If_block7" parent="." unique_id=1324668975 instance=ExtResource("7_dxjb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+var1_name = "c"
+var2_name = "d"
+compare = "<"
 
 [node name="If_block8" parent="." unique_id=144430736 instance=ExtResource("7_dxjb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+var1_name = "d"
+var2_name = "b"
+compare = ">"
