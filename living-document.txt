@@ -904,3 +904,18 @@ Donovan Thach:
 Cash Limberg:
    
 Daniel Martin:
+    1) CI/CD is a crucial aspect to efficient software development.
+       Implementing tests early on ensured that we weren't unintentionally breaking things with each commit. 
+       There were multiple times where a PR that would have introduced a hard to find error was stopped because
+       it didn't pass automated testing, which saved us a lot of time.
+
+    2) Team communication and role delegation are very important aspects of any group work, but software especially.
+       There were a few times where people were working on the same thing, leading to wasted time. It was most efficient
+       when each team member had clear goals, and all of us were aware of what the others were doing, so that we
+       didn't step on each other's toes.
+
+    3) Start development early, rather than plan forever.
+       The main problem we ran into was a rushed development cycle. We spent a long time planning things about our project,
+       because 10 weeks to build something felt like a long time. As we got closer and closer to the 10 week mark, though, we
+       ended up more stressed near the end. In the future, I will start implementation earlier, even when if a plan is not 100%
+       complete.
