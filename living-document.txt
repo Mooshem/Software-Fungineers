@@ -900,6 +900,19 @@ Zheng Chen:
        the value of maintaining tests as functionality evolves.
 
 Donovan Thach:
+    1) Having automated CI/CD pipelines creates a very easily maintainable and easy process 
+       for use to continue working on the project without spending valuable time updating pages
+       for the game project on itch.io or other means like unit testing.
+
+    2) It's really difficult to gauge where you're at during the initial implementation process, and it
+       is extremely important to check up with the team regularly to have a meeting on what revisiting
+       where the scope lies and what needs to moved from or into a stretch goal. This also requried us
+       to constantly revisit our use cases and NFR's to ensure our game met those requirements.
+
+    3) Surprisingly, godot's game engine and gd scripts aligned with our project idea extrememly well, 
+       and it was definitely the most fun project that I've had in a while. The only thing I'd change 
+       about how we were managing our codebase is to constantly refactor the code in order to allow
+       easy scalability and other developers and understand the code, and to keep the project alive.
 
 Cash Limberg:
    
