@@ -5,6 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="3_fhqol"]
 [ext_resource type="PackedScene" uid="uid://bamwejqhtlk32" path="res://Blocks/end_block.tscn" id="4_iotdp"]
 [ext_resource type="Script" uid="uid://bhypuofnsp0da" path="res://Blocks/Level1/end_level1.gd" id="5_nutv8"]
+[ext_resource type="Script" uid="uid://cmh4mu5iq77xf" path="res://Blocks/Level1/level1_ui_tut.gd" id="6_05pb0"]
+[ext_resource type="Texture2D" uid="uid://eluymnagns12" path="res://PNGs/close_button_white.png" id="7_dl8mf"]
+[ext_resource type="FontFile" uid="uid://c5ifdp7n35j1v" path="res://Courier Prime Sans.ttf" id="8_5g41i"]
+[ext_resource type="Texture2D" uid="uid://3ej1iwd7h5e1" path="res://PNGs/chevron_forward.png" id="9_5g41i"]
+[ext_resource type="Texture2D" uid="uid://40k3ukyatmqx" path="res://PNGs/chevron_backward.png" id="9_7fl83"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmlkh"]
 albedo_texture = ExtResource("1_w77jt")
@@ -24,6 +29,27 @@ uv1_scale = Vector3(52, 52, 52)
 material = SubResource("StandardMaterial3D_o45c4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nutv8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fl83"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05pb0"]
+bg_color = Color(0, 0, 0, 0.49019608)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcayt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g41i"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fl83"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5226"]
+draw_center = false
 
 [node name="Level1" type="Node3D" unique_id=1186512971]
 
@@ -94,3 +120,130 @@ shape = SubResource("BoxShape3D_nutv8")
 [node name="End_Block" parent="." unique_id=2143554485 instance=ExtResource("4_iotdp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
 script = ExtResource("5_nutv8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=915392999]
+process_mode = 3
+script = ExtResource("6_05pb0")
+
+[node name="UICoverage" type="Panel" parent="CanvasLayer" unique_id=1474685920]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7fl83")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UICoverage" unique_id=124196220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 230.4
+offset_top = 129.6
+offset_right = 230.40002
+offset_bottom = 129.59998
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+theme_override_styles/panel = SubResource("StyleBoxFlat_05pb0")
+
+[node name="Title" type="Label" parent="CanvasLayer/UICoverage/Panel" unique_id=982511748]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("8_5g41i")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Body" type="Label" parent="CanvasLayer/UICoverage/Panel" unique_id=159286251]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_5g41i")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/UICoverage/Panel" unique_id=765119813]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_top = 10.0
+offset_right = 15.0
+offset_bottom = 70.0
+grow_horizontal = 0
+scale = Vector2(0.6, 0.6)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xcayt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5g41i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fl83")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p5226")
+icon = ExtResource("7_dl8mf")
+
+[node name="PrevButton" type="Button" parent="CanvasLayer/UICoverage/Panel" unique_id=611540802]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -56.0
+offset_right = -31.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+icon = ExtResource("9_7fl83")
+
+[node name="PageLabel" type="Label" parent="CanvasLayer/UICoverage/Panel" unique_id=1495334420]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -48.0
+offset_right = 50.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("8_5g41i")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="CanvasLayer/UICoverage/Panel" unique_id=67848920]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -56.0
+offset_right = 125.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+icon = ExtResource("9_5g41i")
+
+[connection signal="pressed" from="CanvasLayer/UICoverage/Panel/CloseButton" to="CanvasLayer" method="_on_close_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UICoverage/Panel/PrevButton" to="CanvasLayer" method="_on_prev_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UICoverage/Panel/NextButton" to="CanvasLayer" method="_on_next_button_pressed"]
