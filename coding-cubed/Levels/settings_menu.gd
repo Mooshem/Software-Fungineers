@@ -63,6 +63,36 @@ func _apply_master_volume(value: float) -> void:
 		AudioServer.set_bus_volume_db(master_bus, db_value)
 
 func _apply_music_enabled(enabled: bool) -> void:
+	var music_root := get_node_or_null("/root/Music")
+	if music_root != null:
+		var candidates: Array = []
+		if music_root is AudioStreamPlayer:
+			candidates.append(music_root)
+		for child in music_root.get_children():
+			if child is AudioStreamPlayer:
+				candidates.append(child)
+
+		var music_player: AudioStreamPlayer = null
+		for candidate in candidates:
+			if candidate is AudioStreamPlayer:
+				if music_player == null:
+					music_player = candidate
+				if candidate.has_method("stop_music"):
+					music_player = candidate
+					break
+
+		if music_player != null:
+			if enabled:
+				if not music_player.playing and music_player.stream != null:
+					music_player.play()
+			else:
+				if music_player.has_method("stop_music"):
+					music_player.call("stop_music")
+				else:
+					music_player.stop()
+		return
+
+	# Fallback: if a dedicated Music bus exists, toggle it.
 	var music_bus := AudioServer.get_bus_index("Music")
 	if music_bus != -1:
 		AudioServer.set_bus_mute(music_bus, not enabled)

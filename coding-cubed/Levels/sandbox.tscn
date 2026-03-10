@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="2_o45c4"]
 [ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_o45c4"]
 [ext_resource type="PackedScene" uid="uid://diiqyg0w0mal3" path="res://Blocks/var_block_locked.tscn" id="5_forfm"]
-[ext_resource type="PackedScene" path="res://Levels/music.tscn" id="5_um60u"]
 [ext_resource type="PackedScene" uid="uid://m7u4n0nrmdqi" path="res://Blocks/if_block_locked.tscn" id="6_forfm"]
 [ext_resource type="PackedScene" uid="uid://owepxypliupr" path="res://Blocks/increment_block_locked.tscn" id="7_o3scy"]
 [ext_resource type="PackedScene" uid="uid://btka1ennwbapp" path="res://Blocks/start_block_locked.tscn" id="8_20ygc"]
@@ -95,8 +94,6 @@ mesh = SubResource("BoxMesh_um60u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=961036303]
 shape = SubResource("BoxShape3D_forfm")
-
-[node name="BGMusic" parent="." unique_id=296702093 instance=ExtResource("5_um60u")]
 
 [node name="Block" parent="." unique_id=1262073338 instance=ExtResource("5_forfm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
