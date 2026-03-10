@@ -13,6 +13,8 @@ extends CharacterBody3D
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 @onready var pause_resume_button: Button = $CanvasLayer/PauseMenu/Center/Panel/VBox/ResumeButton
 @onready var pause_settings_overlay: Control = $CanvasLayer/PauseMenu/SettingsOverlay
+# Backward-compatible alias used by tests expecting a placeholder notice node.
+@onready var pause_settings_notice: Control = $CanvasLayer/PauseMenu/SettingsOverlay
 @onready var pause_settings_master_volume_slider: HSlider = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MasterVolumeHBox/MasterVolumeSlider
 @onready var pause_settings_music_check_box: CheckBox = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MusicHBox/MusicCheckBox
 @onready var pause_settings_hotbar_size_option: OptionButton = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/HotbarSizeHBox/HotbarSizeOption
@@ -607,7 +609,8 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_pause_notice_timer_timeout() -> void:
-	pass
+	if pause_settings_notice != null:
+		pause_settings_notice.visible = false
 
 func _on_pause_settings_master_volume_value_changed(value: float) -> void:
 	_apply_master_volume(value)

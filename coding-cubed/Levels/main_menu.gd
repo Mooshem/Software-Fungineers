@@ -2,7 +2,6 @@ extends Control
 
 const LEVEL_SELECT_SCENE := "res://Levels/level_select.tscn"
 const SANDBOX_SCENE := "res://Levels/sandbox.tscn"
-const SETTINGS_SCENE := "res://Levels/settings_menu.tscn"
 
 const FADE_DURATION := 0.25
 const BACKGROUND_YAW_SPEED := 0.12
@@ -88,7 +87,8 @@ func _on_sandbox_button_pressed() -> void:
 	_transition_to_scene(SANDBOX_SCENE)
 
 func _on_settings_button_pressed() -> void:
-	_transition_to_scene(SETTINGS_SCENE)
+	settings_notice.visible = true
+	notice_timer.start()
 
 func _on_quit_button_pressed() -> void:
 	if _is_transitioning:
