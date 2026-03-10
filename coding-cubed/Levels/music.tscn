@@ -1,57 +1,9 @@
 [gd_scene format=3 uid="uid://b067m7y0d6wga"]
 
 [ext_resource type="AudioStream" uid="uid://cnpownqekgccr" path="res://assets/Audio/On The Flip - The Grey Room _ Density & Time.mp3" id="1_dmvmt"]
-
-[sub_resource type="GDScript" id="GDScript_h8y5b"]
-script/source = "extends AudioStreamPlayer
-
-@export var default_track: AudioStream
-@export var fade_time: float = 1.0
-
-var _tween: Tween
-
-func _ready():
-	if default_track:
-		stream = default_track
-	
-	if not playing and stream:
-		play()
-
-
-func play_track(new_track: AudioStream):
-	if stream == new_track:
-		return
-	
-	_fade_out_and_switch(new_track)
-
-
-func stop_music():
-	stop()
-
-
-func set_volume_db_safe(value: float):
-	volume_db = clamp(value, -80, 0)
-
-
-func _fade_out_and_switch(new_track: AudioStream):
-	if _tween:
-		_tween.kill()
-
-	_tween = create_tween()
-	_tween.tween_property(self, \"volume_db\", -60, fade_time)
-
-	await _tween.finished
-
-	stream = new_track
-	play()
-	volume_db = -60
-
-	_tween = create_tween()
-	_tween.tween_property(self, \"volume_db\", 0, fade_time)
-"
+[ext_resource type="Script" path="res://Levels/Music.gd" id="2_music_script"]
 
 [node name="BGMusic" type="AudioStreamPlayer" unique_id=296702093]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2101826132]
+autoplay = true
 stream = ExtResource("1_dmvmt")
-script = SubResource("GDScript_h8y5b")
+script = ExtResource("2_music_script")

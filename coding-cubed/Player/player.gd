@@ -12,7 +12,12 @@ extends CharacterBody3D
 @onready var hotbar_selection_label: Label = $CanvasLayer/HotbarSelectionLabel
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 @onready var pause_resume_button: Button = $CanvasLayer/PauseMenu/Center/Panel/VBox/ResumeButton
-@onready var pause_settings_notice: Label = $CanvasLayer/PauseMenu/Center/Panel/VBox/SettingsNotice
+@onready var pause_settings_overlay: Control = $CanvasLayer/PauseMenu/SettingsOverlay
+# Backward-compatible alias used by tests expecting a placeholder notice node.
+@onready var pause_settings_notice: Control = $CanvasLayer/PauseMenu/SettingsOverlay
+@onready var pause_settings_master_volume_slider: HSlider = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MasterVolumeHBox/MasterVolumeSlider
+@onready var pause_settings_music_check_box: CheckBox = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MusicHBox/MusicCheckBox
+@onready var pause_settings_hotbar_size_option: OptionButton = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/HotbarSizeHBox/HotbarSizeOption
 @onready var pause_notice_timer: Timer = $CanvasLayer/PauseNoticeTimer
 @onready var pause_fade_overlay: ColorRect = $CanvasLayer/PauseFadeOverlay
 
@@ -45,8 +50,11 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 5.5
 const MOUSE_SENSITIVITY = 0.003
 
-# Hotbar settings.
+# Hotbar & settings keys.
 const HOTBAR_SLOT_COUNT: int = 5
+const SETTINGS_MASTER_VOLUME_KEY := "game/settings/master_volume"
+const SETTINGS_MUSIC_ENABLED_KEY := "game/settings/music_enabled"
+const SETTINGS_HOTBAR_SCALE_KEY := "game/settings/hotbar_scale"
 const GRID_STEP: float = 1.0
 const GRID_EPSILON: float = 0.05
 const HOTBAR_SLOT_SHORT_NAMES := ["VAR", "IF", "WIRE", "START", "INC"]
@@ -68,17 +76,123 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pause_menu.visible = false
-	pause_settings_notice.visible = false
+	if pause_settings_overlay != null:
+		pause_settings_overlay.visible = false
 	pause_fade_overlay.modulate.a = 0.0
 	
 	# Blocks
 	variable_block_menu.visible = false
 	if_block_menu.visible = false
 	increment_block_menu.visible = false
+	_init_pause_settings_hotbar_size_options()
+	_load_pause_settings()
 	update_hotbar_visuals()
+	# Deferred so the hotbar has a valid size before we compute its pivot.
+	_apply_hotbar_scale_from_settings.call_deferred()
 	if hotbar_selection_label != null:
 		hotbar_selection_label.visible = false
 		hotbar_selection_label.modulate.a = 0.0
+
+func _apply_hotbar_scale_from_settings() -> void:
+	var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 2.0))
+	if typeof(hotbar_scale) != TYPE_FLOAT:
+		hotbar_scale = 2.0
+	if hotbar != null:
+		# Scale from the center-bottom so the hotbar stays centered on screen.
+		hotbar.pivot_offset = Vector2(hotbar.size.x * 0.5, hotbar.size.y)
+		hotbar.scale = Vector2.ONE * hotbar_scale
+	if hotbar_selection_label != null:
+		# Keep the label above the scaled hotbar.
+		# Hotbar bottom anchor offset = -12, unscaled height = 44.
+		# After scaling from bottom pivot, hotbar visual top = -(12 + 44 * scale).
+		const HOTBAR_BOTTOM_OFFSET: float = -12.0
+		const HOTBAR_UNSCALED_HEIGHT: float = 44.0
+		const LABEL_GAP: float = 8.0
+		const LABEL_HEIGHT: float = 24.0
+		var label_bottom: float = HOTBAR_BOTTOM_OFFSET - HOTBAR_UNSCALED_HEIGHT * hotbar_scale - LABEL_GAP
+		hotbar_selection_label.offset_bottom = label_bottom
+		hotbar_selection_label.offset_top = label_bottom - LABEL_HEIGHT
+
+func _init_pause_settings_hotbar_size_options() -> void:
+	if pause_settings_hotbar_size_option == null:
+		return
+	pause_settings_hotbar_size_option.clear()
+	pause_settings_hotbar_size_option.add_item("Small", 0)
+	pause_settings_hotbar_size_option.add_item("Medium", 1)
+	pause_settings_hotbar_size_option.add_item("Large", 2)
+
+func _load_pause_settings() -> void:
+	if pause_settings_master_volume_slider != null:
+		var master_volume: float = float(ProjectSettings.get_setting(SETTINGS_MASTER_VOLUME_KEY, 1.0))
+		if typeof(master_volume) != TYPE_FLOAT:
+			master_volume = 1.0
+		pause_settings_master_volume_slider.value = clamp(master_volume, 0.0, 1.0)
+		_apply_master_volume(pause_settings_master_volume_slider.value)
+
+	if pause_settings_music_check_box != null:
+		var music_enabled: bool = bool(ProjectSettings.get_setting(SETTINGS_MUSIC_ENABLED_KEY, true))
+		if typeof(music_enabled) != TYPE_BOOL:
+			music_enabled = true
+		pause_settings_music_check_box.button_pressed = music_enabled
+		_apply_music_enabled(pause_settings_music_check_box.button_pressed)
+
+	if pause_settings_hotbar_size_option != null:
+		var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 2.0))
+		if typeof(hotbar_scale) != TYPE_FLOAT:
+			hotbar_scale = 2.0
+		var index := 1
+		if hotbar_scale <= 1.85:
+			index = 0
+		elif hotbar_scale >= 2.2:
+			index = 2
+		pause_settings_hotbar_size_option.select(index)
+		_apply_hotbar_scale_from_settings.call_deferred()
+
+func _save_setting(key: String, value: Variant) -> void:
+	ProjectSettings.set_setting(key, value)
+	ProjectSettings.save()
+
+func _apply_master_volume(value: float) -> void:
+	var safe_value: float = clampf(value, 0.0, 1.0)
+	var db_value: float = lerpf(-30.0, 0.0, safe_value)
+	var master_bus := AudioServer.get_bus_index("Master")
+	if master_bus != -1:
+		AudioServer.set_bus_volume_db(master_bus, db_value)
+
+func _apply_music_enabled(enabled: bool) -> void:
+	var music_root := get_node_or_null("/root/Music")
+	if music_root != null:
+		var candidates: Array = []
+		if music_root is AudioStreamPlayer:
+			candidates.append(music_root)
+		for child in music_root.get_children():
+			if child is AudioStreamPlayer:
+				candidates.append(child)
+
+		var music_player: AudioStreamPlayer = null
+		for candidate in candidates:
+			if candidate is AudioStreamPlayer:
+				if music_player == null:
+					music_player = candidate
+				if candidate.has_method("stop_music"):
+					music_player = candidate
+					break
+
+		if music_player != null:
+			if enabled:
+				if not music_player.playing and music_player.stream != null:
+					music_player.play()
+			else:
+				if music_player.has_method("stop_music"):
+					music_player.call("stop_music")
+				else:
+					music_player.stop()
+		return
+
+	# Fallback: if a dedicated Music bus exists, toggle it.
+	var music_bus := AudioServer.get_bus_index("Music")
+	if music_bus != -1:
+		AudioServer.set_bus_mute(music_bus, not enabled)
 
 func _unhandled_input(event: InputEvent) -> void:
 	"""Handles one time events."""
@@ -461,15 +575,18 @@ func _pause_game() -> void:
 func _resume_game() -> void:
 	get_tree().paused = false
 	pause_menu.visible = false
-	pause_settings_notice.visible = false
+	if pause_settings_overlay != null:
+		pause_settings_overlay.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_resume_button_pressed() -> void:
 	_resume_game()
 
 func _on_settings_button_pressed() -> void:
-	pause_settings_notice.visible = true
-	pause_notice_timer.start()
+	if pause_settings_overlay != null:
+		_load_pause_settings()
+		pause_settings_overlay.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_main_menu_button_pressed() -> void:
 	if is_pause_transitioning:
@@ -492,7 +609,30 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_pause_notice_timer_timeout() -> void:
-	pause_settings_notice.visible = false
+	if pause_settings_notice != null:
+		pause_settings_notice.visible = false
+
+func _on_pause_settings_master_volume_value_changed(value: float) -> void:
+	_apply_master_volume(value)
+	_save_setting(SETTINGS_MASTER_VOLUME_KEY, value)
+
+func _on_pause_settings_music_check_box_toggled(button_pressed: bool) -> void:
+	_apply_music_enabled(button_pressed)
+	_save_setting(SETTINGS_MUSIC_ENABLED_KEY, button_pressed)
+
+func _on_pause_settings_hotbar_size_option_item_selected(index: int) -> void:
+	var scale := 2.0
+	if index == 0:
+		scale = 1.7
+	elif index == 2:
+		scale = 2.4
+	_save_setting(SETTINGS_HOTBAR_SCALE_KEY, scale)
+	_apply_hotbar_scale_from_settings()
+
+func _on_pause_settings_close_button_pressed() -> void:
+	if pause_settings_overlay != null:
+		pause_settings_overlay.visible = false
+	pause_resume_button.grab_focus()
 
 """
 # Variable block overlay
