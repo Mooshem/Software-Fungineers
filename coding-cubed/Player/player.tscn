@@ -312,13 +312,122 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
 text = "QUIT"
 
-[node name="SettingsNotice" type="Label" parent="CanvasLayer/PauseMenu/Center/Panel/VBox" unique_id=185723365]
+[node name="SettingsOverlay" type="Control" parent="CanvasLayer/PauseMenu" unique_id=185723365]
 visible = false
-custom_minimum_size = Vector2(0, 48)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="CanvasLayer/PauseMenu/SettingsOverlay" unique_id=200000001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Center" type="CenterContainer" parent="CanvasLayer/PauseMenu/SettingsOverlay" unique_id=200000002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center" unique_id=200000003]
+custom_minimum_size = Vector2(420, 360)
 layout_mode = 2
-text = "Settings panel placeholder (WIP)."
+theme_override_styles/panel = SubResource("StyleBoxFlat_pause_panel")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel" unique_id=200000004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox" unique_id=200000005]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MasterVolumeHBox" type="HBoxContainer" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox" unique_id=200000006]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MasterVolumeHBox" unique_id=200000007]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Master Volume"
+vertical_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MasterVolumeHBox" unique_id=200000008]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicHBox" type="HBoxContainer" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox" unique_id=200000009]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MusicHBox" unique_id=200000010]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Music"
+vertical_alignment = 1
+
+[node name="MusicCheckBox" type="CheckBox" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MusicHBox" unique_id=200000011]
+layout_mode = 2
+text = "Enabled"
+
+[node name="HotbarSizeHBox" type="HBoxContainer" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox" unique_id=200000012]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+
+[node name="HotbarSizeLabel" type="Label" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/HotbarSizeHBox" unique_id=200000013]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Hotbar Size"
+vertical_alignment = 1
+
+[node name="HotbarSizeOption" type="OptionButton" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/HotbarSizeHBox" unique_id=200000014]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Control" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox" unique_id=200000015]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox" unique_id=200000016]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_button_hover")
+text = "CLOSE"
+
+[connection signal="value_changed" from="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MasterVolumeHBox/MasterVolumeSlider" to="." method="_on_pause_settings_master_volume_value_changed"]
+[connection signal="toggled" from="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MusicHBox/MusicCheckBox" to="." method="_on_pause_settings_music_check_box_toggled"]
+[connection signal="item_selected" from="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/HotbarSizeHBox/HotbarSizeOption" to="." method="_on_pause_settings_hotbar_size_option_item_selected"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/CloseButton" to="." method="_on_pause_settings_close_button_pressed"]
 
 [node name="PauseNoticeTimer" type="Timer" parent="CanvasLayer" unique_id=2109474573]
 wait_time = 1.6

@@ -12,7 +12,10 @@ extends CharacterBody3D
 @onready var hotbar_selection_label: Label = $CanvasLayer/HotbarSelectionLabel
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 @onready var pause_resume_button: Button = $CanvasLayer/PauseMenu/Center/Panel/VBox/ResumeButton
-@onready var pause_settings_notice: Label = $CanvasLayer/PauseMenu/Center/Panel/VBox/SettingsNotice
+@onready var pause_settings_overlay: Control = $CanvasLayer/PauseMenu/SettingsOverlay
+@onready var pause_settings_master_volume_slider: HSlider = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MasterVolumeHBox/MasterVolumeSlider
+@onready var pause_settings_music_check_box: CheckBox = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/MusicHBox/MusicCheckBox
+@onready var pause_settings_hotbar_size_option: OptionButton = $CanvasLayer/PauseMenu/SettingsOverlay/Center/Panel/VBox/HotbarSizeHBox/HotbarSizeOption
 @onready var pause_notice_timer: Timer = $CanvasLayer/PauseNoticeTimer
 @onready var pause_fade_overlay: ColorRect = $CanvasLayer/PauseFadeOverlay
 
@@ -45,8 +48,11 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 5.5
 const MOUSE_SENSITIVITY = 0.003
 
-# Hotbar settings.
+# Hotbar & settings keys.
 const HOTBAR_SLOT_COUNT: int = 5
+const SETTINGS_MASTER_VOLUME_KEY := "game/settings/master_volume"
+const SETTINGS_MUSIC_ENABLED_KEY := "game/settings/music_enabled"
+const SETTINGS_HOTBAR_SCALE_KEY := "game/settings/hotbar_scale"
 const GRID_STEP: float = 1.0
 const GRID_EPSILON: float = 0.05
 const HOTBAR_SLOT_SHORT_NAMES := ["VAR", "IF", "WIRE", "START", "INC"]
@@ -68,17 +74,79 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pause_menu.visible = false
-	pause_settings_notice.visible = false
+	if pause_settings_overlay != null:
+		pause_settings_overlay.visible = false
 	pause_fade_overlay.modulate.a = 0.0
 	
 	# Blocks
 	variable_block_menu.visible = false
 	if_block_menu.visible = false
 	increment_block_menu.visible = false
+	_init_pause_settings_hotbar_size_options()
+	_load_pause_settings()
+	_apply_hotbar_scale_from_settings()
 	update_hotbar_visuals()
 	if hotbar_selection_label != null:
 		hotbar_selection_label.visible = false
 		hotbar_selection_label.modulate.a = 0.0
+
+func _apply_hotbar_scale_from_settings() -> void:
+	var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 1.0))
+	if typeof(hotbar_scale) != TYPE_FLOAT:
+		hotbar_scale = 1.0
+	if hotbar != null:
+		hotbar.scale = Vector2.ONE * hotbar_scale
+
+func _init_pause_settings_hotbar_size_options() -> void:
+	if pause_settings_hotbar_size_option == null:
+		return
+	pause_settings_hotbar_size_option.clear()
+	pause_settings_hotbar_size_option.add_item("Small", 0)
+	pause_settings_hotbar_size_option.add_item("Medium", 1)
+	pause_settings_hotbar_size_option.add_item("Large", 2)
+
+func _load_pause_settings() -> void:
+	if pause_settings_master_volume_slider != null:
+		var master_volume: float = float(ProjectSettings.get_setting(SETTINGS_MASTER_VOLUME_KEY, 1.0))
+		if typeof(master_volume) != TYPE_FLOAT:
+			master_volume = 1.0
+		pause_settings_master_volume_slider.value = clamp(master_volume, 0.0, 1.0)
+		_apply_master_volume(pause_settings_master_volume_slider.value)
+
+	if pause_settings_music_check_box != null:
+		var music_enabled: bool = bool(ProjectSettings.get_setting(SETTINGS_MUSIC_ENABLED_KEY, true))
+		if typeof(music_enabled) != TYPE_BOOL:
+			music_enabled = true
+		pause_settings_music_check_box.button_pressed = music_enabled
+		_apply_music_enabled(pause_settings_music_check_box.button_pressed)
+
+	if pause_settings_hotbar_size_option != null:
+		var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 1.0))
+		if typeof(hotbar_scale) != TYPE_FLOAT:
+			hotbar_scale = 1.0
+		var index := 1
+		if hotbar_scale <= 0.9:
+			index = 0
+		elif hotbar_scale >= 1.1:
+			index = 2
+		pause_settings_hotbar_size_option.select(index)
+		_apply_hotbar_scale_from_settings()
+
+func _save_setting(key: String, value: Variant) -> void:
+	ProjectSettings.set_setting(key, value)
+	ProjectSettings.save()
+
+func _apply_master_volume(value: float) -> void:
+	var safe_value: float = clampf(value, 0.0, 1.0)
+	var db_value: float = lerpf(-30.0, 0.0, safe_value)
+	var master_bus := AudioServer.get_bus_index("Master")
+	if master_bus != -1:
+		AudioServer.set_bus_volume_db(master_bus, db_value)
+
+func _apply_music_enabled(enabled: bool) -> void:
+	var music_bus := AudioServer.get_bus_index("Music")
+	if music_bus != -1:
+		AudioServer.set_bus_mute(music_bus, not enabled)
 
 func _unhandled_input(event: InputEvent) -> void:
 	"""Handles one time events."""
@@ -461,15 +529,18 @@ func _pause_game() -> void:
 func _resume_game() -> void:
 	get_tree().paused = false
 	pause_menu.visible = false
-	pause_settings_notice.visible = false
+	if pause_settings_overlay != null:
+		pause_settings_overlay.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_resume_button_pressed() -> void:
 	_resume_game()
 
 func _on_settings_button_pressed() -> void:
-	pause_settings_notice.visible = true
-	pause_notice_timer.start()
+	if pause_settings_overlay != null:
+		_load_pause_settings()
+		pause_settings_overlay.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_main_menu_button_pressed() -> void:
 	if is_pause_transitioning:
@@ -492,7 +563,29 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_pause_notice_timer_timeout() -> void:
-	pause_settings_notice.visible = false
+	pass
+
+func _on_pause_settings_master_volume_value_changed(value: float) -> void:
+	_apply_master_volume(value)
+	_save_setting(SETTINGS_MASTER_VOLUME_KEY, value)
+
+func _on_pause_settings_music_check_box_toggled(button_pressed: bool) -> void:
+	_apply_music_enabled(button_pressed)
+	_save_setting(SETTINGS_MUSIC_ENABLED_KEY, button_pressed)
+
+func _on_pause_settings_hotbar_size_option_item_selected(index: int) -> void:
+	var scale := 1.0
+	if index == 0:
+		scale = 0.85
+	elif index == 2:
+		scale = 1.2
+	_save_setting(SETTINGS_HOTBAR_SCALE_KEY, scale)
+	_apply_hotbar_scale_from_settings()
+
+func _on_pause_settings_close_button_pressed() -> void:
+	if pause_settings_overlay != null:
+		pause_settings_overlay.visible = false
+	pause_resume_button.grab_focus()
 
 """
 # Variable block overlay
