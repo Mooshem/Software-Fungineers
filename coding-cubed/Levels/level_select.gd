@@ -5,8 +5,10 @@ const SANDBOX_SCENE := "res://Levels/sandbox.tscn"
 const LEVEL_ONE_SCENE := "res://Levels/Level1.tscn"
 const FADE_DURATION := 0.25
 
-#Levels
+# Levels 1–5 (some scenes may not exist yet)
 const LEVEL2 := "res://Levels/Level2.tscn"
+const LEVEL3 := "res://Levels/Level3.tscn"
+const LEVEL4 := "res://Levels/Level4.tscn"
 const LEVEL5 := "res://Levels/Level5.tscn"
 
 @onready var notice_label: Label = $Center/Panel/VBox/Notice
@@ -23,7 +25,13 @@ func _on_level_one_button_pressed() -> void:
 
 func _on_level_two_button_pressed() -> void:
 	_transition_to_scene(LEVEL2)
-	
+
+func _on_level_three_button_pressed() -> void:
+	_transition_to_scene(LEVEL3)
+
+func _on_level_four_button_pressed() -> void:
+	_transition_to_scene(LEVEL4)
+
 func _on_level_five_button_pressed() -> void:
 	_transition_to_scene(LEVEL5)
 

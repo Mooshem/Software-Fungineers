@@ -53,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Center" unique_id=1082209531]
-custom_minimum_size = Vector2(420, 430)
+custom_minimum_size = Vector2(420, 560)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
@@ -94,6 +94,30 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 text = "LEVEL 2"
 
+[node name="LevelThreeButton" type="Button" parent="Center/Panel/VBox" unique_id=3000001]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "LEVEL 3"
+
+[node name="LevelFourButton" type="Button" parent="Center/Panel/VBox" unique_id=4000001]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "LEVEL 4"
+
+[node name="LevelFiveButton" type="Button" parent="Center/Panel/VBox" unique_id=5000001]
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "LEVEL 5"
+
 [node name="BackButton" type="Button" parent="Center/Panel/VBox" unique_id=1110525552]
 custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
@@ -121,4 +145,7 @@ color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="Center/Panel/VBox/LevelOneButton" to="." method="_on_level_one_button_pressed"]
 [connection signal="pressed" from="Center/Panel/VBox/LevelTwoButton" to="." method="_on_level_two_button_pressed"]
+[connection signal="pressed" from="Center/Panel/VBox/LevelThreeButton" to="." method="_on_level_three_button_pressed"]
+[connection signal="pressed" from="Center/Panel/VBox/LevelFourButton" to="." method="_on_level_four_button_pressed"]
+[connection signal="pressed" from="Center/Panel/VBox/LevelFiveButton" to="." method="_on_level_five_button_pressed"]
 [connection signal="pressed" from="Center/Panel/VBox/BackButton" to="." method="_on_back_button_pressed"]
