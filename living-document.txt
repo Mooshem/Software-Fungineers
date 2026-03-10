@@ -880,3 +880,38 @@ Triggers for a CI Build:
     main, and manual triggers via workflow_dispatch. The export workflow is triggered only on pushes to main 
     and manual triggers, as platform builds are intended to reflect stable, merged code rather than 
     work-in-progress branches.
+
+
+===================================================================
+Reflections
+===================================================================
+
+Each team member provides at least three lessons learned from this project experience.
+
+Donovan Thach:
+    1) [TODO - Donovan lesson 1]
+    2) [TODO - Donovan lesson 2]
+    3) [TODO - Donovan lesson 3]
+
+Cash Limberg:
+    1) [TODO - Cash lesson 1]
+    2) [TODO - Cash lesson 2]
+    3) [TODO - Cash lesson 3]
+
+Daniel Martin:
+    1) [TODO - Daniel lesson 1]
+    2) [TODO - Daniel lesson 2]
+    3) [TODO - Daniel lesson 3]
+
+Zheng Chen:
+    1) Scoping and prioritization matter more than adding many features.
+       During the final phase, narrowing scope to stable, testable features improved overall
+       product quality and reduced last-minute regressions.
+
+    2) UI/UX changes in games should be validated with playtesting early, not only near release.
+       Small layout details (for example pause overlay behavior, hotbar scale, and selection feedback)
+       had outsized impact on usability, and iterative feedback made these systems significantly better.
+
+    3) Automated validation catches integration drift that manual testing misses.
+       CI and GUT tests surfaced scene wiring and backward-compatibility issues quickly, which reinforced
+       the value of maintaining tests as functionality evolves.
