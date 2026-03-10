@@ -38,13 +38,13 @@ func _load_settings() -> void:
 		music_enabled = true
 	music_check_box.button_pressed = music_enabled
 
-	var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 1.0))
+	var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 2.0))
 	if typeof(hotbar_scale) != TYPE_FLOAT:
-		hotbar_scale = 1.0
+		hotbar_scale = 2.0
 	var index := 1
-	if hotbar_scale <= 0.9:
+	if hotbar_scale <= 1.85:
 		index = 0
-	elif hotbar_scale >= 1.1:
+	elif hotbar_scale >= 2.2:
 		index = 2
 	hotbar_size_option.select(index)
 
@@ -90,11 +90,11 @@ func _on_music_check_box_toggled(button_pressed: bool) -> void:
 	_save_setting(SETTINGS_MUSIC_ENABLED_KEY, button_pressed)
 
 func _on_hotbar_size_option_item_selected(index: int) -> void:
-	var scale := 1.0
+	var scale := 2.0
 	if index == 0:
-		scale = 0.85
+		scale = 1.7
 	elif index == 2:
-		scale = 1.2
+		scale = 2.4
 	_save_setting(SETTINGS_HOTBAR_SCALE_KEY, scale)
 
 func _on_back_button_pressed() -> void:

@@ -34,8 +34,8 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 [game]
 
 settings/music_enabled=false
-settings/master_volume=0.39
-settings/hotbar_scale=0.85
+settings/master_volume=0.22
+settings/hotbar_scale=2.4
 
 [input]
 

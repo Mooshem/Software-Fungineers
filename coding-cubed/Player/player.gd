@@ -84,18 +84,32 @@ func _ready() -> void:
 	increment_block_menu.visible = false
 	_init_pause_settings_hotbar_size_options()
 	_load_pause_settings()
-	_apply_hotbar_scale_from_settings()
 	update_hotbar_visuals()
+	# Deferred so the hotbar has a valid size before we compute its pivot.
+	_apply_hotbar_scale_from_settings.call_deferred()
 	if hotbar_selection_label != null:
 		hotbar_selection_label.visible = false
 		hotbar_selection_label.modulate.a = 0.0
 
 func _apply_hotbar_scale_from_settings() -> void:
-	var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 1.0))
+	var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 2.0))
 	if typeof(hotbar_scale) != TYPE_FLOAT:
-		hotbar_scale = 1.0
+		hotbar_scale = 2.0
 	if hotbar != null:
+		# Scale from the center-bottom so the hotbar stays centered on screen.
+		hotbar.pivot_offset = Vector2(hotbar.size.x * 0.5, hotbar.size.y)
 		hotbar.scale = Vector2.ONE * hotbar_scale
+	if hotbar_selection_label != null:
+		# Keep the label above the scaled hotbar.
+		# Hotbar bottom anchor offset = -12, unscaled height = 44.
+		# After scaling from bottom pivot, hotbar visual top = -(12 + 44 * scale).
+		const HOTBAR_BOTTOM_OFFSET: float = -12.0
+		const HOTBAR_UNSCALED_HEIGHT: float = 44.0
+		const LABEL_GAP: float = 8.0
+		const LABEL_HEIGHT: float = 24.0
+		var label_bottom: float = HOTBAR_BOTTOM_OFFSET - HOTBAR_UNSCALED_HEIGHT * hotbar_scale - LABEL_GAP
+		hotbar_selection_label.offset_bottom = label_bottom
+		hotbar_selection_label.offset_top = label_bottom - LABEL_HEIGHT
 
 func _init_pause_settings_hotbar_size_options() -> void:
 	if pause_settings_hotbar_size_option == null:
@@ -121,16 +135,16 @@ func _load_pause_settings() -> void:
 		_apply_music_enabled(pause_settings_music_check_box.button_pressed)
 
 	if pause_settings_hotbar_size_option != null:
-		var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 1.0))
+		var hotbar_scale: float = float(ProjectSettings.get_setting(SETTINGS_HOTBAR_SCALE_KEY, 2.0))
 		if typeof(hotbar_scale) != TYPE_FLOAT:
-			hotbar_scale = 1.0
+			hotbar_scale = 2.0
 		var index := 1
-		if hotbar_scale <= 0.9:
+		if hotbar_scale <= 1.85:
 			index = 0
-		elif hotbar_scale >= 1.1:
+		elif hotbar_scale >= 2.2:
 			index = 2
 		pause_settings_hotbar_size_option.select(index)
-		_apply_hotbar_scale_from_settings()
+		_apply_hotbar_scale_from_settings.call_deferred()
 
 func _save_setting(key: String, value: Variant) -> void:
 	ProjectSettings.set_setting(key, value)
@@ -574,11 +588,11 @@ func _on_pause_settings_music_check_box_toggled(button_pressed: bool) -> void:
 	_save_setting(SETTINGS_MUSIC_ENABLED_KEY, button_pressed)
 
 func _on_pause_settings_hotbar_size_option_item_selected(index: int) -> void:
-	var scale := 1.0
+	var scale := 2.0
 	if index == 0:
-		scale = 0.85
+		scale = 1.7
 	elif index == 2:
-		scale = 1.2
+		scale = 2.4
 	_save_setting(SETTINGS_HOTBAR_SCALE_KEY, scale)
 	_apply_hotbar_scale_from_settings()
 
