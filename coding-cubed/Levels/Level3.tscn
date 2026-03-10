@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://bb1stixl2qw43"]
+
+[ext_resource type="PackedScene" uid="uid://bn86nsjl8plpi" path="res://Player/player.tscn" id="1_twi1l"]
+[ext_resource type="Texture2D" uid="uid://bngv356x2wv6p" path="res://assets/PNGs/block-2.png" id="2_q5lgr"]
+[ext_resource type="Texture2D" uid="uid://o3hwhlhii1wh" path="res://PNGs/grass2.png" id="3_hy5j1"]
+[ext_resource type="PackedScene" uid="uid://btka1ennwbapp" path="res://Blocks/start_block_locked.tscn" id="4_xxxi4"]
+[ext_resource type="PackedScene" uid="uid://bamwejqhtlk32" path="res://Blocks/end_block.tscn" id="5_4c4gq"]
+[ext_resource type="PackedScene" uid="uid://m7u4n0nrmdqi" path="res://Blocks/if_block_locked.tscn" id="7_dxjb0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o45c4"]
+albedo_texture = ExtResource("2_q5lgr")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jglcl"]
+material = SubResource("StandardMaterial3D_o45c4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0h0a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmlkh"]
+albedo_texture = ExtResource("3_hy5j1")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(150, 100, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m3ha0"]
+material = SubResource("StandardMaterial3D_fmlkh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vd23k"]
+
+[sub_resource type="GDScript" id="GDScript_vybwq"]
+script/source = "\"\"\"
+Developer: Daniel Martin
+End Block — receives a signal, evaluates a hardcoded condition,
+and on success transitions the player to the level select screen.
+\"\"\"
+
+extends FlowBlock
+
+# ── Developer-set constants ────────────────────────────────────────────────
+const LEVEL_SELECT_SCENE := \"res://Levels/level_select.tscn\"
+const FADE_DURATION       := 0.25
+
+# Hardcoded condition (edit these values, never exposed to the player)
+const COND_VAR1    : String = \"a\"   # name of the first variable block
+const COND_VAR2    : String = \"b\"      # name OR literal to compare against
+const COND_COMPARE : String = \">\"      # >, <, >=, <=, ==, !=
+# ──────────────────────────────────────────────────────────────────────────
+
+var raycast: RayCast3D
+var player = null
+
+var powered     := false
+var is_locked   := true   # block is never editable
+
+var _input_sources: Array[NodePath] = []
+var _fade_overlay: ColorRect = null
+var _is_transitioning := false
+
+func _ready() -> void:
+	super._ready()
+	player = get_tree().get_first_node_in_group(\"player\")
+	if player:
+		raycast = player.get_node(\"Head/Camera3D/RayCast3D\")
+
+	# Visual cue: tint the block so players know it's special / locked
+	var mesh = $MeshInstance3D
+	if mesh:
+		var existing = mesh.get_active_material(0)
+		if existing is StandardMaterial3D:
+			var mat = existing.duplicate() as StandardMaterial3D
+			mat.albedo_color = Color(0.2, 0.8, 0.3, 1.0)   # green \"exit\" tint
+			mesh.material_override = mat
+
+	# Create a full-screen fade overlay (same technique as the level select screen)
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color(0, 0, 0, 0)
+	_fade_overlay.anchors_preset = Control.PRESET_FULL_RECT
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var canvas := CanvasLayer.new()
+	canvas.layer = 100          # render on top of everything
+	canvas.add_child(_fade_overlay)
+	add_child(canvas)
+
+# ── No interaction menu — interact does nothing on this block ──────────────
+func _unhandled_input(_event: InputEvent) -> void:
+	pass   # intentionally empty; EndBlock is not interactive
+
+# ── Condition evaluation ───────────────────────────────────────────────────
+func evaluate() -> bool:
+	var val_a := _get_var_value(COND_VAR1)
+	var val_b := _get_var_value(COND_VAR2)
+
+	if val_a == \"\" :
+		push_warning(\"EndBlock: could not resolve VAR1 '%s'.\" % COND_VAR1)
+		return false
+
+	if val_a.is_valid_float() and val_b.is_valid_float():
+		var a := float(val_a)
+		var b := float(val_b)
+		match COND_COMPARE:
+			\">\":  return a > b
+			\"<\":  return a < b
+			\">=\": return a >= b
+			\"<=\": return a <= b
+			\"==\": return a == b
+			\"!=\": return a != b
+	else:
+		match COND_COMPARE:
+			\"==\": return val_a == val_b
+			\"!=\": return val_a != val_b
+
+	return false
+
+func _get_var_value(var_name: String) -> String:
+	if var_name == \"\":
+		return \"\"
+	for node in get_tree().get_nodes_in_group(\"var_blocks\"):
+		if node.var_name == var_name:
+			return node.var_val
+	return \"\"   # caller treats empty string as \"not found / use as literal\"
+
+# ── Signal handling ────────────────────────────────────────────────────────
+func receive_signal(run_id: int = -1, from_node: Node = null, step_id: int = 0) -> void:
+	if not should_process_signal(run_id, step_id):
+		return
+	flash_signal()
+	powered = true
+
+	if evaluate():
+		_exit_to_level_select()
+
+func _exit_to_level_select() -> void:
+	if _is_transitioning:
+		return
+	_is_transitioning = true
+	get_tree().paused = false   # unpause in case it was paused by a menu
+
+	var tween := create_tween()
+	_fade_overlay.modulate.a = 0.0
+	tween.tween_property(_fade_overlay, \"modulate:a\", 1.0, FADE_DURATION)
+	await tween.finished
+	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)
+
+# ── Reset ──────────────────────────────────────────────────────────────────
+func reset_signal_state() -> void:
+	super.reset_signal_state()
+	_input_sources.clear()
+	_is_transitioning = false
+"
+
+[node name="Level2" type="Node3D" unique_id=352676919]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=905828333]
+transform = Transform3D(0.1464466, -0.8535533, 0.49999994, 0.49999994, 0.49999997, 0.7071067, -0.85355324, 0.14644662, 0.49999994, 0, 0, 0)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="Player" parent="." unique_id=399912352 instance=ExtResource("1_twi1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1877623, 0, 0)
+
+[node name="WallsAndFloor" type="Node3D" parent="." unique_id=40757837]
+
+[node name="NorthWall" type="StaticBody3D" parent="WallsAndFloor" unique_id=50889318]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -32, -22.564, 0)
+disable_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallsAndFloor/NorthWall" unique_id=1441867211]
+mesh = SubResource("BoxMesh_jglcl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallsAndFloor/NorthWall" unique_id=1986292296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.94937587, 0)
+visibility_parent = NodePath("../MeshInstance3D")
+shape = SubResource("BoxShape3D_w0h0a")
+
+[node name="WestWall" type="StaticBody3D" parent="WallsAndFloor" unique_id=1807815361]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 25, 32)
+disable_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallsAndFloor/WestWall" unique_id=136870928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95572126, 0)
+mesh = SubResource("BoxMesh_jglcl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallsAndFloor/WestWall" unique_id=879049327]
+visibility_parent = NodePath("../MeshInstance3D")
+shape = SubResource("BoxShape3D_w0h0a")
+
+[node name="SouthWall" type="StaticBody3D" parent="WallsAndFloor" unique_id=1791079019]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 32, 25, 0)
+disable_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallsAndFloor/SouthWall" unique_id=152582117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9549215, 0)
+mesh = SubResource("BoxMesh_jglcl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallsAndFloor/SouthWall" unique_id=1506576512]
+visibility_parent = NodePath("../MeshInstance3D")
+shape = SubResource("BoxShape3D_w0h0a")
+
+[node name="EastWall" type="StaticBody3D" parent="WallsAndFloor" unique_id=90057376]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 25, -38)
+disable_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallsAndFloor/EastWall" unique_id=43980325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9534663, 0)
+mesh = SubResource("BoxMesh_jglcl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallsAndFloor/EastWall" unique_id=653024900]
+visibility_parent = NodePath("../MeshInstance3D")
+shape = SubResource("BoxShape3D_w0h0a")
+
+[node name="Floor" type="StaticBody3D" parent="WallsAndFloor" unique_id=566132737]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, -25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallsAndFloor/Floor" unique_id=1708406400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0003761673, 0.00037908554, 0.00043048858)
+mesh = SubResource("BoxMesh_m3ha0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallsAndFloor/Floor" unique_id=130479408]
+shape = SubResource("BoxShape3D_vd23k")
+
+[node name="StartBlock" parent="." unique_id=983277647 instance=ExtResource("4_xxxi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="End_Block" parent="." unique_id=2143554485 instance=ExtResource("5_4c4gq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+script = SubResource("GDScript_vybwq")
+
+[node name="If_block5" parent="." unique_id=1084689618 instance=ExtResource("7_dxjb0")]
+
+[node name="If_block6" parent="." unique_id=2019216372 instance=ExtResource("7_dxjb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="If_block7" parent="." unique_id=1324668975 instance=ExtResource("7_dxjb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="If_block8" parent="." unique_id=144430736 instance=ExtResource("7_dxjb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
