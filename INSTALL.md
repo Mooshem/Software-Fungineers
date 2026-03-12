@@ -39,8 +39,8 @@
 
 Prerequisites:
 
-- Godot Engine `4.6.1` (or `4.6.x`)
-- Git
+- Godot Engine `4.6.1` (or `4.6.x`) [https://godotengine.org/]
+- Git [https://git-scm.com/install/windows]
 
 Steps:
 
