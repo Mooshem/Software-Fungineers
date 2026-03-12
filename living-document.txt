@@ -915,7 +915,20 @@ Donovan Thach:
        easy scalability and other developers and understand the code, and to keep the project alive.
 
 Cash Limberg:
-   
+    1) Beginning the planning phases of our implementations early and often revisiting them during and 
+       after implementations was a crucial stage of our software staying on scope and task.
+
+    2) Working frequently with your team in person was imperative to our software being pushed out on a     
+       reasonable time, even if you don't have anything planned to do during your alloted time. Meeting 
+       with the team often to work on our project together helped us costantly understand the implementations
+       of our team and where our project was. It also helped to have the constant help of your team with you
+       while you worked on certain aspects of the project.
+
+    3) Ensuring that software tests are working and covering as many cases as you can manage was crucial for
+       making a software that won't crash or break on users. Also enlisting the help of people to perform
+       black box testing was crucial to understand how a user would want to use our software, and helped us 
+       with working around that. 
+
 Daniel Martin:
     1) CI/CD is a crucial aspect to efficient software development.
        Implementing tests early on ensured that we weren't unintentionally breaking things with each commit. 
