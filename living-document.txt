@@ -130,7 +130,8 @@ Project Description
                 3. Mr McBasketball completes puzzle 2
                 4. Mr McBasketball completes puzzle 3
             Extensions/variations of the success scenario:
-                - Mr McBasketball already understands functions, so he stops at puzzle 2
+                - Mr McBasketball already understands the fundamentals taught in 
+                  puzzle 2, so he stops at puzzle 2
                 - Mr McBasketball replays a puzzle that he thinks he could solve better
             Exceptions: failure conditions and scenarios: 
                 - Mr McBasketball does not complete puzzle 1, which doesn't allow him to 
@@ -232,7 +233,7 @@ Project Description
         All third-party libraries and 3D graphics frameworks used must have permissive open-source 
         licenses (MIT, Apache 2.0, or similar) to allow free distribution to educational institutions
         
-        The programming concepts taught (variables, conditionals, loops, functions) must align with standard 
+        The programming concepts taught (variables, conditionals, loops) must align with standard 
         CS curriculum frameworks
 
     //////////////////
@@ -497,7 +498,7 @@ Implementations
     \\\\\\\\\\\\\\\\\\
 
         1.  Implement the ability to make functions
-        2.  Implement the recursion
+        2.  Implement recursion
 
 
 ===================================================================
